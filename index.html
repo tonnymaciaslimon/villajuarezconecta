@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Villa Juárez Conecta | Portal Oficial</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            navy: "#0A1931",
+                            turquoise: "#2EC4B6",
+                            coral: "#FF8A8A",
+                            yellow: "#FFD60A",
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+</head>
+<body class="font-sans bg-gray-50 text-gray-900 antialiased max-w-md mx-auto min-h-screen relative shadow-2xl pb-24">
+
+    <!-- Header Sticky -->
+    <header class="sticky top-0 z-40 bg-brand-navy text-white px-4 py-3 flex items-center justify-between shadow-md">
+        <div class="flex items-center gap-2">
+            <div class="w-10 h-10 rounded-full bg-brand-turquoise flex items-center justify-center font-heading font-bold text-brand-navy border-2 border-brand-yellow shadow-sm">
+                VJ
+            </div>
+            <div>
+                <h1 class="font-heading font-bold text-sm leading-tight">Villa Juárez Conecta</h1>
+                <p class="text-[10px] text-brand-turquoise">Navolato, Sinaloa</p>
+            </div>
+        </div>
+        <button onclick="alert('Menú próximamente')" class="text-brand-yellow text-xl p-1 focus:outline-none" aria-label="Menú">
+            ☰
+        </button>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-brand-navy text-white px-4 pt-6 pb-8 rounded-b-2xl shadow-inner">
+        <h2 class="font-heading text-xl font-bold mb-2 text-center">¿Qué buscas en Villa Juárez?</h2>
+        <p class="text-xs text-gray-300 text-center mb-4">El portal digital oficial de nuestra sindicatura</p>
+        <div class="relative">
+            <input 
+                type="text" 
+                placeholder="Buscar comercios, noticias, quejas..." 
+                class="w-full py-3 px-4 pl-10 rounded-2xl text-gray-900 text-sm focus:outline-none shadow"
+            >
+            <span class="absolute left-3 top-3.5 text-gray-400">🔍</span>
+        </div>
+    </section>
+
+    <!-- 4 Cards de Acceso Rápido -->
+    <section class="px-4 -mt-4 grid grid-cols-2 gap-3 z-10 relative">
+        <a href="#quejas" class="bg-white p-4 rounded-2xl shadow-md border-b-4 border-brand-coral flex flex-col items-center text-center hover:scale-105 transition-transform">
+            <span class="text-2xl mb-1">📢</span>
+            <span class="font-heading font-bold text-xs text-brand-navy">Reportar Queja</span>
+        </a>
+        <a href="#directorio" class="bg-white p-4 rounded-2xl shadow-md border-b-4 border-brand-turquoise flex flex-col items-center text-center hover:scale-105 transition-transform">
+            <span class="text-2xl mb-1">🏪</span>
+            <span class="font-heading font-bold text-xs text-brand-navy">Directorio</span>
+        </a>
+        <a href="#noticias" class="bg-white p-4 rounded-2xl shadow-md border-b-4 border-brand-navy flex flex-col items-center text-center hover:scale-105 transition-transform">
+            <span class="text-2xl mb-1">📰</span>
+            <span class="font-heading font-bold text-xs text-brand-navy">Noticias</span>
+        </a>
+        <a href="#eventos" class="bg-white p-4 rounded-2xl shadow-md border-b-4 border-brand-yellow flex flex-col items-center text-center hover:scale-105 transition-transform">
+            <span class="text-2xl mb-1">🥎</span>
+            <span class="font-heading font-bold text-xs text-brand-navy">Softbol & Eventos</span>
+        </a>
+    </section>
+
+    <!-- Mapa Interactivo (Placeholder) -->
+    <section class="px-4 mt-6">
+        <h3 class="font-heading font-bold text-sm text-brand-navy mb-2">📍 Mapa Ciudadano</h3>
+        <div class="w-full h-48 bg-gray-200 rounded-2xl shadow-inner flex items-center justify-center text-xs text-gray-500 border border-gray-300">
+            [Mapa interactivo - Puntos y Quejas]
+        </div>
+    </section>
+
+    <!-- Últimas Noticias Feed -->
+    <section class="px-4 mt-6">
+        <div class="flex justify-between items-center mb-2">
+            <h3 class="font-heading font-bold text-sm text-brand-navy">📰 Últimas Noticias</h3>
+            <span class="text-xs text-brand-turquoise font-bold cursor-pointer">Ver todas</span>
+        </div>
+        <div class="bg-white p-3 rounded-2xl shadow-sm border border-gray-100 flex gap-3 items-center">
+            <div class="w-16 h-16 bg-gray-200 rounded-xl flex-shrink-0"></div>
+            <div>
+                <span class="text-[10px] bg-brand-turquoise/20 text-brand-navy font-bold px-2 py-0.5 rounded">Villa Juárez</span>
+                <h4 class="font-heading font-bold text-xs text-brand-navy mt-1">Inauguración de temporada de la liga local</h4>
+                <p class="text-[10px] text-gray-500 mt-0.5">Hace 3 horas</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Botón flotante de WhatsApp -->
+    <a href="https://wa.me/526670000000?text=Hola,%20contacto%20desde%20Villa%20Juárez%20Conecta" target="_blank" class="fixed bottom-6 right-6 z-50 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-transform hover:scale-110 flex items-center justify-center text-xl">
+        💬
+    </a>
+
+</body>
+</html>
