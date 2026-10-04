@@ -12,13 +12,13 @@
                 extend: {
                     colors: {
                         brand: {
-                            dark: "#050B14",       /* Negro profundo del fondo del logo */
-                            navy: "#0A1D3A",       /* Azul marino del cielo / bordes */
-                            yellow: "#FFCC00",     /* Amarillo vibrante de CONECTA / Sol */
-                            orange: "#FF7700",     /* Naranja atardecer */
-                            green: "#10B981",      /* Verde brillante de la flecha y conectividad */
-                            red: "#EF4444",        /* Rojo intenso del pin de ubicación */
-                            blue: "#00A2FF",       /* Azul brillante de los iconos de directorio */
+                            dark: "#050B14",
+                            navy: "#0A1D3A",
+                            yellow: "#FFCC00",
+                            orange: "#FF7700",
+                            green: "#10B981",
+                            red: "#EF4444",
+                            blue: "#00A2FF",
                         }
                     },
                     fontFamily: {
@@ -29,34 +29,23 @@
             }
         }
     </script>
-    <!-- Google Fonts: Montserrat Bold & Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
 </head>
 <body class="font-sans bg-brand-dark text-gray-100 antialiased max-w-md mx-auto min-h-screen relative shadow-2xl pb-24">
 
-    <!-- Header Sticky con Logo Original Completo -->
+    <!-- Header Sticky con tu Logo -->
     <header class="sticky top-0 z-40 bg-brand-navy/95 backdrop-blur-md text-white px-4 py-3 flex items-center justify-between shadow-lg border-b border-brand-yellow/30">
-        <div class="flex items-center gap-2.5">
-            <!-- LOGO ORIGINAL COMPLETO (Sin recorte circular) -->
-            <div class="h-10 flex items-center">
-                <img src="archivo_000000004aa881f58035d75be95ade64.png" alt="Villa Juárez Conecta" class="h-9 w-auto object-contain drop-shadow" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                <!-- Fallback si la imagen no carga -->
-                <div class="bg-brand-yellow text-brand-dark font-heading font-bold text-xs px-2 py-1 rounded hidden">
-                    Villa Juárez Conecta
-                </div>
-            </div>
+        <div class="flex items-center gap-2">
+            <!-- AQUÍ VA TU LOGO: Cambia 'archivo_000000004aa881f58035d75be95ade64.png' por el archivo real de tu logo -->
+            <img src="archivo_000000004aa881f58035d75be95ade64.png" alt="Villa Juárez Conecta" class="h-10 w-auto object-contain">
         </div>
         <button onclick="alert('Menú de navegación próximamente')" class="text-brand-yellow text-xl p-2 rounded-xl hover:bg-white/10 transition-colors focus:outline-none" aria-label="Menú">
             ☰
         </button>
     </header>
 
-    <!-- Hero Section con Estética del Atardecer del Logo -->
+    <!-- Hero Section -->
     <section class="bg-gradient-to-b from-brand-navy to-brand-dark text-white px-4 pt-6 pb-9 rounded-b-3xl shadow-xl relative overflow-hidden border-b border-brand-yellow/20">
-        <!-- Destellos inspirados en el sol del logo -->
-        <div class="absolute -right-6 -top-6 w-32 h-32 rounded-full bg-brand-orange/20 blur-2xl pointer-events-none"></div>
-        <div class="absolute left-10 -bottom-10 w-32 h-32 rounded-full bg-brand-green/10 blur-2xl pointer-events-none"></div>
-
         <h2 class="font-heading text-xl font-extrabold mb-1 text-center tracking-wide">¿Qué buscas en Villa Juárez?</h2>
         <p class="text-xs text-gray-300 text-center mb-5 italic">"Nuestra gente, nuestros negocios, nuestro Villa Juárez"</p>
         
@@ -72,24 +61,20 @@
 
     <!-- 4 Cards de Acceso Rápido -->
     <section class="px-4 -mt-5 grid grid-cols-2 gap-3.5 z-10 relative">
-        <!-- Reportar Queja -->
         <a href="#quejas" class="bg-brand-navy/90 backdrop-blur border border-white/10 p-4 rounded-2xl shadow-lg border-b-4 border-brand-red flex flex-col items-center text-center hover:scale-[1.02] transition-transform group">
-            <div class="w-10 h-10 rounded-full bg-brand-red/20 flex items-center justify-center text-xl mb-2 group-hover:bg-brand-red/30 transition-colors text-brand-red">📢</div>
+            <div class="w-10 h-10 rounded-full bg-brand-red/20 flex items-center justify-center text-xl mb-2 text-brand-red">📢</div>
             <span class="font-heading font-bold text-xs text-white">Reportar Queja</span>
         </a>
-        <!-- Directorio -->
         <a href="#directorio" class="bg-brand-navy/90 backdrop-blur border border-white/10 p-4 rounded-2xl shadow-lg border-b-4 border-brand-blue flex flex-col items-center text-center hover:scale-[1.02] transition-transform group">
-            <div class="w-10 h-10 rounded-full bg-brand-blue/20 flex items-center justify-center text-xl mb-2 group-hover:bg-brand-blue/30 transition-colors text-brand-blue">🏪</div>
+            <div class="w-10 h-10 rounded-full bg-brand-blue/20 flex items-center justify-center text-xl mb-2 text-brand-blue">🏪</div>
             <span class="font-heading font-bold text-xs text-white">Directorio Local</span>
         </a>
-        <!-- Noticias -->
         <a href="#noticias" class="bg-brand-navy/90 backdrop-blur border border-white/10 p-4 rounded-2xl shadow-lg border-b-4 border-brand-orange flex flex-col items-center text-center hover:scale-[1.02] transition-transform group">
-            <div class="w-10 h-10 rounded-full bg-brand-orange/20 flex items-center justify-center text-xl mb-2 group-hover:bg-brand-orange/30 transition-colors text-brand-orange">📰</div>
+            <div class="w-10 h-10 rounded-full bg-brand-orange/20 flex items-center justify-center text-xl mb-2 text-brand-orange">📰</div>
             <span class="font-heading font-bold text-xs text-white">Noticias</span>
         </a>
-        <!-- Softbol & Eventos -->
         <a href="#eventos" class="bg-brand-navy/90 backdrop-blur border border-white/10 p-4 rounded-2xl shadow-lg border-b-4 border-brand-yellow flex flex-col items-center text-center hover:scale-[1.02] transition-transform group">
-            <div class="w-10 h-10 rounded-full bg-brand-yellow/20 flex items-center justify-center text-xl mb-2 group-hover:bg-brand-yellow/30 transition-colors text-brand-yellow">🥎</div>
+            <div class="w-10 h-10 rounded-full bg-brand-yellow/20 flex items-center justify-center text-xl mb-2 text-brand-yellow">🥎</div>
             <span class="font-heading font-bold text-xs text-white">Softbol & Eventos</span>
         </a>
     </section>
@@ -117,7 +102,7 @@
             </h3>
             <span class="text-xs text-brand-yellow font-bold cursor-pointer hover:underline">Ver todas</span>
         </div>
-        <div class="bg-brand-navy/80 backdrop-blur p-3 rounded-2xl shadow-md border border-white/10 flex gap-3 items-center hover:border-brand-yellow/50 transition-colors">
+        <div class="bg-brand-navy/80 backdrop-blur p-3 rounded-2xl shadow-md border border-white/10 flex gap-3 items-center">
             <div class="w-16 h-16 bg-brand-green/20 rounded-xl flex-shrink-0 flex items-center justify-center text-2xl text-brand-green">🥎</div>
             <div>
                 <span class="text-[10px] bg-brand-green/20 text-brand-green font-extrabold px-2 py-0.5 rounded uppercase">Liga Municipal</span>
@@ -127,7 +112,7 @@
         </div>
     </section>
 
-    <!-- Botón flotante de WhatsApp oficial -->
+    <!-- Botón flotante de WhatsApp -->
     <a href="https://wa.me/526670000000?text=Hola,%20contacto%20desde%20Villa%20Juárez%20Conecta" target="_blank" class="fixed bottom-6 right-6 z-50 bg-brand-green text-white w-14 h-14 rounded-full shadow-2xl hover:bg-emerald-600 transition-all hover:scale-110 flex items-center justify-center text-2xl border-2 border-white/30" aria-label="WhatsApp Admin">
         💬
     </a>
