@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Villa Juárez Conecta | Portal Oficial</title>
+    <title>Villa Juárez Conecta | Comunidad y Negocios</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -12,12 +12,12 @@
             theme: {
                 extend: {
                     colors: {
-                        feed: {
-                            bg: "#050811",
-                            surface: "#0F1629",
-                            blue: "#2563EB",
+                        vj: {
+                            bg: "#040814",
+                            card: "#0D152D",
+                            blue: "#0066FF",
                             green: "#059669",
-                            orange: "#EA580C",
+                            orange: "#FF7700",
                         }
                     },
                     fontFamily: {
@@ -30,151 +30,275 @@
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
     <style>
-        .card-shadow {
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        .vj-card {
+            background: linear-gradient(135deg, rgba(13, 21, 45, 0.9) 0%, rgba(20, 32, 64, 0.7) 100%);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
         }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="font-sans bg-feed-bg text-gray-100 antialiased max-w-md mx-auto min-h-screen relative pb-28">
+<body class="font-sans bg-vj-bg text-gray-100 antialiased max-w-md mx-auto min-h-screen relative pb-32">
 
-    <!-- Header Superior Minimalista con los 3 Colores -->
-    <header class="sticky top-0 z-50 bg-feed-bg/90 backdrop-blur-md px-4 py-3.5 flex items-center justify-between border-b border-gray-800">
-        <div class="flex items-center gap-2">
-            <div class="w-8 h-8 rounded-full bg-gradient-to-r from-feed-blue via-feed-green to-feed-orange flex items-center justify-center font-heading font-black text-white text-xs">
+    <!-- Header Principal -->
+    <header class="sticky top-0 z-50 bg-vj-bg/95 backdrop-blur-md px-4 py-3 flex items-center justify-between border-b border-white/10">
+        <div class="flex items-center gap-2.5">
+            <div class="w-9 h-9 rounded-2xl bg-gradient-to-tr from-vj-blue via-vj-green to-vj-orange flex items-center justify-center font-heading font-black text-white text-sm shadow-lg">
                 VJ
             </div>
-            <span class="font-heading font-extrabold text-sm tracking-tight text-white">Villa Juárez <span class="text-feed-orange">Conecta</span></span>
+            <div>
+                <h1 class="font-heading font-black text-sm tracking-tight text-white leading-none">Villa Juárez <span class="text-vj-orange">Conecta</span></h1>
+                <p class="text-[9px] text-vj-green font-bold tracking-widest uppercase mt-1">Comunidad & Negocios</p>
+            </div>
         </div>
-        <div class="flex items-center gap-2">
-            <span class="w-2.5 h-2.5 rounded-full bg-feed-green animate-pulse"></span>
-            <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Activo</span>
-        </div>
+        <button onclick="abrirModalNegocio()" class="bg-vj-orange text-white px-3 py-1.5 rounded-xl font-heading font-bold text-[11px] shadow-md hover:opacity-90 transition-all flex items-center gap-1">
+            <span>➕</span> Registrar Negocio
+        </button>
     </header>
 
-    <!-- Contenedor Principal en Formato Feed Continuo -->
-    <main class="px-4 pt-4 space-y-4">
-
-        <!-- Banner de Bienvenida Estilo Historia/Tarjeta Grande -->
-        <section class="bg-gradient-to-br from-feed-surface via-[#131E38] to-feed-surface p-5 rounded-3xl border border-gray-800 card-shadow relative overflow-hidden">
-            <div class="absolute -right-10 -top-10 w-32 h-32 bg-feed-orange/20 rounded-full blur-2xl"></div>
-            <div class="absolute -left-10 -bottom-10 w-32 h-32 bg-feed-blue/20 rounded-full blur-2xl"></div>
-
-            <div class="relative z-10">
-                <span class="bg-feed-blue/20 text-blue-400 text-[10px] font-bold px-3 py-1 rounded-full border border-blue-500/30 uppercase tracking-widest">Comunidad Digital</span>
-                <h1 class="font-heading font-black text-xl text-white mt-2 mb-1">¡Bienvenidos a nuestra plataforma!</h1>
-                <p class="text-xs text-gray-300 leading-relaxed">El punto de encuentro para informarte, reportar y conectar con los comercios de Villa Juárez.</p>
-                
-                <!-- Buscador Integrado -->
-                <div class="mt-4 relative">
-                    <input type="text" placeholder="¿Qué buscas hoy?" class="w-full py-3 px-4 pl-10 rounded-2xl bg-black/40 border border-gray-700 text-xs text-white focus:outline-none focus:border-feed-orange transition-all placeholder-gray-500">
-                    <span class="absolute left-3.5 top-3 text-gray-400">🔍</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- Accesos Rápidos en Fila Horizontal Desplazable -->
-        <div class="flex gap-3 overflow-x-auto pb-1 no-scrollbar">
-            <button onclick="alertaClick('Sección de Directorio')" class="flex-shrink-0 bg-feed-surface border border-gray-800 px-4 py-3 rounded-2xl flex items-center gap-2.5 card-shadow hover:border-feed-blue transition-all">
-                <span class="w-8 h-8 rounded-xl bg-feed-blue/20 text-blue-400 flex items-center justify-center text-sm font-bold">🏪</span>
-                <div class="text-left">
-                    <h3 class="font-heading font-bold text-xs text-white">Directorio</h3>
-                    <p class="text-[9px] text-gray-400">Comercios locales</p>
-                </div>
-            </button>
-
-            <button onclick="alertaClick('Sección de Reportes')" class="flex-shrink-0 bg-feed-surface border border-gray-800 px-4 py-3 rounded-2xl flex items-center gap-2.5 card-shadow hover:border-feed-orange transition-all">
-                <span class="w-8 h-8 rounded-xl bg-feed-orange/20 text-orange-400 flex items-center justify-center text-sm font-bold">📢</span>
-                <div class="text-left">
-                    <h3 class="font-heading font-bold text-xs text-white">Reportes</h3>
-                    <p class="text-[9px] text-gray-400">Baches y quejas</p>
-                </div>
-            </button>
-
-            <button onclick="alertaClick('Sección de Eventos')" class="flex-shrink-0 bg-feed-surface border border-gray-800 px-4 py-3 rounded-2xl flex items-center gap-2.5 card-shadow hover:border-feed-green transition-all">
-                <span class="w-8 h-8 rounded-xl bg-feed-green/20 text-emerald-400 flex items-center justify-center text-sm font-bold">🥎</span>
-                <div class="text-left">
-                    <h3 class="font-heading font-bold text-xs text-white">Softbol</h3>
-                    <p class="text-[9px] text-gray-400">Ligas y torneos</p>
-                </div>
-            </button>
-        </div>
-
-        <!-- Tarjeta de Publicación / Noticia Estilo Feed -->
-        <article class="bg-feed-surface rounded-3xl border border-gray-800 card-shadow overflow-hidden">
-            <div class="p-4 flex items-center justify-between border-b border-gray-800/60">
-                <div class="flex items-center gap-2.5">
-                    <div class="w-8 h-8 rounded-full bg-feed-green text-white flex items-center justify-center font-bold text-xs">V</div>
-                    <div>
-                        <h4 class="font-heading font-bold text-xs text-white">Villa Juárez Conecta</h4>
-                        <span class="text-[9px] text-gray-400">Hace 2 horas • 📍 Villa Juárez</span>
-                    </div>
-                </div>
-                <span class="bg-feed-green/20 text-emerald-400 text-[9px] font-extrabold px-2.5 py-0.5 rounded-full uppercase">Noticia</span>
-            </div>
-
-            <div class="p-4 space-y-2">
-                <h3 class="font-heading font-bold text-sm text-white">Gran inauguración de la temporada de softbol municipal</h3>
-                <p class="text-xs text-gray-300 leading-relaxed">Este fin de semana se vivió un gran ambiente familiar en el campo deportivo local con el arranque oficial de los encuentros de la liga.</p>
-            </div>
-
-            <div class="bg-black/30 h-40 mx-4 mb-4 rounded-2xl border border-gray-800 flex flex-col items-center justify-center text-gray-500">
-                <span class="text-3xl mb-1">🏆</span>
-                <span class="text-[11px] font-medium">Fotografía del evento deportivo</span>
-            </div>
-        </article>
-
-        <!-- Tarjeta de Negocio / Directorio Destacado -->
-        <article class="bg-feed-surface rounded-3xl border border-gray-800 card-shadow p-4 space-y-3">
-            <div class="flex justify-between items-start">
-                <div>
-                    <span class="bg-feed-orange/20 text-orange-400 text-[9px] font-extrabold px-2.5 py-0.5 rounded-full uppercase">Comercio Recomendado</span>
-                    <h3 class="font-heading font-bold text-sm text-white mt-1.5">Tacos y Antojitos El Paisa</h3>
-                </div>
-                <span class="text-xs bg-feed-green/20 text-emerald-400 px-2.5 py-1 rounded-xl font-bold">Abierto 🟢</span>
-            </div>
-            <p class="text-xs text-gray-300">Disfruta de los mejores tacos al pastor y carne asada de la región. Servicio a domicilio disponible.</p>
-            <button onclick="alertaClick('Llamando al negocio...')" class="w-full py-2.5 rounded-xl bg-feed-blue text-white font-heading font-bold text-xs shadow-lg hover:bg-blue-600 transition-all">Contactar Negocio</button>
-        </article>
-
-        <!-- Tarjeta de Reporte Ciudadano Rápido -->
-        <article class="bg-feed-surface rounded-3xl border border-gray-800 card-shadow p-4 space-y-3">
-            <span class="bg-feed-blue/20 text-blue-400 text-[9px] font-extrabold px-2.5 py-0.5 rounded-full uppercase">Buzón Ciudadano</span>
-            <h3 class="font-heading font-bold text-sm text-white">¿Reportar una falla en tu colonia?</h3>
-            <textarea rows="2" placeholder="Escribe tu reporte aquí..." class="w-full p-3 rounded-2xl bg-black/40 border border-gray-700 text-xs text-white focus:outline-none focus:border-feed-green resize-none"></textarea>
-            <button onclick="alertaClick('¡Reporte enviado con éxito!')" class="w-full py-2.5 rounded-xl bg-feed-green text-white font-heading font-bold text-xs shadow-lg hover:bg-emerald-600 transition-all">Enviar Reporte</button>
-        </article>
-
-    </main>
-
-    <!-- Barra de Navegación Inferior Fija (Estilo App Móvil) -->
-    <nav class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-feed-surface/95 backdrop-blur-md border-t border-gray-800 px-6 py-3 flex justify-between items-center z-50">
-        <button onclick="alertaClick('Estás en Inicio')" class="flex flex-col items-center text-feed-orange">
-            <span class="text-lg">🏠</span>
-            <span class="text-[9px] font-bold mt-0.5">Inicio</span>
-        </button>
-        <button onclick="alertaClick('Abrir Directorio')" class="flex flex-col items-center text-gray-400 hover:text-white transition-colors">
-            <span class="text-lg">🏪</span>
-            <span class="text-[9px] font-bold mt-0.5">Directorio</span>
-        </button>
-        <button onclick="alertaClick('Abrir Reportes')" class="flex flex-col items-center text-gray-400 hover:text-white transition-colors">
-            <span class="text-lg">📢</span>
-            <span class="text-[9px] font-bold mt-0.5">Reportes</span>
-        </button>
-        <button onclick="alertaClick('Perfil de usuario')" class="flex flex-col items-center text-gray-400 hover:text-white transition-colors">
-            <span class="text-lg">👤</span>
-            <span class="text-[9px] font-bold mt-0.5">Perfil</span>
-        </button>
+    <!-- Navegación por Secciones (Pestañas Superiores) -->
+    <nav class="px-4 pt-3 pb-1 flex gap-2 overflow-x-auto no-scrollbar z-20 relative">
+        <button onclick="cambiarSeccion('inicio')" id="btn-inicio" class="sec-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-vj-blue text-white shadow-md transition-all whitespace-nowrap">🏠 Inicio & Muro</button>
+        <button onclick="cambiarSeccion('directorio')" id="btn-directorio" class="sec-btn px-3.5 py-2 rounded-xl text-xs font-bold vj-card text-gray-300 hover:text-white transition-all whitespace-nowrap">🏪 Directorio & Menús</button>
+        <button onclick="cambiarSeccion('deportes')" id="btn-deportes" class="sec-btn px-3.5 py-2 rounded-xl text-xs font-bold vj-card text-gray-300 hover:text-white transition-all whitespace-nowrap">🥎 Deportes & Eventos</button>
+        <button onclick="cambiarSeccion('reportes')" id="btn-reportes" class="sec-btn px-3.5 py-2 rounded-xl text-xs font-bold vj-card text-gray-300 hover:text-white transition-all whitespace-nowrap">📢 Reportes Colonias</button>
+        <button onclick="cambiarSeccion('sugerencias')" id="btn-sugerencias" class="sec-btn px-3.5 py-2 rounded-xl text-xs font-bold vj-card text-gray-300 hover:text-white transition-all whitespace-nowrap">💡 Sugerencias</button>
     </nav>
 
+    <!-- ================= SECCIÓN 1: INICIO & MURO COMUNITARIO ================= -->
+    <main id="sec-inicio" class="px-4 mt-3 space-y-4">
+        
+        <!-- Banner Publicitario Principal -->
+        <section class="vj-card p-5 rounded-3xl relative overflow-hidden border-vj-orange/30">
+            <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-vj-orange/15 rounded-full blur-2xl"></div>
+            <span class="bg-vj-orange/20 text-vj-orange text-[9px] font-extrabold px-2.5 py-1 rounded-full uppercase border border-vj-orange/30">Espacio Publicitario</span>
+            <h2 class="font-heading font-black text-lg text-white mt-2 mb-1">¡Impulsa tu negocio en Villa Juárez!</h2>
+            <p class="text-xs text-gray-300 mb-3">Llega a cientos de clientes potenciales todos los días mostrando tus productos, menús y horarios.</p>
+            <button onclick="abrirModalNegocio()" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-vj-orange to-vj-blue text-white font-heading font-bold text-xs shadow-lg">Anuncia tu Negocio Aquí</button>
+        </section>
+
+        <!-- Muro de Publicaciones y Fotos de la Comunidad -->
+        <div class="space-y-4">
+            <div class="flex justify-between items-center">
+                <h3 class="font-heading font-bold text-sm text-white flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-vj-green animate-pulse"></span> Lo que pasa en Villa Juárez
+                </h3>
+                <span class="text-[10px] text-vj-orange font-bold cursor-pointer" onclick="mostrarAlerta('Sube tus fotos mandándolas por WhatsApp')">📸 Compartir foto</span>
+            </div>
+
+            <!-- Publicación tipo foto comunidad -->
+            <article class="vj-card rounded-3xl overflow-hidden p-4 space-y-3">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-8 h-8 rounded-full bg-vj-blue text-white flex items-center justify-center font-bold text-xs">VJ</div>
+                    <div>
+                        <h4 class="font-heading font-bold text-xs text-white">Comunidad Villa Juárez</h4>
+                        <span class="text-[9px] text-gray-400">Hace 1 hora • Plaza Principal</span>
+                    </div>
+                </div>
+                <p class="text-xs text-gray-200">Hermosa tarde disfrutando en el corazón de nuestra comunidad. ¡Saludos a todos los vecinos!</p>
+                <div class="bg-black/40 h-44 rounded-2xl border border-white/5 flex flex-col items-center justify-center text-gray-400">
+                    <span class="text-3xl mb-1">🌅</span>
+                    <span class="text-[11px] font-medium">Foto del atardecer en Villa Juárez</span>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- ================= SECCIÓN 2: DIRECTORIO & MENÚS ================= -->
+    <div id="sec-directorio" class="px-4 mt-3 space-y-4 hidden">
+        <div class="flex justify-between items-center">
+            <h2 class="font-heading font-bold text-sm text-white flex items-center gap-2">🏪 Directorio y Menús Locales</h2>
+            <button onclick="abrirModalNegocio()" class="text-[10px] text-vj-orange font-bold bg-vj-orange/10 px-2.5 py-1 rounded-full border border-vj-orange/30">+ Dar de alta</button>
+        </div>
+
+        <p class="text-xs text-gray-400">Conoce los negocios locales, sus menús, horarios y teléfonos de contacto.</p>
+
+        <!-- Tarjeta de Negocio 1 con Menú y Horarios -->
+        <div class="vj-card p-4 rounded-3xl space-y-3">
+            <div class="flex justify-between items-start">
+                <div>
+                    <span class="bg-vj-orange/20 text-vj-orange text-[9px] font-extrabold px-2 py-0.5 rounded uppercase">Gastronomía</span>
+                    <h3 class="font-heading font-bold text-sm text-white mt-1">Tacos y Antojitos El Paisa</h3>
+                </div>
+                <span class="text-[10px] bg-vj-green/20 text-vj-green px-2 py-1 rounded-xl font-bold border border-vj-green/30">Abierto 🟢</span>
+            </div>
+
+            <!-- Información detallada requerida -->
+            <div class="bg-black/30 p-3 rounded-2xl space-y-2 text-xs text-gray-300 border border-white/5">
+                <p><strong>🕒 Horarios:</strong> Lunes a Domingo de 6:00 PM a 11:00 PM</p>
+                <p><strong>📍 Ubicación:</strong> Calle Principal #123, Col. Centro</p>
+                <p><strong>📞 Teléfono:</strong> <span class="text-vj-orange font-bold">667 000 0000</span></p>
+                <div>
+                    <strong class="text-white block mb-1">📋 Menú Destacado:</strong>
+                    <ul class="list-disc list-inside text-[11px] text-gray-400 space-y-0.5">
+                        <li>Tacos de Asada y Pastor - $25 c/u</li>
+                        <li>Orden de Vampiros - $120</li>
+                        <li>Aguas frescas naturales - $30</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="flex gap-2">
+                <button onclick="mostrarAlerta('Abriendo ubicación en mapa...')" class="flex-1 py-2 rounded-xl bg-vj-blue/20 text-vj-blue font-heading font-bold text-xs border border-vj-blue/30 hover:bg-vj-blue hover:text-white transition-all">Ver Ubicación</button>
+                <button onclick="mostrarAlerta('Llamando al negocio...')" class="flex-1 py-2 rounded-xl bg-vj-green text-white font-heading font-bold text-xs shadow-md">Llamar / Pedir</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= SECCIÓN 3: DEPORTES & EVENTOS ================= -->
+    <div id="sec-deportes" class="px-4 mt-3 space-y-4 hidden">
+        <div class="flex justify-between items-center">
+            <h2 class="font-heading font-bold text-sm text-white flex items-center gap-2">🥎 Deportes y Eventos</h2>
+            <span class="text-[10px] text-vj-green font-bold bg-vj-green/10 px-2.5 py-1 rounded-full border border-vj-green/30">Liga Municipal</span>
+        </div>
+
+        <p class="text-xs text-gray-400">Fotos y videos de los torneos de softbol y eventos culturales de Villa Juárez.</p>
+
+        <!-- Publicación de evento deportivo -->
+        <div class="vj-card p-4 rounded-3xl space-y-3">
+            <span class="bg-vj-green/20 text-vj-green text-[9px] font-extrabold px-2 py-0.5 rounded uppercase">Softbol Dominical</span>
+            <h3 class="font-heading font-bold text-sm text-white">Gran Final de Temporada - Campo Municipal</h3>
+            <p class="text-xs text-gray-300">Revive los mejores momentos del partido decisivo de este fin de semana con casa llena.</p>
+            
+            <div class="bg-black/40 h-48 rounded-2xl border border-white/5 flex flex-col items-center justify-center text-gray-400 relative">
+                <span class="text-4xl mb-1">▶️</span>
+                <span class="text-[11px] font-medium text-white">Video resumen del juego (Reproducir)</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= SECCIÓN 4: REPORTES DE COLONIAS ================= -->
+    <div id="sec-reportes" class="px-4 mt-3 space-y-4 hidden">
+        <h2 class="font-heading font-bold text-sm text-white flex items-center gap-2">📢 Reportes Ciudadanos</h2>
+        
+        <div class="vj-card p-4 rounded-3xl space-y-3.5 border-vj-blue/30">
+            <p class="text-xs text-gray-300">¿Hay baches, falta de alumbrado o algún problema en tu colonia? Repórtalo para que la comunidad lo sepa.</p>
+            <div class="space-y-3">
+                <input type="text" placeholder="Tu Colonia / Ubicación exacta" class="w-full py-2.5 px-3 rounded-xl text-xs bg-black/50 border border-white/10 text-white focus:outline-none focus:border-vj-blue">
+                <textarea rows="3" placeholder="Describe el problema en tu colonia..." class="w-full py-2.5 px-3 rounded-xl text-xs bg-black/50 border border-white/10 text-white focus:outline-none focus:border-vj-blue resize-none"></textarea>
+                <button onclick="mostrarAlerta('¡Reporte enviado con éxito! Se ha publicado en el muro.')" class="w-full py-3 rounded-xl bg-vj-blue text-white font-heading font-bold text-xs shadow-lg">Enviar Reporte Ciudadano</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= SECCIÓN 5: SUGERENCIAS ================= -->
+    <div id="sec-sugerencias" class="px-4 mt-3 space-y-4 hidden">
+        <h2 class="font-heading font-bold text-sm text-white flex items-center gap-2">💡 Sugerencias y Comentarios</h2>
+        
+        <div class="vj-card p-4 rounded-3xl space-y-3.5">
+            <p class="text-xs text-gray-300">Queremos mejorar cada día. Cuéntanos, <strong>¿qué más te gustaría ver en la página?</strong> ¿Qué secciones o funciones agregarías?</p>
+            <div class="space-y-3">
+                <textarea rows="4" placeholder="Escribe aquí tus ideas, sugerencias o comentarios..." class="w-full py-2.5 px-3 rounded-xl text-xs bg-black/50 border border-white/10 text-white focus:outline-none focus:border-vj-orange resize-none"></textarea>
+                <button onclick="mostrarAlerta('¡Muchas gracias por tu sugerencia! La tomaremos en cuenta.')" class="w-full py-3 rounded-xl bg-vj-orange text-white font-heading font-bold text-xs shadow-lg">Enviar Sugerencia</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= MODAL PARA DAR DE ALTA NEGOCIO ================= -->
+    <div id="modal-negocio" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="vj-card w-full max-w-md p-5 rounded-3xl space-y-4 max-h-[90vh] overflow-y-auto border-vj-orange/40">
+            <div class="flex justify-between items-center border-b border-white/10 pb-3">
+                <h3 class="font-heading font-bold text-sm text-white">🏪 Registrar tu Negocio</h3>
+                <button onclick="cerrarModalNegocio()" class="text-gray-400 hover:text-white text-lg">✕</button>
+            </div>
+            
+            <div class="space-y-3 text-xs">
+                <div>
+                    <label class="block text-gray-400 font-bold mb-1 uppercase text-[10px]">Nombre del Negocio</label>
+                    <input type="text" id="reg-nombre" placeholder="Ej. Nevería Don Beto" class="w-full p-2.5 rounded-xl bg-black/50 border border-white/10 text-white focus:outline-none focus:border-vj-orange">
+                </div>
+                <div>
+                    <label class="block text-gray-400 font-bold mb-1 uppercase text-[10px]">Categoría</label>
+                    <input type="text" id="reg-cat" placeholder="Ej. Comida, Ropa, Servicios..." class="w-full p-2.5 rounded-xl bg-black/50 border border-white/10 text-white focus:outline-none focus:border-vj-orange">
+                </div>
+                <div>
+                    <label class="block text-gray-400 font-bold mb-1 uppercase text-[10px]">Horarios de Atención</label>
+                    <input type="text" id="reg-horario" placeholder="Ej. Lunes a Sábados 9am - 8pm" class="w-full p-2.5 rounded-xl bg-black/50 border border-white/10 text-white focus:outline-none focus:border-vj-orange">
+                </div>
+                <div>
+                    <label class="block text-gray-400 font-bold mb-1 uppercase text-[10px]">Teléfono de Contacto</label>
+                    <input type="text" id="reg-tel" placeholder="Ej. 667 000 0000" class="w-full p-2.5 rounded-xl bg-black/50 border border-white/10 text-white focus:outline-none focus:border-vj-orange">
+                </div>
+                <div>
+                    <label class="block text-gray-400 font-bold mb-1 uppercase text-[10px]">Ubicación (Dirección)</label>
+                    <input type="text" id="reg-dir" placeholder="Ej. Calle Juárez #45" class="w-full p-2.5 rounded-xl bg-black/50 border border-white/10 text-white focus:outline-none focus:border-vj-orange">
+                </div>
+                <div>
+                    <label class="block text-gray-400 font-bold mb-1 uppercase text-[10px]">Menú o Productos principales</label>
+                    <textarea rows="2" id="reg-menu" placeholder="Describe tus platillos o productos principales..." class="w-full p-2.5 rounded-xl bg-black/50 border border-white/10 text-white focus:outline-none focus:border-vj-orange resize-none"></textarea>
+                </div>
+
+                <button onclick="guardarNegocio()" class="w-full py-3 rounded-xl bg-vj-orange text-white font-heading font-bold text-xs shadow-lg mt-2">Guardar y Publicar Negocio</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Botón Flotante de WhatsApp -->
-    <a href="https://wa.me/526670000000?text=Hola,%20contacto%20desde%20Villa%20Juárez%20Conecta" target="_blank" class="fixed bottom-20 right-5 z-40 bg-feed-green text-white w-12 h-12 rounded-full shadow-2xl flex items-center justify-center text-xl border-2 border-white/20 hover:scale-110 transition-all" aria-label="WhatsApp">
+    <a href="https://wa.me/526670000000?text=Hola,%20quiero%20publicar%20mi%20negocio%20o%20enviar%20contenido%20a%20Villa%20Juárez%20Conecta" target="_blank" class="fixed bottom-6 right-6 z-40 bg-vj-green text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-2xl border-2 border-white/20 hover:scale-110 transition-all" aria-label="WhatsApp">
         💬
     </a>
 
-    <!-- Alerta emergente simple -->
+    <!-- Alerta Flotante Toast -->
+    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 vj-card px-4 py-2.5 rounded-2xl text-xs text-white border border-vj-orange/40 shadow-2xl transition-all duration-300 opacity-0 pointer-events-none z-50 flex items-center gap-2">
+        <span>✨</span> <span id="toast-msg">Mensaje</span>
+    </div>
+
+    <!-- Script de Interactividad y Pestañas -->
     <script>
-        function alertaClick(mensaje) {
-            alert(mensaje);
+        function cambiarSeccion(secId) {
+            // Ocultar todas
+            document.getElementById('sec-inicio').classList.add('hidden');
+            document.getElementById('sec-directorio').classList.add('hidden');
+            document.getElementById('sec-deportes').classList.add('hidden');
+            document.getElementById('sec-reportes').classList.add('hidden');
+            document.getElementById('sec-sugerencias').classList.add('hidden');
+
+            // Mostrar la elegida
+            document.getElementById('sec-' + secId).classList.remove('hidden');
+
+            // Cambiar estilos de botones
+            const botones = document.querySelectorAll('.sec-btn');
+            botones.forEach(btn => {
+                btn.classList.remove('bg-vj-blue', 'text-white', 'shadow-md');
+                btn.classList.add('vj-card', 'text-gray-300');
+            });
+
+            const btnActivo = document.getElementById('btn-' + secId);
+            btnActivo.classList.remove('vj-card', 'text-gray-300');
+            btnActivo.classList.add('bg-vj-blue', 'text-white', 'shadow-md');
+        }
+
+        function abrirModalNegocio() {
+            document.getElementById('modal-negocio').classList.remove('hidden');
+        }
+
+        function cerrarModalNegocio() {
+            document.getElementById('modal-negocio').classList.add('hidden');
+        }
+
+        function guardarNegocio() {
+            const nombre = document.getElementById('reg-nombre').value;
+            if(nombre.trim() === "") {
+                mostrarAlerta('Por favor ingresa al menos el nombre del negocio');
+                return;
+            }
+            cerrarModalNegocio();
+            mostrarAlerta('¡Negocio registrado con éxito! Ya aparece en el directorio.');
+        }
+
+        function mostrarAlerta(mensaje) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-msg');
+            toastMsg.innerText = mensaje;
+            toast.classList.remove('opacity-0', 'pointer-events-none');
+            toast.classList.add('opacity-100');
+            
+            setTimeout(() => {
+                toast.classList.remove('opacity-100');
+                toast.classList.add('opacity-0', 'pointer-events-none');
+            }, 3500);
         }
     </script>
 
