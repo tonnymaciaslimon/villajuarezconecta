@@ -12,10 +12,13 @@
                 extend: {
                     colors: {
                         brand: {
-                            navy: "#0A1931",
-                            turquoise: "#2EC4B6",
-                            coral: "#FF8A8A",
-                            yellow: "#FFD60A",
+                            dark: "#050B14",       /* Negro profundo del fondo del logo */
+                            navy: "#0A1D3A",       /* Azul marino del cielo / bordes */
+                            yellow: "#FFCC00",     /* Amarillo vibrante de CONECTA / Sol */
+                            orange: "#FF7700",     /* Naranja atardecer */
+                            green: "#10B981",      /* Verde brillante de la flecha y conectividad */
+                            red: "#EF4444",        /* Rojo intenso del pin de ubicación */
+                            blue: "#00A2FF",       /* Azul brillante de los iconos de directorio */
                         }
                     },
                     fontFamily: {
@@ -26,87 +29,111 @@
             }
         }
     </script>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Montserrat Bold & Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
 </head>
-<body class="font-sans bg-gray-50 text-gray-900 antialiased max-w-md mx-auto min-h-screen relative shadow-2xl pb-24">
+<body class="font-sans bg-brand-dark text-gray-100 antialiased max-w-md mx-auto min-h-screen relative shadow-2xl pb-24">
 
-    <!-- Header Sticky -->
-    <header class="sticky top-0 z-40 bg-brand-navy text-white px-4 py-3 flex items-center justify-between shadow-md">
-        <div class="flex items-center gap-2">
-            <div class="w-10 h-10 rounded-full bg-brand-turquoise flex items-center justify-center font-heading font-bold text-brand-navy border-2 border-brand-yellow shadow-sm">
-                VJ
+    <!-- Header Sticky con Logo Oficial del Logotipo -->
+    <header class="sticky top-0 z-40 bg-brand-navy/95 backdrop-blur-md text-white px-4 py-3 flex items-center justify-between shadow-lg border-b border-brand-yellow/30">
+        <div class="flex items-center gap-3">
+            <div class="w-11 h-11 rounded-full bg-brand-dark flex items-center justify-center border-2 border-brand-yellow shadow-md overflow-hidden relative">
+                <!-- LOGO OFICIAL: Se adapta con tu imagen -->
+                <img src="836069.png" alt="Logo Villa Juárez Conecta" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="absolute inset-0 bg-brand-yellow text-brand-dark font-heading font-bold text-xs items-center justify-center" style="display: none;">
+                    VJ
+                </div>
             </div>
             <div>
-                <h1 class="font-heading font-bold text-sm leading-tight">Villa Juárez Conecta</h1>
-                <p class="text-[10px] text-brand-turquoise">Navolato, Sinaloa</p>
+                <h1 class="font-heading font-extrabold text-sm leading-tight text-white flex items-center gap-1.5">
+                    Villa Juárez <span class="text-brand-yellow">CONECTA</span>
+                </h1>
+                <p class="text-[10px] text-brand-green font-semibold tracking-wider">NAVOLATO, SINALOA</p>
             </div>
         </div>
-        <button onclick="alert('Menú próximamente')" class="text-brand-yellow text-xl p-1 focus:outline-none" aria-label="Menú">
+        <button onclick="alert('Menú de navegación próximamente')" class="text-brand-yellow text-xl p-2 rounded-xl hover:bg-white/10 transition-colors focus:outline-none" aria-label="Menú">
             ☰
         </button>
     </header>
 
-    <!-- Hero Section -->
-    <section class="bg-brand-navy text-white px-4 pt-6 pb-8 rounded-b-2xl shadow-inner">
-        <h2 class="font-heading text-xl font-bold mb-2 text-center">¿Qué buscas en Villa Juárez?</h2>
-        <p class="text-xs text-gray-300 text-center mb-4">El portal digital oficial de nuestra sindicatura</p>
-        <div class="relative">
+    <!-- Hero Section con Estética del Atardecer del Logo -->
+    <section class="bg-gradient-to-b from-brand-navy to-brand-dark text-white px-4 pt-6 pb-9 rounded-b-3xl shadow-xl relative overflow-hidden border-b border-brand-yellow/20">
+        <!-- Destellos inspirados en el sol del logo -->
+        <div class="absolute -right-6 -top-6 w-32 h-32 rounded-full bg-brand-orange/20 blur-2xl pointer-events-none"></div>
+        <div class="absolute left-10 -bottom-10 w-32 h-32 rounded-full bg-brand-green/10 blur-2xl pointer-events-none"></div>
+
+        <h2 class="font-heading text-xl font-extrabold mb-1 text-center tracking-wide">¿Qué buscas en Villa Juárez?</h2>
+        <p class="text-xs text-gray-300 text-center mb-5 italic">"Nuestra gente, nuestros negocios, nuestro Villa Juárez"</p>
+        
+        <div class="relative shadow-2xl">
             <input 
                 type="text" 
                 placeholder="Buscar comercios, noticias, quejas..." 
-                class="w-full py-3 px-4 pl-10 rounded-2xl text-gray-900 text-sm focus:outline-none shadow"
+                class="w-full py-3.5 px-4 pl-11 rounded-2xl text-gray-900 text-sm bg-white/95 focus:outline-none focus:ring-2 focus:ring-brand-yellow transition-all font-medium placeholder-gray-500"
             >
-            <span class="absolute left-3 top-3.5 text-gray-400">🔍</span>
+            <span class="absolute left-3.5 top-4 text-brand-navy text-sm font-bold">🔍</span>
         </div>
     </section>
 
-    <!-- 4 Cards de Acceso Rápido -->
-    <section class="px-4 -mt-4 grid grid-cols-2 gap-3 z-10 relative">
-        <a href="#quejas" class="bg-white p-4 rounded-2xl shadow-md border-b-4 border-brand-coral flex flex-col items-center text-center hover:scale-105 transition-transform">
-            <span class="text-2xl mb-1">📢</span>
-            <span class="font-heading font-bold text-xs text-brand-navy">Reportar Queja</span>
+    <!-- 4 Cards de Acceso Rápido (Inspiradas en los iconos inferiores del logo) -->
+    <section class="px-4 -mt-5 grid grid-cols-2 gap-3.5 z-10 relative">
+        <!-- Reportar Queja (Rojo del pin del logo) -->
+        <a href="#quejas" class="bg-brand-navy/90 backdrop-blur border border-white/10 p-4 rounded-2xl shadow-lg border-b-4 border-brand-red flex flex-col items-center text-center hover:scale-[1.02] transition-transform group">
+            <div class="w-10 h-10 rounded-full bg-brand-red/20 flex items-center justify-center text-xl mb-2 group-hover:bg-brand-red/30 transition-colors text-brand-red">📢</div>
+            <span class="font-heading font-bold text-xs text-white">Reportar Queja</span>
         </a>
-        <a href="#directorio" class="bg-white p-4 rounded-2xl shadow-md border-b-4 border-brand-turquoise flex flex-col items-center text-center hover:scale-105 transition-transform">
-            <span class="text-2xl mb-1">🏪</span>
-            <span class="font-heading font-bold text-xs text-brand-navy">Directorio</span>
+        <!-- Directorio (Azul de los comercios del logo) -->
+        <a href="#directorio" class="bg-brand-navy/90 backdrop-blur border border-white/10 p-4 rounded-2xl shadow-lg border-b-4 border-brand-blue flex flex-col items-center text-center hover:scale-[1.02] transition-transform group">
+            <div class="w-10 h-10 rounded-full bg-brand-blue/20 flex items-center justify-center text-xl mb-2 group-hover:bg-brand-blue/30 transition-colors text-brand-blue">🏪</div>
+            <span class="font-heading font-bold text-xs text-white">Directorio Local</span>
         </a>
-        <a href="#noticias" class="bg-white p-4 rounded-2xl shadow-md border-b-4 border-brand-navy flex flex-col items-center text-center hover:scale-105 transition-transform">
-            <span class="text-2xl mb-1">📰</span>
-            <span class="font-heading font-bold text-xs text-brand-navy">Noticias</span>
+        <!-- Noticias (Naranja/Rojo de la sección noticias) -->
+        <a href="#noticias" class="bg-brand-navy/90 backdrop-blur border border-white/10 p-4 rounded-2xl shadow-lg border-b-4 border-brand-orange flex flex-col items-center text-center hover:scale-[1.02] transition-transform group">
+            <div class="w-10 h-10 rounded-full bg-brand-orange/20 flex items-center justify-center text-xl mb-2 group-hover:bg-brand-orange/30 transition-colors text-brand-orange">📰</div>
+            <span class="font-heading font-bold text-xs text-white">Noticias</span>
         </a>
-        <a href="#eventos" class="bg-white p-4 rounded-2xl shadow-md border-b-4 border-brand-yellow flex flex-col items-center text-center hover:scale-105 transition-transform">
-            <span class="text-2xl mb-1">🥎</span>
-            <span class="font-heading font-bold text-xs text-brand-navy">Softbol & Eventos</span>
+        <!-- Softbol & Eventos (Amarillo y Verde del logo) -->
+        <a href="#eventos" class="bg-brand-navy/90 backdrop-blur border border-white/10 p-4 rounded-2xl shadow-lg border-b-4 border-brand-yellow flex flex-col items-center text-center hover:scale-[1.02] transition-transform group">
+            <div class="w-10 h-10 rounded-full bg-brand-yellow/20 flex items-center justify-center text-xl mb-2 group-hover:bg-brand-yellow/30 transition-colors text-brand-yellow">🥎</div>
+            <span class="font-heading font-bold text-xs text-white">Softbol & Eventos</span>
         </a>
     </section>
 
-    <!-- Mapa Interactivo (Placeholder) -->
+    <!-- Mapa Interactivo -->
     <section class="px-4 mt-6">
-        <h3 class="font-heading font-bold text-sm text-brand-navy mb-2">📍 Mapa Ciudadano</h3>
-        <div class="w-full h-48 bg-gray-200 rounded-2xl shadow-inner flex items-center justify-center text-xs text-gray-500 border border-gray-300">
-            [Mapa interactivo - Puntos y Quejas]
+        <div class="flex justify-between items-center mb-2">
+            <h3 class="font-heading font-bold text-sm text-white flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-brand-red"></span> Mapa Ciudadano
+            </h3>
+            <span class="text-[11px] text-brand-yellow font-bold cursor-pointer">Ver pantalla completa</span>
+        </div>
+        <div class="w-full h-48 bg-brand-navy/60 backdrop-blur rounded-2xl shadow-inner flex flex-col items-center justify-center text-xs text-gray-300 border border-white/10 relative overflow-hidden">
+            <span class="text-3xl mb-1 text-brand-green">📍</span>
+            <span class="font-medium">Mapa interactivo de Villa Juárez</span>
+            <span class="text-[10px] text-gray-400 mt-1">Puntos de reunión, comercios y reportes</span>
         </div>
     </section>
 
     <!-- Últimas Noticias Feed -->
     <section class="px-4 mt-6">
         <div class="flex justify-between items-center mb-2">
-            <h3 class="font-heading font-bold text-sm text-brand-navy">📰 Últimas Noticias</h3>
-            <span class="text-xs text-brand-turquoise font-bold cursor-pointer">Ver todas</span>
+            <h3 class="font-heading font-bold text-sm text-white flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-brand-orange"></span> Últimas Noticias
+            </h3>
+            <span class="text-xs text-brand-yellow font-bold cursor-pointer hover:underline">Ver todas</span>
         </div>
-        <div class="bg-white p-3 rounded-2xl shadow-sm border border-gray-100 flex gap-3 items-center">
-            <div class="w-16 h-16 bg-gray-200 rounded-xl flex-shrink-0"></div>
+        <div class="bg-brand-navy/80 backdrop-blur p-3 rounded-2xl shadow-md border border-white/10 flex gap-3 items-center hover:border-brand-yellow/50 transition-colors">
+            <div class="w-16 h-16 bg-brand-green/20 rounded-xl flex-shrink-0 flex items-center justify-center text-2xl text-brand-green">🥎</div>
             <div>
-                <span class="text-[10px] bg-brand-turquoise/20 text-brand-navy font-bold px-2 py-0.5 rounded">Villa Juárez</span>
-                <h4 class="font-heading font-bold text-xs text-brand-navy mt-1">Inauguración de temporada de la liga local</h4>
-                <p class="text-[10px] text-gray-500 mt-0.5">Hace 3 horas</p>
+                <span class="text-[10px] bg-brand-green/20 text-brand-green font-extrabold px-2 py-0.5 rounded uppercase">Liga Municipal</span>
+                <h4 class="font-heading font-bold text-xs text-white mt-1">Inauguración de temporada de la liga local de softbol</h4>
+                <p class="text-[10px] text-gray-400 mt-0.5">Hace 3 horas • Villa Juárez</p>
             </div>
         </div>
     </section>
 
-    <!-- Botón flotante de WhatsApp -->
-    <a href="https://wa.me/526670000000?text=Hola,%20contacto%20desde%20Villa%20Juárez%20Conecta" target="_blank" class="fixed bottom-6 right-6 z-50 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-transform hover:scale-110 flex items-center justify-center text-xl">
+    <!-- Botón flotante de WhatsApp oficial -->
+    <a href="https://wa.me/526670000000?text=Hola,%20contacto%20desde%20Villa%20Juárez%20Conecta" target="_blank" class="fixed bottom-6 right-6 z-50 bg-brand-green text-white w-14 h-14 rounded-full shadow-2xl hover:bg-emerald-600 transition-all hover:scale-110 flex items-center justify-center text-2xl border-2 border-white/30" aria-label="WhatsApp Admin">
         💬
     </a>
 
