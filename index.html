@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,15 +8,16 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
                         brand: {
-                            dark: "#050B14",
-                            navy: "#0A1D3A",
-                            orange: "#FF7700",   /* Naranja principal del atardecer */
-                            green: "#10B981",    /* Verde brillante de la flecha */
-                            lightGreen: "#34D399",
+                            dark: "#030712",
+                            card: "#0B132B",
+                            orange: "#FF7700",
+                            green: "#10B981",
+                            accent: "#FF9F43"
                         }
                     },
                     fontFamily: {
@@ -27,97 +28,233 @@
             }
         }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <style>
+        .glass-panel {
+            background: rgba(11, 19, 43, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glow-orange {
+            box-shadow: 0 0 25px -5px rgba(255, 119, 0, 0.25);
+        }
+        .glow-green {
+            box-shadow: 0 0 25px -5px rgba(16, 185, 129, 0.25);
+        }
+        /* Ocultar barra de desplazamiento manteniendo funcionalidad */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
 </head>
-<body class="font-sans bg-brand-dark text-gray-100 antialiased max-w-md mx-auto min-h-screen relative shadow-2xl pb-24">
+<body class="font-sans bg-brand-dark text-gray-100 antialiased max-w-md mx-auto min-h-screen relative selection:bg-brand-orange selection:text-white pb-28">
 
-    <!-- Header con acentos en Naranja y Verde -->
-    <header class="sticky top-0 z-40 bg-brand-navy/95 backdrop-blur-md text-white px-4 py-3 flex items-center justify-between shadow-lg border-b border-brand-orange/30">
-        <div>
-            <h1 class="font-heading font-extrabold text-sm leading-tight text-white tracking-tight">Villa Juárez <span class="text-brand-orange">CONECTA</span></h1>
-            <p class="text-[9px] text-brand-green font-bold tracking-wider">NAVOLATO, SINALOA</p>
-        </div>
-        <button onclick="alert('Menú de navegación próximamente')" class="text-brand-orange text-xl p-2 rounded-xl hover:bg-white/10 transition-colors focus:outline-none" aria-label="Menú">
-            ☰
-        </button>
-    </header>
+    <!-- Fondo ambiental luminoso -->
+    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-brand-orange/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
+    <div class="fixed bottom-10 right-0 w-80 h-80 bg-brand-green/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
 
-    <!-- Hero Section con Degradado Naranja/Verde -->
-    <section class="bg-gradient-to-b from-brand-navy via-brand-dark to-brand-dark text-white px-4 pt-6 pb-9 rounded-b-3xl shadow-xl relative overflow-hidden border-b border-brand-orange/20">
-        <!-- Destellos decorativos con los colores del logo -->
-        <div class="absolute -right-6 -top-6 w-32 h-32 rounded-full bg-brand-orange/15 blur-2xl pointer-events-none"></div>
-        <div class="absolute left-10 -bottom-10 w-32 h-32 rounded-full bg-brand-green/15 blur-2xl pointer-events-none"></div>
-
-        <h2 class="font-heading text-xl font-extrabold mb-1 text-center tracking-wide">¿Qué buscas en Villa Juárez?</h2>
-        <p class="text-xs text-gray-300 text-center mb-5 italic">"Nuestra gente, nuestros negocios, nuestro Villa Juárez"</p>
-        
-        <div class="relative shadow-2xl">
-            <input 
-                type="text" 
-                placeholder="Buscar comercios, noticias, quejas..." 
-                class="w-full py-3.5 px-4 pl-11 rounded-2xl text-gray-900 text-sm bg-white/95 focus:outline-none focus:ring-2 focus:ring-brand-orange transition-all font-medium placeholder-gray-500"
-            >
-            <span class="absolute left-3.5 top-4 text-brand-orange text-sm font-bold">🔍</span>
-        </div>
-    </section>
-
-    <!-- 4 Cards de Acceso Rápido con bordes en Naranja y Verde -->
-    <section class="px-4 -mt-5 grid grid-cols-2 gap-3.5 z-10 relative">
-        <a href="#quejas" class="bg-brand-navy/90 backdrop-blur border border-white/10 p-4 rounded-2xl shadow-lg border-b-4 border-brand-orange flex flex-col items-center text-center hover:scale-[1.02] transition-transform group">
-            <div class="w-10 h-10 rounded-full bg-brand-orange/20 flex items-center justify-center text-xl mb-2 text-brand-orange">📢</div>
-            <span class="font-heading font-bold text-xs text-white">Reportar Queja</span>
-        </a>
-        <a href="#directorio" class="bg-brand-navy/90 backdrop-blur border border-white/10 p-4 rounded-2xl shadow-lg border-b-4 border-brand-green flex flex-col items-center text-center hover:scale-[1.02] transition-transform group">
-            <div class="w-10 h-10 rounded-full bg-brand-green/20 flex items-center justify-center text-xl mb-2 text-brand-green">🏪</div>
-            <span class="font-heading font-bold text-xs text-white">Directorio Local</span>
-        </a>
-        <a href="#noticias" class="bg-brand-navy/90 backdrop-blur border border-white/10 p-4 rounded-2xl shadow-lg border-b-4 border-brand-orange flex flex-col items-center text-center hover:scale-[1.02] transition-transform group">
-            <div class="w-10 h-10 rounded-full bg-brand-orange/20 flex items-center justify-center text-xl mb-2 text-brand-orange">📰</div>
-            <span class="font-heading font-bold text-xs text-white">Noticias</span>
-        </a>
-        <a href="#eventos" class="bg-brand-navy/90 backdrop-blur border border-white/10 p-4 rounded-2xl shadow-lg border-b-4 border-brand-green flex flex-col items-center text-center hover:scale-[1.02] transition-transform group">
-            <div class="w-10 h-10 rounded-full bg-brand-green/20 flex items-center justify-center text-xl mb-2 text-brand-green">🥎</div>
-            <span class="font-heading font-bold text-xs text-white">Softbol & Eventos</span>
-        </a>
-    </section>
-
-    <!-- Mapa Interactivo -->
-    <section class="px-4 mt-6">
-        <div class="flex justify-between items-center mb-2">
-            <h3 class="font-heading font-bold text-sm text-white flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full bg-brand-orange"></span> Mapa Ciudadano
-            </h3>
-            <span class="text-[11px] text-brand-green font-bold cursor-pointer">Ver pantalla completa</span>
-        </div>
-        <div class="w-full h-48 bg-brand-navy/60 backdrop-blur rounded-2xl shadow-inner flex flex-col items-center justify-center text-xs text-gray-300 border border-white/10 relative overflow-hidden">
-            <span class="text-3xl mb-1 text-brand-orange">📍</span>
-            <span class="font-medium">Mapa interactivo de Villa Juárez</span>
-            <span class="text-[10px] text-gray-400 mt-1">Puntos de reunión, comercios y reportes</span>
-        </div>
-    </section>
-
-    <!-- Últimas Noticias Feed -->
-    <section class="px-4 mt-6">
-        <div class="flex justify-between items-center mb-2">
-            <h3 class="font-heading font-bold text-sm text-white flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full bg-brand-green"></span> Últimas Noticias
-            </h3>
-            <span class="text-xs text-brand-orange font-bold cursor-pointer hover:underline">Ver todas</span>
-        </div>
-        <div class="bg-brand-navy/80 backdrop-blur p-3 rounded-2xl shadow-md border border-white/10 flex gap-3 items-center">
-            <div class="w-16 h-16 bg-brand-orange/20 rounded-xl flex-shrink-0 flex items-center justify-center text-2xl text-brand-orange">🥎</div>
+    <!-- Header Sofisticado con Efecto Glassmorphism -->
+    <header class="sticky top-0 z-50 glass-panel px-4 py-3.5 flex items-center justify-between border-b border-white/10">
+        <div class="flex items-center gap-2.5">
+            <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-orange to-brand-green flex items-center justify-center font-heading font-black text-white text-base shadow-lg glow-orange">
+                V
+            </div>
             <div>
-                <span class="text-[10px] bg-brand-orange/20 text-brand-orange font-extrabold px-2 py-0.5 rounded uppercase">Liga Municipal</span>
-                <h4 class="font-heading font-bold text-xs text-white mt-1">Inauguración de temporada de la liga local de softbol</h4>
-                <p class="text-[10px] text-gray-400 mt-0.5">Hace 3 horas • Villa Juárez</p>
+                <h1 class="font-heading font-black text-sm tracking-tight text-white leading-none">Villa Juárez <span class="text-brand-orange">CONECTA</span></h1>
+                <p class="text-[9px] text-brand-green font-bold tracking-widest uppercase mt-0.5">Navolato, Sinaloa</p>
             </div>
         </div>
-    </section>
+        <div class="flex items-center gap-2">
+            <button onclick="notificar('Buzón de notificaciones')" class="w-9 h-9 rounded-xl glass-panel flex items-center justify-center text-gray-300 hover:text-brand-orange transition-colors relative">
+                🔔
+                <span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-brand-orange animate-ping"></span>
+                <span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-brand-orange"></span>
+            </button>
+        </div>
+    </header>
 
-    <!-- Botón flotante de WhatsApp en Verde oficial -->
-    <a href="https://wa.me/526670000000?text=Hola,%2520contacto%2520desde%2520Villa%2520Juárez%2520Conecta" target="_blank" class="fixed bottom-6 right-6 z-50 bg-brand-green text-white w-14 h-14 rounded-full shadow-2xl hover:bg-emerald-600 transition-all hover:scale-110 flex items-center justify-center text-2xl border-2 border-white/30" aria-label="WhatsApp Admin">
+    <!-- Navegación por Pestañas (Tabs Interactivas) -->
+    <nav class="px-4 pt-3 pb-1 flex gap-2 overflow-x-auto no-scrollbar z-20 relative">
+        <button onclick="cambiarTab('inicio')" id="btn-inicio" class="tab-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-brand-orange text-white shadow-md transition-all whitespace-nowrap">🔥 Inicio</button>
+        <button onclick="cambiarTab('directorio')" id="btn-directorio" class="tab-btn px-4 py-1.5 rounded-full text-xs font-semibold glass-panel text-gray-300 hover:text-white transition-all whitespace-nowrap">🏪 Directorio</button>
+        <button onclick="cambiarTab('noticias')" id="btn-noticias" class="tab-btn px-4 py-1.5 rounded-full text-xs font-semibold glass-panel text-gray-300 hover:text-white transition-all whitespace-nowrap">📰 Noticias</button>
+        <button onclick="cambiarTab('quejas')" id="btn-quejas" class="tab-btn px-4 py-1.5 rounded-full text-xs font-semibold glass-panel text-gray-300 hover:text-white transition-all whitespace-nowrap">📢 Reportes</button>
+    </nav>
+
+    <!-- CONTENIDO DE LA PESTAÑA: INICIO -->
+    <div id="tab-inicio" class="space-y-5 px-4 mt-3">
+        
+        <!-- Hero Card Interactivo con Buscador Inteligente -->
+        <section class="glass-panel p-5 rounded-3xl relative overflow-hidden glow-orange border border-white/10">
+            <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-brand-orange/20 rounded-full blur-2xl"></div>
+            
+            <span class="inline-block px-3 py-1 rounded-full bg-brand-orange/10 text-brand-orange text-[10px] font-bold uppercase tracking-wider mb-2">Portal Ciudadano</span>
+            <h2 class="font-heading text-xl font-extrabold text-white leading-tight mb-1">¿Qué buscas hoy en Villa Juárez?</h2>
+            <p class="text-xs text-gray-400 mb-4">Conectando negocios, servicios y nuestra gente en un solo lugar.</p>
+            
+            <div class="relative">
+                <input 
+                    type="text" 
+                    id="buscador"
+                    oninput="filtrarContenido(this.value)"
+                    placeholder="Buscar comercios, noticias, servicios..." 
+                    class="w-full py-3.5 px-4 pl-11 rounded-2xl text-gray-100 text-xs bg-black/40 border border-white/10 focus:outline-none focus:border-brand-orange transition-all placeholder-gray-500 shadow-inner"
+                >
+                <span class="absolute left-3.5 top-3.5 text-gray-400 text-sm">🔍</span>
+            </div>
+        </section>
+
+        <!-- Accesos Rápidos (Grid Dinámico) -->
+        <section class="grid grid-cols-2 gap-3">
+            <div onclick="cambiarTab('quejas')" class="glass-panel p-4 rounded-2xl hover:border-brand-orange/50 transition-all cursor-pointer group active:scale-95 duration-200">
+                <div class="w-10 h-10 rounded-xl bg-brand-orange/15 flex items-center justify-center text-xl mb-3 text-brand-orange group-hover:scale-110 transition-transform">📢</div>
+                <h3 class="font-heading font-bold text-xs text-white">Reportar Queja</h3>
+                <p class="text-[10px] text-gray-400 mt-0.5">Baches, servicios, alumbrado</p>
+            </div>
+            
+            <div onclick="cambiarTab('directorio')" class="glass-panel p-4 rounded-2xl hover:border-brand-green/50 transition-all cursor-pointer group active:scale-95 duration-200">
+                <div class="w-10 h-10 rounded-xl bg-brand-green/15 flex items-center justify-center text-xl mb-3 text-brand-green group-hover:scale-110 transition-transform">🏪</div>
+                <h3 class="font-heading font-bold text-xs text-white">Directorio Local</h3>
+                <p class="text-[10px] text-gray-400 mt-0.5">Comercios y servicios</p>
+            </div>
+
+            <div onclick="cambiarTab('noticias')" class="glass-panel p-4 rounded-2xl hover:border-brand-orange/50 transition-all cursor-pointer group active:scale-95 duration-200">
+                <div class="w-10 h-10 rounded-xl bg-brand-orange/15 flex items-center justify-center text-xl mb-3 text-brand-orange group-hover:scale-110 transition-transform">📰</div>
+                <h3 class="font-heading font-bold text-xs text-white">Noticias del Día</h3>
+                <p class="text-[10px] text-gray-400 mt-0.5">Entérate de lo relevante</p>
+            </div>
+
+            <div onclick="notificar('Sección de eventos y softbol próxima a abrir')" class="glass-panel p-4 rounded-2xl hover:border-brand-green/50 transition-all cursor-pointer group active:scale-95 duration-200">
+                <div class="w-10 h-10 rounded-xl bg-brand-green/15 flex items-center justify-center text-xl mb-3 text-brand-green group-hover:scale-110 transition-transform">🥎</div>
+                <h3 class="font-heading font-bold text-xs text-white">Softbol & Eventos</h3>
+                <p class="text-[10px] text-gray-400 mt-0.5">Ligas y torneos locales</p>
+            </div>
+        </section>
+
+        <!-- Widget Interactivo Destacado -->
+        <section class="glass-panel p-4 rounded-2xl border border-white/10">
+            <div class="flex justify-between items-center mb-3">
+                <h3 class="font-heading font-bold text-xs text-white flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-brand-green animate-pulse"></span> Última Noticia Destacada
+                </h3>
+                <span class="text-[10px] text-brand-orange font-bold cursor-pointer" onclick="cambiarTab('noticias')">Ver más</span>
+            </div>
+            <div class="flex gap-3 items-center bg-black/30 p-2.5 rounded-xl border border-white/5">
+                <div class="w-14 h-14 bg-gradient-to-br from-brand-orange/20 to-brand-green/20 rounded-xl flex items-center justify-center text-2xl flex-shrink-0">🥎</div>
+                <div>
+                    <span class="text-[9px] bg-brand-green/20 text-brand-green font-extrabold px-2 py-0.5 rounded uppercase">Liga Municipal</span>
+                    <h4 class="font-heading font-bold text-xs text-white mt-1 leading-snug">Inauguración de temporada de la liga local de softbol</h4>
+                    <p class="text-[9px] text-gray-400 mt-0.5">Hace 3 horas • Villa Juárez</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- CONTENIDO DE LA PESTAÑA: DIRECTORIO -->
+    <div id="tab-directorio" class="space-y-4 px-4 mt-3 hidden">
+        <h2 class="font-heading font-bold text-sm text-white flex items-center gap-2">🏪 Directorio Comercial</h2>
+        <p class="text-xs text-gray-400">Encuentra negocios locales de forma rápida.</p>
+        
+        <div class="space-y-2.5">
+            <div class="glass-panel p-3.5 rounded-2xl flex justify-between items-center">
+                <div>
+                    <span class="text-[9px] bg-brand-orange/20 text-brand-orange font-bold px-2 py-0.5 rounded">Alimentos</span>
+                    <h4 class="font-heading font-bold text-xs text-white mt-1">Tacos y Antojitos El Paisa</h4>
+                    <p class="text-[10px] text-gray-400">Abierto • Servicio a domicilio</p>
+                </div>
+                <button onclick="notificar('Llamando al comercio...')" class="w-9 h-9 rounded-xl bg-brand-green/20 text-brand-green flex items-center justify-center text-sm font-bold hover:bg-brand-green hover:text-white transition-all">📞</button>
+            </div>
+
+            <div class="glass-panel p-3.5 rounded-2xl flex justify-between items-center">
+                <div>
+                    <span class="text-[9px] bg-brand-green/20 text-brand-green font-bold px-2 py-0.5 rounded">Servicios</span>
+                    <h4 class="font-heading font-bold text-xs text-white mt-1">Ferretería y Materiales Villa</h4>
+                    <p class="text-[10px] text-gray-400">Abierto hasta las 7:00 PM</p>
+                </div>
+                <button onclick="notificar('Llamando al comercio...')" class="w-9 h-9 rounded-xl bg-brand-green/20 text-brand-green flex items-center justify-center text-sm font-bold hover:bg-brand-green hover:text-white transition-all">📞</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENIDO DE LA PESTAÑA: NOTICIAS -->
+    <div id="tab-noticias" class="space-y-4 px-4 mt-3 hidden">
+        <h2 class="font-heading font-bold text-sm text-white flex items-center gap-2">📰 Noticias Recientes</h2>
+        <div class="glass-panel p-4 rounded-2xl space-y-2">
+            <span class="text-[9px] bg-brand-orange/20 text-brand-orange font-bold px-2 py-0.5 rounded">Comunidad</span>
+            <h3 class="font-heading font-bold text-sm text-white">Aviso importante sobre obras en el centro</h3>
+            <p class="text-xs text-gray-300 leading-relaxed">Se informa a la ciudadanía que las calles principales tendrán flujo moderado debido a trabajos de mejora urbana...</p>
+            <span class="text-[10px] text-gray-500 block">Publicado hoy a las 8:00 AM</span>
+        </div>
+    </div>
+
+    <!-- CONTENIDO DE LA PESTAÑA: QUEJAS -->
+    <div id="tab-quejas" class="space-y-4 px-4 mt-3 hidden">
+        <h2 class="font-heading font-bold text-sm text-white flex items-center gap-2">📢 Buzón de Reportes Ciudadanos</h2>
+        <div class="glass-panel p-4 rounded-2xl space-y-3">
+            <p class="text-xs text-gray-300">¿Tienes algún reporte de alumbrado, baches o servicios públicos? Envíanos tu queja de forma directa.</p>
+            <div class="space-y-2">
+                <input type="text" placeholder="Tu nombre completo" class="w-full py-2.5 px-3 rounded-xl text-xs bg-black/40 border border-white/10 text-white focus:outline-none focus:border-brand-orange">
+                <textarea rows="3" placeholder="Describe tu reporte o queja detalladamente..." class="w-full py-2.5 px-3 rounded-xl text-xs bg-black/40 border border-white/10 text-white focus:outline-none focus:border-brand-orange resize-none"></textarea>
+                <button onclick="notificar('¡Reporte enviado con éxito! Gracias por participar.')" class="w-full py-3 rounded-xl bg-brand-orange text-white font-heading font-bold text-xs shadow-lg hover:bg-orange-600 transition-all">Enviar Reporte Ciudadano</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botón Flotante de WhatsApp Interactivo -->
+    <a href="https://wa.me/526670000000?text=Hola,%20contacto%20desde%20Villa%20Juárez%20Conecta" target="_blank" class="fixed bottom-6 right-6 z-50 bg-brand-green text-white w-13 h-13 rounded-2xl shadow-xl glow-green hover:scale-110 transition-all flex items-center justify-center text-2xl border border-white/20 active:scale-95" aria-label="WhatsApp Admin">
         💬
     </a>
+
+    <!-- Alerta Flotante Dinámica (Toast) -->
+    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 glass-panel px-4 py-2.5 rounded-2xl text-xs text-white border border-brand-orange/40 shadow-2xl transition-all duration-300 opacity-0 pointer-events-none z-50 flex items-center gap-2">
+        <span>✨</span> <span id="toast-msg">Mensaje</span>
+    </div>
+
+    <!-- Script de Interactividad -->
+    <script>
+        function cambiarTab(tabId) {
+            // Ocultar todas las pestañas
+            document.getElementById('tab-inicio').classList.add('hidden');
+            document.getElementById('tab-directorio').classList.add('hidden');
+            document.getElementById('tab-noticias').classList.add('hidden');
+            document.getElementById('tab-quejas').classList.add('hidden');
+
+            // Mostrar la pestaña seleccionada
+            document.getElementById('tab-' + tabId).classList.remove('hidden');
+
+            // Actualizar botones de navegación
+            const botones = document.querySelectorAll('.tab-btn');
+            botones.forEach(btn => {
+                btn.classList.remove('bg-brand-orange', 'text-white', 'shadow-md');
+                btn.classList.add('glass-panel', 'text-gray-300');
+            });
+
+            const btnActivo = document.getElementById('btn-' + tabId);
+            btnActivo.classList.remove('glass-panel', 'text-gray-300');
+            btnActivo.classList.add('bg-brand-orange', 'text-white', 'shadow-md');
+        }
+
+        function notificar(mensaje) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-msg');
+            toastMsg.innerText = mensaje;
+            toast.classList.remove('opacity-0', 'pointer-events-none');
+            toast.classList.add('opacity-100');
+            
+            setTimeout(() => {
+                toast.classList.remove('opacity-100');
+                toast.classList.add('opacity-0', 'pointer-events-none');
+            }, 3000);
+        }
+
+        function filtrarContenido(texto) {
+            if(texto.length > 2) {
+                // Simulación interactiva de búsqueda rápida
+                console.log("Buscando: " + texto);
+            }
+        }
+    </script>
 
 </body>
 </html>
