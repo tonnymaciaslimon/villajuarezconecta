@@ -112,7 +112,7 @@
         <!-- Botón para el acceso del Administrador -->
         <div class="border-t border-white/10 pt-4 space-y-2 text-center">
             <button onclick="abrirModalAdmin()" class="w-full py-2.5 rounded-xl bg-vj-card text-gray-300 font-bold text-xs border border-white/10 hover:border-vj-orange hover:text-vj-orange transition-all flex items-center justify-center gap-2">
-                <span>🔐</span> Acceso Administrador
+                <span>🔐</span> Acceso Administrador (<span id="admin-display-name">Admin</span>)
             </button>
             <p class="text-[9px] text-gray-500 font-medium">Villa Juárez Conecta © 2026</p>
         </div>
@@ -155,10 +155,7 @@
 
     <!-- SECCIÓN DIRECTORIO -->
     <div id="sec-directorio" class="px-4 mt-4 space-y-4 hidden">
-        <div class="flex justify-between items-center">
-            <h2 class="font-heading font-bold text-sm text-white flex items-center gap-2">🏪 Directorio y Menús Locales</h2>
-            <button onclick="abrirModalNegocio()" class="text-[10px] text-vj-orange font-bold bg-vj-orange/10 px-2.5 py-1 rounded-full border border-vj-orange/30">+ Dar de alta</button>
-        </div>
+        <h2 class="font-heading font-bold text-sm text-white flex items-center gap-2">🏪 Directorio y Menús Locales</h2>
         <div class="vj-card p-4 rounded-3xl space-y-3">
             <h3 class="font-heading font-bold text-sm text-white">Tacos y Antojitos El Paisa</h3>
             <p class="text-xs text-gray-300">Horarios: 6:00 PM - 11:00 PM | Tel: 667 000 0000</p>
@@ -195,13 +192,13 @@
     <!-- ================= BANNER PUBLICITARIO FLOTANTE INFERIOR ================= -->
     <div id="banner-publicidad" class="fixed bottom-0 left-0 right-0 max-w-md mx-auto z-40 p-2">
         <div class="vj-card rounded-2xl border-2 border-vj-orange/60 shadow-2xl bg-[#091124]/95 backdrop-blur-md overflow-hidden flex flex-col">
-            <!-- Si se sube imagen, se muestra aquí -->
+            <!-- Contenedor de la Imagen del Banner -->
             <div id="ad-image-container" class="w-full h-28 bg-black/40 overflow-hidden relative hidden">
                 <img id="ad-img-src" src="" alt="Publicidad Negocio" class="w-full h-full object-cover">
                 <span class="absolute top-2 left-2 bg-black/70 text-vj-orange text-[9px] font-extrabold px-2 py-0.5 rounded-full uppercase border border-vj-orange/40">Patrocinador</span>
             </div>
 
-            <!-- Contenido del Banner -->
+            <!-- Contenido inferior del Banner -->
             <div class="p-3 flex items-center justify-between">
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 rounded-xl bg-vj-orange/20 border border-vj-orange/40 flex items-center justify-center text-lg text-vj-orange flex-shrink-0" id="ad-icon">
@@ -239,7 +236,7 @@
         </div>
     </div>
 
-    <!-- ================= MODAL LOGIN & PANEL ADMINISTRADOR CON MEDIDAS E IMAGEN ================= -->
+    <!-- ================= MODAL LOGIN & PANEL ADMINISTRADOR (CON CAMBIO DE CONTRASEÑA, NOMBRE E IMAGEN DESDE CEL/PC) ================= -->
     <div id="modal-admin" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
         <div class="vj-card w-full max-w-md p-5 rounded-3xl space-y-4 max-h-[90vh] overflow-y-auto border-vj-blue/50">
             <div class="flex justify-between items-center border-b border-white/10 pb-3">
@@ -250,44 +247,58 @@
             <!-- LOGIN ADMIN -->
             <div id="admin-login-form" class="space-y-3 text-xs">
                 <p class="text-gray-300">Ingresa la clave de administrador para gestionar el banner de publicidad:</p>
-                <input type="password" id="admin-pass" placeholder="Contraseña (ej. admin123)" class="w-full p-3 rounded-xl bg-black/50 border border-white/10 text-white focus:border-vj-blue">
+                <input type="password" id="admin-pass" placeholder="Contraseña (por defecto: admin123)" class="w-full p-3 rounded-xl bg-black/50 border border-white/10 text-white focus:border-vj-blue">
                 <button onclick="loginAdmin()" class="w-full py-3 rounded-xl bg-vj-blue text-white font-heading font-bold text-xs shadow-lg">Iniciar Sesión</button>
             </div>
 
-            <!-- PANEL DE CONTROL DEL BANNER -->
+            <!-- PANEL DE CONTROL DEL BANNER Y CONFIGURACIÓN -->
             <div id="admin-panel-form" class="space-y-3 text-xs hidden">
                 <div class="bg-vj-green/20 border border-vj-green/40 p-2.5 rounded-xl text-vj-green font-bold text-[11px] text-center">
                     ✓ Administrador Conectado
                 </div>
                 
-                <!-- Guía de medidas -->
-                <div class="bg-vj-orange/15 border border-vj-orange/30 p-3 rounded-xl text-gray-200 space-y-1">
-                    <p class="font-bold text-vj-orange uppercase text-[10px]">📐 Medidas recomendadas del Banner:</p>
-                    <p class="text-[11px]">• Ancho: <strong>600 px</strong> | Alto: <strong>200 px</strong> (Formato Horizontal)</p>
+                <!-- Ajustes de Administrador (Nombre y Contraseña) -->
+                <div class="bg-black/30 border border-white/10 p-3 rounded-xl space-y-2.5">
+                    <h4 class="font-heading font-bold text-xs text-vj-blue uppercase">⚙️ Ajustes de Cuenta Admin</h4>
+                    <div>
+                        <label class="block text-gray-400 font-bold mb-1 text-[10px]">Nombre del Administrador</label>
+                        <input type="text" id="adm-perfil-nombre" value="Admin" class="w-full p-2 rounded-lg bg-black/50 border border-white/10 text-white">
+                    </div>
+                    <div>
+                        <label class="block text-gray-400 font-bold mb-1 text-[10px]">Nueva Contraseña de Acceso</label>
+                        <input type="password" id="adm-nueva-pass" placeholder="Escribe nueva contraseña (opcional)" class="w-full p-2 rounded-lg bg-black/50 border border-white/10 text-white">
+                    </div>
                 </div>
 
+                <!-- Cargar Banner Publicitario -->
+                <h4 class="font-heading font-bold text-xs text-white uppercase tracking-wider pt-1">📢 Gestionar Banner Inferior</h4>
+                
                 <div>
-                    <label class="block text-gray-400 font-bold mb-1 text-[10px]">Nombre del Negocio</label>
+                    <label class="block text-gray-400 font-bold mb-1 text-[10px]">Nombre del Negocio Patrocinador</label>
                     <input type="text" id="adm-nombre" placeholder="Ej. Tacos El Paisa" class="w-full p-2.5 rounded-xl bg-black/50 border border-white/10 text-white">
                 </div>
                 <div>
                     <label class="block text-gray-400 font-bold mb-1 text-[10px]">Promoción o Descripción Corta</label>
                     <input type="text" id="adm-desc" placeholder="Ej. 2x1 en ordenes de pastor" class="w-full p-2.5 rounded-xl bg-black/50 border border-white/10 text-white">
                 </div>
+
+                <!-- Subir Imagen desde Celular o PC con indicador de medidas exactas -->
                 <div>
-                    <label class="block text-gray-400 font-bold mb-1 text-[10px]">URL de la Imagen del Banner (Opcional)</label>
-                    <input type="text" id="adm-img" placeholder="Ej. https://tusitio.com/banner.jpg" class="w-full p-2.5 rounded-xl bg-black/50 border border-white/10 text-white">
+                    <label class="block text-gray-400 font-bold mb-1 text-[10px]">Subir Imagen del Banner (Desde Celular o PC)</label>
+                    <input type="file" id="adm-file-img" accept="image/*" class="w-full p-2 rounded-xl bg-black/50 border border-white/10 text-white text-[11px] file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-vj-orange file:text-white hover:file:bg-orange-600">
+                    <p class="text-[10px] text-vj-orange mt-1 font-semibold">📐 Medida exacta recomendada: 600 x 200 píxeles (Horizontal)</p>
                 </div>
+
                 <div>
-                    <label class="block text-gray-400 font-bold mb-1 text-[10px]">Enlace de Contacto (WhatsApp)</label>
+                    <label class="block text-gray-400 font-bold mb-1 text-[10px]">Enlace de Contacto (WhatsApp del Negocio)</label>
                     <input type="text" id="adm-link" placeholder="Ej. https://wa.me/526670000000" class="w-full p-2.5 rounded-xl bg-black/50 border border-white/10 text-white">
                 </div>
                 <div>
-                    <label class="block text-gray-400 font-bold mb-1 text-[10px]">Enlace de Ubicación en Mapa (Google Maps)</label>
+                    <label class="block text-gray-400 font-bold mb-1 text-[10px]">Enlace de Ubicación (Google Maps)</label>
                     <input type="text" id="adm-map" placeholder="Ej. https://maps.google.com/?q=..." class="w-full p-2.5 rounded-xl bg-black/50 border border-white/10 text-white">
                 </div>
 
-                <button onclick="actualizarBannerPublicidad()" class="w-full py-3 rounded-xl bg-vj-orange text-white font-heading font-bold text-xs shadow-lg">Actualizar Banner Publicitario</button>
+                <button onclick="actualizarBannerPublicidad()" class="w-full py-3 rounded-xl bg-vj-orange text-white font-heading font-bold text-xs shadow-lg">Guardar y Publicar Banner</button>
             </div>
         </div>
     </div>
@@ -304,8 +315,11 @@
         <span>✨</span> <span id="toast-msg">Mensaje</span>
     </div>
 
-    <!-- SCRIPTS -->
+    <!-- SCRIPTS DE CONTROL -->
     <script>
+        // Contraseña y nombre del admin guardados en memoria de la sesión
+        let passwordAdminActual = "admin123";
+
         function toggleMenu() {
             const menu = document.getElementById('menu-lateral');
             const overlay = document.getElementById('overlay-menu');
@@ -356,7 +370,7 @@
 
         function loginAdmin() {
             const pass = document.getElementById('admin-pass').value;
-            if(pass === "admin123" || pass === "1234") {
+            if(pass === passwordAdminActual) {
                 document.getElementById('admin-login-form').classList.add('hidden');
                 document.getElementById('admin-panel-form').classList.remove('hidden');
                 mostrarAlerta('Acceso autorizado como Administrador');
@@ -368,9 +382,20 @@
         function actualizarBannerPublicidad() {
             const nombre = document.getElementById('adm-nombre').value;
             const desc = document.getElementById('adm-desc').value;
-            const imgUrl = document.getElementById('adm-img').value;
             const link = document.getElementById('adm-link').value;
             const mapUrl = document.getElementById('adm-map').value;
+            const nuevoNombreAdmin = document.getElementById('adm-perfil-nombre').value;
+            const nuevaPass = document.getElementById('adm-nueva-pass').value;
+
+            // Actualizar credenciales de Admin si se llenaron
+            if(nuevoNombreAdmin.trim() !== "") {
+                document.getElementById('admin-display-name').innerText = nuevoNombreAdmin;
+            }
+            if(nuevaPass.trim() !== "") {
+                passwordAdminActual = nuevaPass;
+                document.getElementById('adm-nueva-pass').value = "";
+                mostrarAlerta('¡Contraseña de administrador actualizada!');
+            }
 
             if(nombre.trim() !== "") {
                 document.getElementById('ad-nombre').innerText = nombre;
@@ -382,15 +407,20 @@
                 document.getElementById('ad-link').href = link;
             }
 
-            // Manejo de imagen del banner
+            // Manejo de imagen subida desde archivo del celular o PC
+            const fileInput = document.getElementById('adm-file-img');
             const imgContainer = document.getElementById('ad-image-container');
             const imgElement = document.getElementById('ad-img-src');
             const iconElement = document.getElementById('ad-icon');
 
-            if(imgUrl.trim() !== "") {
-                imgElement.src = imgUrl;
-                imgContainer.classList.remove('hidden');
-                iconElement.classList.add('hidden'); // Oculta el icono por defecto si hay imagen
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imgElement.src = e.target.result;
+                    imgContainer.classList.remove('hidden');
+                    iconElement.classList.add('hidden');
+                }
+                reader.readAsDataURL(fileInput.files[0]);
             }
 
             // Manejo de ubicación en mapa
