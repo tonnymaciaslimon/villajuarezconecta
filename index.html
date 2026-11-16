@@ -38,7 +38,6 @@
         }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        /* Transición suave del menú lateral */
         #menu-lateral {
             transition: transform 0.3s ease-in-out;
         }
@@ -46,11 +45,11 @@
 </head>
 <body class="font-sans bg-vj-bg text-gray-100 antialiased max-w-md mx-auto min-h-screen relative pb-32">
 
-    <!-- Header Principal con Botón de Menú Izquierdo -->
+    <!-- Header Principal -->
     <header class="sticky top-0 z-40 bg-vj-bg/95 backdrop-blur-md px-4 py-3 flex items-center justify-between border-b border-white/10">
         <div class="flex items-center gap-3">
-            <!-- Botón Menú Hamburguesa -->
-            <button onclick="toggleMenu()" class="w-10 h-10 rounded-xl bg-vj-blue/20 border border-vj-blue/30 text-vj-blue flex items-center justify-center text-lg shadow-md hover:bg-vj-blue hover:text-white transition-all focus:outline-none">
+            <!-- Botón Menú Hamburguesa Principal -->
+            <button onclick="toggleMenu()" class="w-10 h-10 rounded-xl bg-vj-blue/20 border border-vj-blue/30 text-vj-blue flex items-center justify-center text-lg shadow-md hover:bg-vj-blue hover:text-white transition-all focus:outline-none" aria-label="Abrir Menú">
                 ☰
             </button>
             <div class="flex items-center gap-2">
@@ -63,12 +62,12 @@
                 </div>
             </div>
         </div>
-        <button onclick="abrirModalNegocio()" class="bg-vj-orange text-white px-2.5 py-1.5 rounded-xl font-heading font-bold text-[10px] shadow-md hover:opacity-90 transition-all flex items-center gap-1">
+        <button onclick="abrirModalNegocio()" class="bg-vj-orange text-white px-3 py-1.5 rounded-xl font-heading font-bold text-[10px] shadow-md hover:opacity-90 transition-all flex items-center gap-1">
             <span>➕</span> Negocio
         </button>
     </header>
 
-    <!-- ================= MENÚ LATERAL DESPLEGABLE (IZQUIERDA) ================= -->
+    <!-- ================= MENÚ LATERAL UNIFICADO (IZQUIERDA) ================= -->
     <div id="overlay-menu" onclick="toggleMenu()" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden transition-opacity"></div>
     
     <div id="menu-lateral" class="fixed top-0 left-0 bottom-0 w-72 bg-[#080E21] border-r border-white/10 z-50 transform -translate-x-full flex flex-col justify-between p-5 shadow-2xl">
@@ -84,9 +83,9 @@
                 <button onclick="toggleMenu()" class="text-gray-400 hover:text-white text-lg p-1">✕</button>
             </div>
 
-            <!-- Elementos de Gran Importancia para Villa Juárez -->
+            <!-- Opciones Principales del Menú Hamburguesa -->
             <div class="space-y-2 text-xs font-medium">
-                <p class="text-[10px] text-vj-orange font-extrabold uppercase tracking-widest px-2 mb-1">Explorar Villa Juárez</p>
+                <p class="text-[10px] text-vj-orange font-extrabold uppercase tracking-widest px-2 mb-1">Secciones de la Comunidad</p>
                 
                 <a href="#" onclick="seleccionarOpcionMenu('inicio')" class="flex items-center gap-3 p-3 rounded-2xl hover:bg-white/5 text-gray-200 hover:text-vj-blue transition-all group">
                     <span class="w-8 h-8 rounded-xl bg-vj-blue/20 text-vj-blue flex items-center justify-center text-sm group-hover:scale-110 transition-transform">🏠</span>
@@ -115,24 +114,15 @@
             </div>
         </div>
 
-        <!-- Pie del Menú Lateral -->
+        <!-- Pie del Menú -->
         <div class="border-t border-white/10 pt-4 text-center">
             <p class="text-[10px] text-gray-400 font-medium">Villa Juárez Conecta © 2026</p>
             <p class="text-[9px] text-vj-green font-bold mt-0.5">Navolato, Sinaloa</p>
         </div>
     </div>
 
-    <!-- Navegación por Pestañas Superiores -->
-    <nav class="px-4 pt-3 pb-1 flex gap-2 overflow-x-auto no-scrollbar z-20 relative">
-        <button onclick="cambiarSeccion('inicio')" id="btn-inicio" class="sec-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-vj-blue text-white shadow-md transition-all whitespace-nowrap">🏠 Inicio</button>
-        <button onclick="cambiarSeccion('directorio')" id="btn-directorio" class="sec-btn px-3.5 py-2 rounded-xl text-xs font-bold vj-card text-gray-300 hover:text-white transition-all whitespace-nowrap">🏪 Directorio</button>
-        <button onclick="cambiarSeccion('deportes')" id="btn-deportes" class="sec-btn px-3.5 py-2 rounded-xl text-xs font-bold vj-card text-gray-300 hover:text-white transition-all whitespace-nowrap">🥎 Deportes</button>
-        <button onclick="cambiarSeccion('reportes')" id="btn-reportes" class="sec-btn px-3.5 py-2 rounded-xl text-xs font-bold vj-card text-gray-300 hover:text-white transition-all whitespace-nowrap">📢 Reportes</button>
-        <button onclick="cambiarSeccion('sugerencias')" id="btn-sugerencias" class="sec-btn px-3.5 py-2 rounded-xl text-xs font-bold vj-card text-gray-300 hover:text-white transition-all whitespace-nowrap">💡 Sugerencias</button>
-    </nav>
-
     <!-- ================= SECCIÓN 1: INICIO & MURO COMUNITARIO ================= -->
-    <main id="sec-inicio" class="px-4 mt-3 space-y-4">
+    <main id="sec-inicio" class="px-4 mt-4 space-y-4">
         <section class="vj-card p-5 rounded-3xl relative overflow-hidden border-vj-orange/30">
             <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-vj-orange/15 rounded-full blur-2xl"></div>
             <span class="bg-vj-orange/20 text-vj-orange text-[9px] font-extrabold px-2.5 py-1 rounded-full uppercase border border-vj-orange/30">Espacio Publicitario</span>
@@ -167,7 +157,7 @@
     </main>
 
     <!-- ================= SECCIÓN 2: DIRECTORIO & MENÚS ================= -->
-    <div id="sec-directorio" class="px-4 mt-3 space-y-4 hidden">
+    <div id="sec-directorio" class="px-4 mt-4 space-y-4 hidden">
         <div class="flex justify-between items-center">
             <h2 class="font-heading font-bold text-sm text-white flex items-center gap-2">🏪 Directorio y Menús Locales</h2>
             <button onclick="abrirModalNegocio()" class="text-[10px] text-vj-orange font-bold bg-vj-orange/10 px-2.5 py-1 rounded-full border border-vj-orange/30">+ Dar de alta</button>
@@ -206,7 +196,7 @@
     </div>
 
     <!-- ================= SECCIÓN 3: DEPORTES & EVENTOS ================= -->
-    <div id="sec-deportes" class="px-4 mt-3 space-y-4 hidden">
+    <div id="sec-deportes" class="px-4 mt-4 space-y-4 hidden">
         <div class="flex justify-between items-center">
             <h2 class="font-heading font-bold text-sm text-white flex items-center gap-2">🥎 Deportes y Eventos</h2>
             <span class="text-[10px] text-vj-green font-bold bg-vj-green/10 px-2.5 py-1 rounded-full border border-vj-green/30">Liga Municipal</span>
@@ -227,7 +217,7 @@
     </div>
 
     <!-- ================= SECCIÓN 4: REPORTES DE COLONIAS ================= -->
-    <div id="sec-reportes" class="px-4 mt-3 space-y-4 hidden">
+    <div id="sec-reportes" class="px-4 mt-4 space-y-4 hidden">
         <h2 class="font-heading font-bold text-sm text-white flex items-center gap-2">📢 Reportes Ciudadanos</h2>
         
         <div class="vj-card p-4 rounded-3xl space-y-3.5 border-vj-blue/30">
@@ -241,7 +231,7 @@
     </div>
 
     <!-- ================= SECCIÓN 5: SUGERENCIAS ================= -->
-    <div id="sec-sugerencias" class="px-4 mt-3 space-y-4 hidden">
+    <div id="sec-sugerencias" class="px-4 mt-4 space-y-4 hidden">
         <h2 class="font-heading font-bold text-sm text-white flex items-center gap-2">💡 Sugerencias y Comentarios</h2>
         
         <div class="vj-card p-4 rounded-3xl space-y-3.5">
@@ -304,7 +294,7 @@
         <span>✨</span> <span id="toast-msg">Mensaje</span>
     </div>
 
-    <!-- Script de Interactividad, Menú Lateral y Pestañas -->
+    <!-- Script de Interactividad -->
     <script>
         function toggleMenu() {
             const menu = document.getElementById('menu-lateral');
@@ -332,18 +322,6 @@
             document.getElementById('sec-sugerencias').classList.add('hidden');
 
             document.getElementById('sec-' + secId).classList.remove('hidden');
-
-            const botones = document.querySelectorAll('.sec-btn');
-            botones.forEach(btn => {
-                btn.classList.remove('bg-vj-blue', 'text-white', 'shadow-md');
-                btn.classList.add('vj-card', 'text-gray-300');
-            });
-
-            const btnActivo = document.getElementById('btn-' + secId);
-            if(btnActivo) {
-                btnActivo.classList.remove('vj-card', 'text-gray-300');
-                btnActivo.classList.add('bg-vj-blue', 'text-white', 'shadow-md');
-            }
         }
 
         function abrirModalNegocio() {
