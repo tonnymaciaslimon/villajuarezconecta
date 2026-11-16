@@ -66,15 +66,15 @@
 <body class="font-sans bg-vj-bg text-gray-100 antialiased max-w-md mx-auto min-h-screen relative pb-48">
 
     <!-- Header Principal -->
-    <header class="sticky top-0 z-40 bg-vj-bg/95 backdrop-blur-md px-4 py-3 flex items-center justify-between border-b border-vj-green/20">
-        <div class="flex items-center gap-3">
-            <button onclick="toggleMenu()" class="w-10 h-10 rounded-xl bg-vj-blue/20 border border-vj-blue/40 text-vj-blue flex items-center justify-center text-lg shadow-md hover:bg-vj-blue hover:text-white transition-all focus:outline-none" aria-label="Abrir Menú">
+    <header class="sticky top-0 z-40 bg-vj-bg/95 backdrop-blur-md px-4 py-2.5 flex items-center justify-between border-b border-vj-green/20">
+        <div class="flex items-center gap-2">
+            <button onclick="toggleMenu()" class="w-9 h-9 rounded-xl bg-vj-blue/20 border border-vj-blue/40 text-vj-blue flex items-center justify-center text-base shadow-md hover:bg-vj-blue hover:text-white transition-all focus:outline-none" aria-label="Abrir Menú">
                 ☰
             </button>
 
-            <!-- LOGO DE LA PÁGINA -->
-            <a href="#" onclick="cambiarSeccion('inicio'); return false;" class="flex items-center gap-2 group" title="Ir al Inicio">
-                <img id="app-logo-header" src="836069.png" alt="Villa Juárez Conecta" class="h-10 w-auto object-contain drop-shadow group-hover:scale-105 transition-transform" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/tonnymacias/villa-juarez-conecta/main/836069.png';">
+            <!-- LOGO OFICIAL LIMPIO (Ajustado para ocupar el espacio correctamente) -->
+            <a href="#" onclick="cambiarSeccion('inicio'); return false;" class="flex items-center group py-1" title="Ir al Inicio">
+                <img id="app-logo-header" src="836069.png" alt="Villa Juárez Conecta" class="h-9 w-auto max-w-[170px] object-contain drop-shadow group-hover:scale-105 transition-transform" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/tonnymacias/villa-juarez-conecta/main/836069.png';">
             </a>
         </div>
 
@@ -90,7 +90,7 @@
         <div>
             <div class="flex justify-between items-center border-b border-white/10 pb-4 mb-4">
                 <div class="flex items-center gap-2">
-                    <img id="app-logo-menu" src="836069.png" alt="Logo" class="h-8 w-auto object-contain">
+                    <img id="app-logo-menu" src="836069.png" alt="Logo" class="h-7 w-auto object-contain">
                     <span class="font-heading font-bold text-sm text-white">Menú Principal</span>
                 </div>
                 <button onclick="toggleMenu()" class="text-gray-400 hover:text-white text-lg p-1">✕</button>
