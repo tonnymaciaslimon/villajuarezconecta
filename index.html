@@ -40,15 +40,15 @@
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         #menu-lateral { transition: transform 0.3s ease-in-out; }
 
-        /* Animación de marquesina horizontal deslizante */
+        /* Animación de marquesina horizontal deslizante infinita */
         @keyframes marquee-full {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
         }
         .animate-marquee-container {
             display: inline-flex;
             white-space: nowrap;
-            animation: marquee-full 22s linear infinite;
+            animation: marquee-full 28s linear infinite;
         }
         .animate-marquee-container:hover {
             animation-play-state: paused;
@@ -72,7 +72,7 @@
                 ☰
             </button>
 
-            <!-- LOGO OFICIAL LIMPIO (Ajustado para ocupar el espacio correctamente) -->
+            <!-- LOGO OFICIAL LIMPIO -->
             <a href="#" onclick="cambiarSeccion('inicio'); return false;" class="flex items-center group py-1" title="Ir al Inicio">
                 <img id="app-logo-header" src="836069.png" alt="Villa Juárez Conecta" class="h-9 w-auto max-w-[170px] object-contain drop-shadow group-hover:scale-105 transition-transform" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/tonnymacias/villa-juarez-conecta/main/836069.png';">
             </a>
@@ -140,7 +140,7 @@
             <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-vj-blue/15 rounded-full blur-2xl"></div>
             <span class="bg-vj-blue/20 text-vj-blue text-[9px] font-extrabold px-2.5 py-1 rounded-full uppercase border border-vj-blue/30">Servicio Mensual de Publicidad</span>
             <h2 class="font-heading font-black text-lg text-white mt-2 mb-1">Anúnciate en Villa Juárez</h2>
-            <p class="text-xs text-gray-300 mb-3">Publica tu franja publicitaria en movimiento en la parte inferior.</p>
+            <p class="text-xs text-gray-300 mb-3">Publica tu franja publicitaria en movimiento continuo en la parte inferior.</p>
             <button onclick="abrirModalNegocio()" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-vj-blue to-vj-green text-gray-900 font-heading font-extrabold text-xs shadow-lg">Solicitar Publicidad Mensual</button>
         </section>
 
@@ -160,7 +160,7 @@
                         <span class="text-[9px] text-gray-400">Hace 1 hora • Plaza Principal</span>
                     </div>
                 </div>
-                <p class="text-xs text-gray-200">Hermosa tarde disfrutando en el corazón de nuestra comunidad. ¡Saludos a todos los vecinos!</p>
+                <p class="text-xs text-gray-200">Hermosa tarde disfrutando en el corazón de nossa comunidad. ¡Saludos a todos los vecinos!</p>
                 <div class="bg-black/40 h-44 rounded-2xl border border-vj-blue/20 flex flex-col items-center justify-center text-gray-400">
                     <span class="text-3xl mb-1">🌅</span>
                     <span class="text-[11px] font-medium">Foto del atardecer en Villa Juárez</span>
@@ -205,34 +205,148 @@
         </div>
     </div>
 
-    <!-- ================= FRANJA PUBLICITARIA INFERIOR EN MOVIMIENTO ================= -->
+    <!-- ================= FRANJA PUBLICITARIA INFERIOR CON CARRUSEL DE MÚLTIPLES ANUNCIOS ================= -->
     <div id="banner-publicidad" class="fixed bottom-0 left-0 right-0 max-w-md mx-auto z-40 neon-border shadow-2xl overflow-hidden bg-[#030712]">
         <div class="overflow-hidden whitespace-nowrap relative w-full py-2 px-3">
-            <div class="animate-marquee-container items-center gap-6">
+            <!-- Contenedor con elementos duplicados para bucle continuo fluido -->
+            <div class="animate-marquee-container items-center gap-8" id="marquee-track">
                 
-                <div class="flex items-center gap-3 bg-black/60 px-3 py-1.5 rounded-xl border border-vj-green/30">
-                    <div class="w-16 h-10 rounded-lg overflow-hidden flex-shrink-0 bg-black">
-                        <img id="ad-img-src" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&h=200&fit=crop" alt="Banner 600x200" class="w-full h-full object-cover">
-                    </div>
-                    <div>
-                        <div class="flex items-center gap-2">
-                            <span class="font-heading font-black text-xs text-white" id="ad-nombre">TACOS Y ANTOJITOS EL PAISA</span>
-                            <span class="bg-vj-blue text-white text-[8px] font-bold px-1.5 py-0.2 rounded uppercase">Patrocinador</span>
+                <!-- ANUNCIO 1 (PRINCIPAL / EDITABLE) -->
+                <div class="inline-flex items-center gap-3">
+                    <div class="flex items-center gap-3 bg-black/60 px-3 py-1.5 rounded-xl border border-vj-green/30">
+                        <div class="w-16 h-10 rounded-lg overflow-hidden flex-shrink-0 bg-black">
+                            <img id="ad-img-src" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&h=200&fit=crop" alt="Banner 1" class="w-full h-full object-cover">
                         </div>
-                        <p class="text-[11px] text-gray-300 font-medium" id="ad-desc">¡Ven y disfruta los mejores tacos de la región! Servicio a domicilio disponible.</p>
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <span class="font-heading font-black text-xs text-white" id="ad-nombre">TACOS Y ANTOJITOS EL PAISA</span>
+                                <span class="bg-vj-blue text-white text-[8px] font-bold px-1.5 py-0.2 rounded uppercase">Patrocinador</span>
+                            </div>
+                            <p class="text-[11px] text-gray-300 font-medium" id="ad-desc">¡Ven y disfruta los mejores tacos de la región! Servicio a domicilio.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <a id="ad-link-map" href="https://maps.google.com" target="_blank" class="bg-vj-blue/20 border border-vj-blue/50 text-vj-blue px-2.5 py-1.5 rounded-xl text-xs font-bold hover:bg-vj-blue hover:text-white transition-all flex items-center gap-1">
+                            <span>📍</span> Ubicación
+                        </a>
+                        <a id="ad-link" href="https://wa.me/526670000000" target="_blank" class="bg-vj-green text-gray-900 px-3 py-1.5 rounded-xl font-heading font-extrabold text-[10px] shadow-[0_0_10px_rgba(0,240,118,0.5)] hover:opacity-90 transition-all flex items-center gap-1">
+                            <span>💬</span> WhatsApp
+                        </a>
                     </div>
                 </div>
 
-                <div class="flex items-center gap-2">
-                    <a id="ad-link-map" href="https://maps.google.com" target="_blank" class="bg-vj-blue/20 border border-vj-blue/50 text-vj-blue px-2.5 py-1.5 rounded-xl text-xs font-bold hover:bg-vj-blue hover:text-white transition-all flex items-center gap-1">
-                        <span>📍</span> Ubicación
-                    </a>
-                    <a id="ad-link" href="https://wa.me/526670000000?text=Hola,%20vi%20su%20anuncio%20en%20Villa%20Juárez%20Conecta" target="_blank" class="bg-vj-green text-gray-900 px-3 py-1.5 rounded-xl font-heading font-extrabold text-[10px] shadow-[0_0_10px_rgba(0,240,118,0.5)] hover:opacity-90 transition-all flex items-center gap-1">
-                        <span>💬</span> Contactar WhatsApp
+                <span class="text-vj-green font-bold text-xs">⚡ ¡Anúnciate aquí! ⚡</span>
+
+                <!-- ANUNCIO MUESTRA 2 -->
+                <div class="inline-flex items-center gap-3">
+                    <div class="flex items-center gap-3 bg-black/60 px-3 py-1.5 rounded-xl border border-vj-blue/30">
+                        <div class="w-16 h-10 rounded-lg overflow-hidden flex-shrink-0 bg-black">
+                            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&h=200&fit=crop" alt="Banner 2" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <span class="font-heading font-black text-xs text-white">PIZZERÍA LA PLAZA</span>
+                                <span class="bg-vj-green text-gray-900 text-[8px] font-bold px-1.5 py-0.2 rounded uppercase">Especial</span>
+                            </div>
+                            <p class="text-[11px] text-gray-300 font-medium">Pizzas artesanales al horno. Ordena la tuya hoy.</p>
+                        </div>
+                    </div>
+                    <a href="https://wa.me/526670000000" target="_blank" class="bg-vj-blue text-white px-3 py-1.5 rounded-xl font-heading font-extrabold text-[10px] shadow-md hover:opacity-90 transition-all flex items-center gap-1">
+                        <span>💬</span> Pedir
                     </a>
                 </div>
 
-                <span class="text-vj-green font-bold text-xs mx-4">⚡ ¡Anúnciate aquí y haz crecer tu negocio en Villa Juárez! ⚡</span>
+                <span class="text-vj-blue font-bold text-xs">🌟 Villa Juárez Conecta 🌟</span>
+
+                <!-- ANUNCIO MUESTRA 3 -->
+                <div class="inline-flex items-center gap-3">
+                    <div class="flex items-center gap-3 bg-black/60 px-3 py-1.5 rounded-xl border border-vj-green/30">
+                        <div class="w-16 h-10 rounded-lg overflow-hidden flex-shrink-0 bg-black">
+                            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&h=200&fit=crop" alt="Banner 3" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <span class="font-heading font-black text-xs text-white">FARMACIA SAN JOSÉ</span>
+                                <span class="bg-vj-blue text-white text-[8px] font-bold px-1.5 py-0.2 rounded uppercase">Servicio 24h</span>
+                            </div>
+                            <p class="text-[11px] text-gray-300 font-medium">Medicamentos y servicio a domicilio seguro.</p>
+                        </div>
+                    </div>
+                    <a href="https://wa.me/526670000000" target="_blank" class="bg-vj-green text-gray-900 px-3 py-1.5 rounded-xl font-heading font-extrabold text-[10px] shadow-md hover:opacity-90 transition-all flex items-center gap-1">
+                        <span>📞</span> Llamar
+                    </a>
+                </div>
+
+                <span class="text-vj-green font-bold text-xs">🚀 Impulsa tu Negocio 🚀</span>
+
+                <!-- DUPLICADO EXACTO PARA BUCLE INFINITO SUAVE Y SIN CORTES -->
+                <!-- ANUNCIO 1 DUPLICADO -->
+                <div class="inline-flex items-center gap-3">
+                    <div class="flex items-center gap-3 bg-black/60 px-3 py-1.5 rounded-xl border border-vj-green/30">
+                        <div class="w-16 h-10 rounded-lg overflow-hidden flex-shrink-0 bg-black">
+                            <img id="ad-img-src-dup" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&h=200&fit=crop" alt="Banner 1" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <span class="font-heading font-black text-xs text-white" id="ad-nombre-dup">TACOS Y ANTOJITOS EL PAISA</span>
+                                <span class="bg-vj-blue text-white text-[8px] font-bold px-1.5 py-0.2 rounded uppercase">Patrocinador</span>
+                            </div>
+                            <p class="text-[11px] text-gray-300 font-medium" id="ad-desc-dup">¡Ven y disfruta los mejores tacos de la región! Servicio a domicilio.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <a id="ad-link-map-dup" href="https://maps.google.com" target="_blank" class="bg-vj-blue/20 border border-vj-blue/50 text-vj-blue px-2.5 py-1.5 rounded-xl text-xs font-bold hover:bg-vj-blue hover:text-white transition-all flex items-center gap-1">
+                            <span>📍</span> Ubicación
+                        </a>
+                        <a id="ad-link-dup" href="https://wa.me/526670000000" target="_blank" class="bg-vj-green text-gray-900 px-3 py-1.5 rounded-xl font-heading font-extrabold text-[10px] shadow-[0_0_10px_rgba(0,240,118,0.5)] hover:opacity-90 transition-all flex items-center gap-1">
+                            <span>💬</span> WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <span class="text-vj-green font-bold text-xs">⚡ ¡Anúnciate aquí! ⚡</span>
+
+                <!-- ANUNCIO MUESTRA 2 DUPLICADO -->
+                <div class="inline-flex items-center gap-3">
+                    <div class="flex items-center gap-3 bg-black/60 px-3 py-1.5 rounded-xl border border-vj-blue/30">
+                        <div class="w-16 h-10 rounded-lg overflow-hidden flex-shrink-0 bg-black">
+                            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&h=200&fit=crop" alt="Banner 2" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <span class="font-heading font-black text-xs text-white">PIZZERÍA LA PLAZA</span>
+                                <span class="bg-vj-green text-gray-900 text-[8px] font-bold px-1.5 py-0.2 rounded uppercase">Especial</span>
+                            </div>
+                            <p class="text-[11px] text-gray-300 font-medium">Pizzas artesanales al horno. Ordena la tuya hoy.</p>
+                        </div>
+                    </div>
+                    <a href="https://wa.me/526670000000" target="_blank" class="bg-vj-blue text-white px-3 py-1.5 rounded-xl font-heading font-extrabold text-[10px] shadow-md hover:opacity-90 transition-all flex items-center gap-1">
+                        <span>💬</span> Pedir
+                    </a>
+                </div>
+
+                <span class="text-vj-blue font-bold text-xs">🌟 Villa Juárez Conecta 🌟</span>
+
+                <!-- ANUNCIO MUESTRA 3 DUPLICADO -->
+                <div class="inline-flex items-center gap-3">
+                    <div class="flex items-center gap-3 bg-black/60 px-3 py-1.5 rounded-xl border border-vj-green/30">
+                        <div class="w-16 h-10 rounded-lg overflow-hidden flex-shrink-0 bg-black">
+                            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&h=200&fit=crop" alt="Banner 3" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <span class="font-heading font-black text-xs text-white">FARMACIA SAN JOSÉ</span>
+                                <span class="bg-vj-blue text-white text-[8px] font-bold px-1.5 py-0.2 rounded uppercase">Servicio 24h</span>
+                            </div>
+                            <p class="text-[11px] text-gray-300 font-medium">Medicamentos y servicio a domicilio seguro.</p>
+                        </div>
+                    </div>
+                    <a href="https://wa.me/526670000000" target="_blank" class="bg-vj-green text-gray-900 px-3 py-1.5 rounded-xl font-heading font-extrabold text-[10px] shadow-md hover:opacity-90 transition-all flex items-center gap-1">
+                        <span>📞</span> Llamar
+                    </a>
+                </div>
+
+                <span class="text-vj-green font-bold text-xs">🚀 Impulsa tu Negocio 🚀</span>
 
             </div>
         </div>
@@ -253,7 +367,7 @@
         </div>
     </div>
 
-    <!-- ================= MODAL LOGIN & PANEL ADMINISTRADOR CON 3 SECCIONES INDEPENDIENTES ================= -->
+    <!-- ================= MODAL LOGIN & PANEL ADMINISTRADOR ================= -->
     <div id="modal-admin" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
         <div class="vj-card w-full max-w-md p-5 rounded-3xl space-y-4 max-h-[90vh] overflow-y-auto border-vj-blue/50">
             <div class="flex justify-between items-center border-b border-white/10 pb-3">
@@ -451,7 +565,7 @@
             cerrarModalAdmin();
         }
 
-        // SECCIÓN 3: GUARDAR SOLAMENTE LA FRANJA PUBLICITARIA (BANNER)
+        // SECCIÓN 3: GUARDAR SOLAMENTE LA FRANJA PUBLICITARIA (BANNER Y DUPLICADOS)
         function guardarSeccionAnuncio() {
             const nombre = document.getElementById('adm-nombre').value;
             const desc = document.getElementById('adm-desc').value;
@@ -460,31 +574,42 @@
 
             if(nombre.trim() !== "") {
                 document.getElementById('ad-nombre').innerText = nombre;
+                document.getElementById('ad-nombre-dup').innerText = nombre;
             }
             if(desc.trim() !== "") {
                 document.getElementById('ad-desc').innerText = desc;
+                document.getElementById('ad-desc-dup').innerText = desc;
             }
             if(link.trim() !== "") {
                 document.getElementById('ad-link').href = link;
+                document.getElementById('ad-link-dup').href = link;
             }
 
             const fileInput = document.getElementById('adm-file-img');
             const imgElement = document.getElementById('ad-img-src');
+            const imgElementDup = document.getElementById('ad-img-src-dup');
 
             if (fileInput.files && fileInput.files[0]) {
                 const readerImg = new FileReader();
                 readerImg.onload = function(e) {
                     imgElement.src = e.target.result;
+                    imgElementDup.src = e.target.result;
                 }
                 readerImg.readAsDataURL(fileInput.files[0]);
             }
 
             const mapBtn = document.getElementById('ad-link-map');
+            const mapBtnDup = document.getElementById('ad-link-map-dup');
             if(mapUrl.trim() !== "") {
                 mapBtn.href = mapUrl;
                 mapBtn.classList.remove('hidden');
+                if(mapBtnDup) {
+                    mapBtnDup.href = mapUrl;
+                    mapBtnDup.classList.remove('hidden');
+                }
             } else {
                 mapBtn.classList.add('hidden');
+                if(mapBtnDup) mapBtnDup.classList.add('hidden');
             }
 
             cerrarModalAdmin();
