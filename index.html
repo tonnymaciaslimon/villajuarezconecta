@@ -13,11 +13,11 @@
                 extend: {
                     colors: {
                         vj: {
-                            bg: "#040814",
-                            card: "#0D152D",
-                            blue: "#0066FF",
-                            green: "#059669",
-                            orange: "#FF7700",
+                            bg: "#030712",
+                            card: "#0F172A",
+                            blue: "#0051FF",     /* Azul eléctrico intenso */
+                            green: "#00F076",    /* Verde vibrante moderno */
+                            accent: "#00E5FF",   /* Destello cian complementario */
                         }
                     },
                     fontFamily: {
@@ -31,16 +31,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
     <style>
         .vj-card {
-            background: linear-gradient(135deg, rgba(13, 21, 45, 0.9) 0%, rgba(20, 32, 64, 0.7) 100%);
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(10, 15, 30, 0.8) 100%);
             backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+            border: 1px solid rgba(0, 240, 118, 0.15);
+            box-shadow: 0 10px 30px -10px rgba(0, 81, 255, 0.25);
         }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         #menu-lateral { transition: transform 0.3s ease-in-out; }
 
-        /* Animación de marquesina horizontal deslizante para todo el bloque */
+        /* Animación de marquesina horizontal deslizante */
         @keyframes marquee-full {
             0% { transform: translateX(100%); }
             100% { transform: translateX(-100%); }
@@ -54,31 +54,31 @@
             animation-play-state: paused;
         }
 
-        /* Contorno brillante llamativo para la franja de anuncio */
+        /* Contorno brillante en Azul Eléctrico y Verde */
         .neon-border {
             border: 2px solid transparent;
             background: linear-gradient(#091124, #091124) padding-box, 
-                        linear-gradient(90deg, #0066FF, #059669, #FF7700) border-box;
-            box-shadow: 0 0 15px rgba(255, 119, 0, 0.25);
+                        linear-gradient(90deg, #0051FF, #00F076, #00E5FF) border-box;
+            box-shadow: 0 0 20px rgba(0, 240, 118, 0.3);
         }
     </style>
 </head>
 <body class="font-sans bg-vj-bg text-gray-100 antialiased max-w-md mx-auto min-h-screen relative pb-48">
 
     <!-- Header Principal -->
-    <header class="sticky top-0 z-40 bg-vj-bg/95 backdrop-blur-md px-4 py-3 flex items-center justify-between border-b border-white/10">
+    <header class="sticky top-0 z-40 bg-vj-bg/95 backdrop-blur-md px-4 py-3 flex items-center justify-between border-b border-vj-green/20">
         <div class="flex items-center gap-3">
-            <button onclick="toggleMenu()" class="w-10 h-10 rounded-xl bg-vj-blue/20 border border-vj-blue/30 text-vj-blue flex items-center justify-center text-lg shadow-md hover:bg-vj-blue hover:text-white transition-all focus:outline-none" aria-label="Abrir Menú">
+            <button onclick="toggleMenu()" class="w-10 h-10 rounded-xl bg-vj-blue/20 border border-vj-blue/40 text-vj-blue flex items-center justify-center text-lg shadow-md hover:bg-vj-blue hover:text-white transition-all focus:outline-none" aria-label="Abrir Menú">
                 ☰
             </button>
 
-            <!-- LOGO DE LA PÁGINA (Clickeable para ir al Inicio) -->
+            <!-- LOGO DE LA PÁGINA -->
             <a href="#" onclick="cambiarSeccion('inicio'); return false;" class="flex items-center gap-2 group" title="Ir al Inicio">
                 <img id="app-logo-header" src="836069.png" alt="Villa Juárez Conecta" class="h-10 w-auto object-contain drop-shadow group-hover:scale-105 transition-transform" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/tonnymacias/villa-juarez-conecta/main/836069.png';">
             </a>
         </div>
 
-        <button onclick="abrirModalNegocio()" class="bg-vj-orange text-white px-3 py-1.5 rounded-xl font-heading font-bold text-[10px] shadow-md hover:opacity-90 transition-all flex items-center gap-1">
+        <button onclick="abrirModalNegocio()" class="bg-gradient-to-r from-vj-blue to-vj-green text-gray-900 px-3 py-1.5 rounded-xl font-heading font-extrabold text-[10px] shadow-lg hover:opacity-90 transition-all flex items-center gap-1">
             <span>➕</span> Negocio
         </button>
     </header>
@@ -86,7 +86,7 @@
     <!-- MENÚ LATERAL -->
     <div id="overlay-menu" onclick="toggleMenu()" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden transition-opacity"></div>
     
-    <div id="menu-lateral" class="fixed top-0 left-0 bottom-0 w-72 bg-[#080E21] border-r border-white/10 z-50 transform -translate-x-full flex flex-col justify-between p-5 shadow-2xl">
+    <div id="menu-lateral" class="fixed top-0 left-0 bottom-0 w-72 bg-[#060D1F] border-r border-vj-blue/30 z-50 transform -translate-x-full flex flex-col justify-between p-5 shadow-2xl">
         <div>
             <div class="flex justify-between items-center border-b border-white/10 pb-4 mb-4">
                 <div class="flex items-center gap-2">
@@ -97,37 +97,37 @@
             </div>
 
             <div class="space-y-2 text-xs font-medium">
-                <p class="text-[10px] text-vj-orange font-extrabold uppercase tracking-widest px-2 mb-1">Secciones de la Comunidad</p>
+                <p class="text-[10px] text-vj-green font-extrabold uppercase tracking-widest px-2 mb-1">Secciones de la Comunidad</p>
                 
-                <a href="#" onclick="seleccionarOpcionMenu('inicio')" class="flex items-center gap-3 p-3 rounded-2xl hover:bg-white/5 text-gray-200 hover:text-vj-blue transition-all group">
+                <a href="#" onclick="seleccionarOpcionMenu('inicio')" class="flex items-center gap-3 p-3 rounded-2xl hover:bg-vj-blue/10 text-gray-200 hover:text-vj-blue transition-all group">
                     <span class="w-8 h-8 rounded-xl bg-vj-blue/20 text-vj-blue flex items-center justify-center text-sm group-hover:scale-110 transition-transform">🏠</span>
                     <span>Inicio & Muro Comunitario</span>
                 </a>
 
-                <a href="#" onclick="seleccionarOpcionMenu('directorio')" class="flex items-center gap-3 p-3 rounded-2xl hover:bg-white/5 text-gray-200 hover:text-vj-orange transition-all group">
-                    <span class="w-8 h-8 rounded-xl bg-vj-orange/20 text-vj-orange flex items-center justify-center text-sm group-hover:scale-110 transition-transform">🏪</span>
+                <a href="#" onclick="seleccionarOpcionMenu('directorio')" class="flex items-center gap-3 p-3 rounded-2xl hover:bg-vj-blue/10 text-gray-200 hover:text-vj-blue transition-all group">
+                    <span class="w-8 h-8 rounded-xl bg-vj-green/20 text-vj-green flex items-center justify-center text-sm group-hover:scale-110 transition-transform">🏪</span>
                     <span>Directorio, Menús y Horarios</span>
                 </a>
 
-                <a href="#" onclick="seleccionarOpcionMenu('deportes')" class="flex items-center gap-3 p-3 rounded-2xl hover:bg-white/5 text-gray-200 hover:text-vj-green transition-all group">
-                    <span class="w-8 h-8 rounded-xl bg-vj-green/20 text-vj-green flex items-center justify-center text-sm group-hover:scale-110 transition-transform">🥎</span>
+                <a href="#" onclick="seleccionarOpcionMenu('deportes')" class="flex items-center gap-3 p-3 rounded-2xl hover:bg-vj-blue/10 text-gray-200 hover:text-vj-blue transition-all group">
+                    <span class="w-8 h-8 rounded-xl bg-vj-blue/20 text-vj-blue flex items-center justify-center text-sm group-hover:scale-110 transition-transform">🥎</span>
                     <span>Deportes y Softbol Local</span>
                 </a>
 
-                <a href="#" onclick="seleccionarOpcionMenu('reportes')" class="flex items-center gap-3 p-3 rounded-2xl hover:bg-white/5 text-gray-200 hover:text-vj-blue transition-all group">
-                    <span class="w-8 h-8 rounded-xl bg-vj-blue/20 text-vj-blue flex items-center justify-center text-sm group-hover:scale-110 transition-transform">📢</span>
+                <a href="#" onclick="seleccionarOpcionMenu('reportes')" class="flex items-center gap-3 p-3 rounded-2xl hover:bg-vj-blue/10 text-gray-200 hover:text-vj-blue transition-all group">
+                    <span class="w-8 h-8 rounded-xl bg-vj-green/20 text-vj-green flex items-center justify-center text-sm group-hover:scale-110 transition-transform">📢</span>
                     <span>Reportes de Colonias</span>
                 </a>
 
-                <a href="#" onclick="seleccionarOpcionMenu('sugerencias')" class="flex items-center gap-3 p-3 rounded-2xl hover:bg-white/5 text-gray-200 hover:text-vj-orange transition-all group">
-                    <span class="w-8 h-8 rounded-xl bg-vj-orange/20 text-vj-orange flex items-center justify-center text-sm group-hover:scale-110 transition-transform">💡</span>
+                <a href="#" onclick="seleccionarOpcionMenu('sugerencias')" class="flex items-center gap-3 p-3 rounded-2xl hover:bg-vj-blue/10 text-gray-200 hover:text-vj-blue transition-all group">
+                    <span class="w-8 h-8 rounded-xl bg-vj-blue/20 text-vj-blue flex items-center justify-center text-sm group-hover:scale-110 transition-transform">💡</span>
                     <span>Sugerencias Ciudadanas</span>
                 </a>
             </div>
         </div>
 
         <div class="border-t border-white/10 pt-4 space-y-2 text-center">
-            <button onclick="abrirModalAdmin()" class="w-full py-2.5 rounded-xl bg-vj-card text-gray-300 font-bold text-xs border border-white/10 hover:border-vj-orange hover:text-vj-orange transition-all flex items-center justify-center gap-2">
+            <button onclick="abrirModalAdmin()" class="w-full py-2.5 rounded-xl bg-vj-card text-gray-300 font-bold text-xs border border-vj-blue/30 hover:border-vj-green hover:text-vj-green transition-all flex items-center justify-center gap-2">
                 <span>🔐</span> Acceso Administrador (<span id="admin-display-name">Admin</span>)
             </button>
             <p class="text-[9px] text-gray-500 font-medium">Villa Juárez Conecta © 2026</p>
@@ -136,12 +136,12 @@
 
     <!-- SECCIÓN INICIO -->
     <main id="sec-inicio" class="px-4 mt-4 space-y-4">
-        <section class="vj-card p-5 rounded-3xl relative overflow-hidden border-vj-orange/30">
-            <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-vj-orange/15 rounded-full blur-2xl"></div>
-            <span class="bg-vj-orange/20 text-vj-orange text-[9px] font-extrabold px-2.5 py-1 rounded-full uppercase border border-vj-orange/30">Servicio Mensual de Publicidad</span>
+        <section class="vj-card p-5 rounded-3xl relative overflow-hidden border-vj-blue/30">
+            <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-vj-blue/15 rounded-full blur-2xl"></div>
+            <span class="bg-vj-blue/20 text-vj-blue text-[9px] font-extrabold px-2.5 py-1 rounded-full uppercase border border-vj-blue/30">Servicio Mensual de Publicidad</span>
             <h2 class="font-heading font-black text-lg text-white mt-2 mb-1">Anúnciate en Villa Juárez</h2>
-            <p class="text-xs text-gray-300 mb-3">Publica tu anuncio deslizante con franja iluminada en la parte inferior de la pantalla.</p>
-            <button onclick="abrirModalNegocio()" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-vj-orange to-vj-blue text-white font-heading font-bold text-xs shadow-lg">Solicitar Publicidad Mensual</button>
+            <p class="text-xs text-gray-300 mb-3">Publica tu franja publicitaria en movimiento con diseño eléctrico en la parte inferior.</p>
+            <button onclick="abrirModalNegocio()" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-vj-blue to-vj-green text-gray-900 font-heading font-extrabold text-xs shadow-lg">Solicitar Publicidad Mensual</button>
         </section>
 
         <div class="space-y-4">
@@ -149,19 +149,19 @@
                 <h3 class="font-heading font-bold text-sm text-white flex items-center gap-2">
                     <span class="w-2 h-2 rounded-full bg-vj-green animate-pulse"></span> Lo que pasa en Villa Juárez
                 </h3>
-                <span class="text-[10px] text-vj-orange font-bold cursor-pointer" onclick="mostrarAlerta('Sube tus fotos mandándolas por WhatsApp')">📸 Compartir foto</span>
+                <span class="text-[10px] text-vj-green font-bold cursor-pointer" onclick="mostrarAlerta('Sube tus fotos mandándolas por WhatsApp')">📸 Compartir foto</span>
             </div>
 
             <article class="vj-card rounded-3xl overflow-hidden p-4 space-y-3">
                 <div class="flex items-center gap-2.5">
-                    <div class="w-8 h-8 rounded-full bg-vj-blue text-white flex items-center justify-center font-bold text-xs">VJ</div>
+                    <div class="w-8 h-8 rounded-full bg-vj-blue text-white flex items-center justify-center font-bold text-xs shadow-[0_0_10px_#0051FF]">VJ</div>
                     <div>
                         <h4 class="font-heading font-bold text-xs text-white">Comunidad Villa Juárez</h4>
                         <span class="text-[9px] text-gray-400">Hace 1 hora • Plaza Principal</span>
                     </div>
                 </div>
                 <p class="text-xs text-gray-200">Hermosa tarde disfrutando en el corazón de nuestra comunidad. ¡Saludos a todos los vecinos!</p>
-                <div class="bg-black/40 h-44 rounded-2xl border border-white/5 flex flex-col items-center justify-center text-gray-400">
+                <div class="bg-black/40 h-44 rounded-2xl border border-vj-blue/20 flex flex-col items-center justify-center text-gray-400">
                     <span class="text-3xl mb-1">🌅</span>
                     <span class="text-[11px] font-medium">Foto del atardecer en Villa Juárez</span>
                 </div>
@@ -190,9 +190,9 @@
     <div id="sec-reportes" class="px-4 mt-4 space-y-4 hidden">
         <h2 class="font-heading font-bold text-sm text-white flex items-center gap-2">📢 Reportes Ciudadanos</h2>
         <div class="vj-card p-4 rounded-3xl space-y-3.5">
-            <input type="text" placeholder="Tu Colonia" class="w-full p-2.5 rounded-xl bg-black/50 border border-white/10 text-xs text-white">
-            <textarea rows="3" placeholder="Describe el problema..." class="w-full p-2.5 rounded-xl bg-black/50 border border-white/10 text-xs text-white resize-none"></textarea>
-            <button onclick="mostrarAlerta('Reporte enviado')" class="w-full py-2.5 rounded-xl bg-vj-blue text-xs font-bold text-white">Enviar</button>
+            <input type="text" placeholder="Tu Colonia" class="w-full p-2.5 rounded-xl bg-black/50 border border-vj-blue/40 text-xs text-white">
+            <textarea rows="3" placeholder="Describe el problema..." class="w-full p-2.5 rounded-xl bg-black/50 border border-vj-blue/40 text-xs text-white resize-none"></textarea>
+            <button onclick="mostrarAlerta('Reporte enviado')" class="w-full py-2.5 rounded-xl bg-vj-blue text-xs font-bold text-white shadow-[0_0_15px_rgba(0,81,255,0.4)]">Enviar</button>
         </div>
     </div>
 
@@ -200,26 +200,26 @@
     <div id="sec-sugerencias" class="px-4 mt-4 space-y-4 hidden">
         <h2 class="font-heading font-bold text-sm text-white flex items-center gap-2">💡 Sugerencias</h2>
         <div class="vj-card p-4 rounded-3xl space-y-3.5">
-            <textarea rows="3" placeholder="Tus ideas..." class="w-full p-2.5 rounded-xl bg-black/50 border border-white/10 text-xs text-white resize-none"></textarea>
-            <button onclick="mostrarAlerta('Sugerencia enviada')" class="w-full py-2.5 rounded-xl bg-vj-orange text-xs font-bold text-white">Enviar</button>
+            <textarea rows="3" placeholder="Tus ideas..." class="w-full p-2.5 rounded-xl bg-black/50 border border-vj-green/40 text-xs text-white resize-none"></textarea>
+            <button onclick="mostrarAlerta('Sugerencia enviada')" class="w-full py-2.5 rounded-xl bg-vj-green text-xs font-bold text-gray-900 shadow-[0_0_15px_rgba(0,240,118,0.4)]">Enviar</button>
         </div>
     </div>
 
-    <!-- ================= FRANJA PUBLICITARIA INFERIOR CON CONTORNO Y MOVIMIENTO TOTAL ================= -->
-    <div id="banner-publicidad" class="fixed bottom-0 left-0 right-0 max-w-md mx-auto z-40 neon-border shadow-2xl overflow-hidden bg-[#091124]">
+    <!-- ================= FRANJA PUBLICITARIA INFERIOR EN MOVIMIENTO (AZUL Y VERDE) ================= -->
+    <div id="banner-publicidad" class="fixed bottom-0 left-0 right-0 max-w-md mx-auto z-40 neon-border shadow-2xl overflow-hidden bg-[#030712]">
         <div class="overflow-hidden whitespace-nowrap relative w-full py-2 px-3">
             <!-- Contenedor completo en movimiento horizontal -->
             <div class="animate-marquee-container items-center gap-6">
                 
                 <!-- BLOQUE DEL ANUNCIO -->
-                <div class="flex items-center gap-3 bg-black/40 px-3 py-1.5 rounded-xl border border-white/10">
+                <div class="flex items-center gap-3 bg-black/60 px-3 py-1.5 rounded-xl border border-vj-green/30">
                     <div class="w-16 h-10 rounded-lg overflow-hidden flex-shrink-0 bg-black">
                         <img id="ad-img-src" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&h=200&fit=crop" alt="Banner 600x200" class="w-full h-full object-cover">
                     </div>
                     <div>
                         <div class="flex items-center gap-2">
                             <span class="font-heading font-black text-xs text-white" id="ad-nombre">TACOS Y ANTOJITOS EL PAISA</span>
-                            <span class="bg-vj-orange text-white text-[8px] font-bold px-1.5 py-0.2 rounded uppercase">Patrocinador</span>
+                            <span class="bg-vj-blue text-white text-[8px] font-bold px-1.5 py-0.2 rounded uppercase">Patrocinador</span>
                         </div>
                         <p class="text-[11px] text-gray-300 font-medium" id="ad-desc">¡Ven y disfruta los mejores tacos de la región! Servicio a domicilio disponible.</p>
                     </div>
@@ -227,15 +227,15 @@
 
                 <!-- BOTONES DE ACCIÓN DENTRO DEL MOVIMIENTO -->
                 <div class="flex items-center gap-2">
-                    <a id="ad-link-map" href="https://maps.google.com" target="_blank" class="bg-vj-blue/20 border border-vj-blue/40 text-vj-blue px-2.5 py-1.5 rounded-xl text-xs font-bold hover:bg-vj-blue hover:text-white transition-all flex items-center gap-1">
+                    <a id="ad-link-map" href="https://maps.google.com" target="_blank" class="bg-vj-blue/20 border border-vj-blue/50 text-vj-blue px-2.5 py-1.5 rounded-xl text-xs font-bold hover:bg-vj-blue hover:text-white transition-all flex items-center gap-1">
                         <span>📍</span> Ubicación
                     </a>
-                    <a id="ad-link" href="https://wa.me/526670000000?text=Hola,%20vi%20su%20anuncio%20en%20Villa%20Juárez%20Conecta" target="_blank" class="bg-[#25D366] text-white px-3 py-1.5 rounded-xl font-heading font-bold text-[10px] shadow-md hover:bg-emerald-600 transition-all flex items-center gap-1">
+                    <a id="ad-link" href="https://wa.me/526670000000?text=Hola,%20vi%20su%20anuncio%20en%20Villa%20Juárez%20Conecta" target="_blank" class="bg-vj-green text-gray-900 px-3 py-1.5 rounded-xl font-heading font-extrabold text-[10px] shadow-[0_0_10px_rgba(0,240,118,0.5)] hover:opacity-90 transition-all flex items-center gap-1">
                         <span>💬</span> Contactar WhatsApp
                     </a>
                 </div>
 
-                <span class="text-vj-orange font-bold text-xs mx-4">🌟 ¡Anúnciate aquí y haz crecer tu negocio en Villa Juárez! 🌟</span>
+                <span class="text-vj-green font-bold text-xs mx-4">⚡ ¡Anúnciate aquí y haz crecer tu negocio en Villa Juárez! ⚡</span>
 
             </div>
         </div>
@@ -243,15 +243,15 @@
 
     <!-- MODAL REGISTRO NEGOCIO CLIENTES -->
     <div id="modal-negocio" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-        <div class="vj-card w-full max-w-md p-5 rounded-3xl space-y-4 max-h-[90vh] overflow-y-auto border-vj-orange/40">
+        <div class="vj-card w-full max-w-md p-5 rounded-3xl space-y-4 max-h-[90vh] overflow-y-auto border-vj-blue/40">
             <div class="flex justify-between items-center border-b border-white/10 pb-3">
                 <h3 class="font-heading font-bold text-sm text-white">🏪 Registrar tu Negocio</h3>
                 <button onclick="cerrarModalNegocio()" class="text-gray-400 hover:text-white text-lg">✕</button>
             </div>
             <div class="space-y-3 text-xs">
-                <input type="text" id="reg-nombre" placeholder="Nombre del Negocio" class="w-full p-2.5 rounded-xl bg-black/50 border border-white/10 text-white">
-                <input type="text" id="reg-tel" placeholder="Teléfono" class="w-full p-2.5 rounded-xl bg-black/50 border border-white/10 text-white">
-                <button onclick="guardarNegocio()" class="w-full py-3 rounded-xl bg-vj-orange text-white font-heading font-bold text-xs shadow-lg">Solicitar Registro</button>
+                <input type="text" id="reg-nombre" placeholder="Nombre del Negocio" class="w-full p-2.5 rounded-xl bg-black/50 border border-vj-blue/40 text-white">
+                <input type="text" id="reg-tel" placeholder="Teléfono" class="w-full p-2.5 rounded-xl bg-black/50 border border-vj-blue/40 text-white">
+                <button onclick="guardarNegocio()" class="w-full py-3 rounded-xl bg-vj-blue text-white font-heading font-bold text-xs shadow-lg">Solicitar Registro</button>
             </div>
         </div>
     </div>
@@ -267,8 +267,8 @@
             <!-- LOGIN ADMIN -->
             <div id="admin-login-form" class="space-y-3 text-xs">
                 <p class="text-gray-300">Ingresa la clave de administrador:</p>
-                <input type="password" id="admin-pass" placeholder="Contraseña (por defecto: admin123)" class="w-full p-3 rounded-xl bg-black/50 border border-white/10 text-white focus:border-vj-blue">
-                <button onclick="loginAdmin()" class="w-full py-3 rounded-xl bg-vj-blue text-white font-heading font-bold text-xs shadow-lg">Iniciar Sesión</button>
+                <input type="password" id="admin-pass" placeholder="Contraseña (por defecto: admin123)" class="w-full p-3 rounded-xl bg-black/50 border border-vj-blue/50 text-white focus:border-vj-green">
+                <button onclick="loginAdmin()" class="w-full py-3 rounded-xl bg-vj-blue text-white font-heading font-bold text-xs shadow-[0_0_15px_rgba(0,81,255,0.4)]">Iniciar Sesión</button>
             </div>
 
             <!-- PANEL DE CONTROL -->
@@ -278,18 +278,18 @@
                 </div>
                 
                 <div class="bg-black/30 border border-white/10 p-3 rounded-xl space-y-2.5">
-                    <h4 class="font-heading font-bold text-xs text-vj-blue uppercase">⚙️ Ajustes de Cuenta y Logotipo</h4>
+                    <h4 class="font-heading font-bold text-xs text-vj-green uppercase">⚙️ Ajustes de Cuenta y Logotipo</h4>
                     <div>
                         <label class="block text-gray-400 font-bold mb-1 text-[10px]">Nombre del Administrador</label>
-                        <input type="text" id="adm-perfil-nombre" value="Admin" class="w-full p-2 rounded-lg bg-black/50 border border-white/10 text-white">
+                        <input type="text" id="adm-perfil-nombre" value="Admin" class="w-full p-2 rounded-lg bg-black/50 border border-vj-blue/40 text-white">
                     </div>
                     <div>
                         <label class="block text-gray-400 font-bold mb-1 text-[10px]">Nueva Contraseña de Acceso</label>
-                        <input type="password" id="adm-nueva-pass" placeholder="Escribe nueva contraseña (opcional)" class="w-full p-2 rounded-lg bg-black/50 border border-white/10 text-white">
+                        <input type="password" id="adm-nueva-pass" placeholder="Escribe nueva contraseña (opcional)" class="w-full p-2 rounded-lg bg-black/50 border border-vj-blue/40 text-white">
                     </div>
                     <div>
                         <label class="block text-gray-400 font-bold mb-1 text-[10px]">Subir Logotipo Oficial de la Página</label>
-                        <input type="file" id="adm-file-logo" accept="image/*" class="w-full p-1.5 rounded-lg bg-black/50 border border-white/10 text-white text-[11px] file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:text-[10px] file:font-semibold file:bg-vj-blue file:text-white">
+                        <input type="file" id="adm-file-logo" accept="image/*" class="w-full p-1.5 rounded-lg bg-black/50 border border-vj-blue/40 text-white text-[11px] file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:text-[10px] file:font-semibold file:bg-vj-blue file:text-white">
                     </div>
                 </div>
 
@@ -297,42 +297,42 @@
                 
                 <div>
                     <label class="block text-gray-400 font-bold mb-1 text-[10px]">Nombre del Negocio Patrocinador</label>
-                    <input type="text" id="adm-nombre" placeholder="Ej. Tacos El Paisa" class="w-full p-2.5 rounded-xl bg-black/50 border border-white/10 text-white">
+                    <input type="text" id="adm-nombre" placeholder="Ej. Tacos El Paisa" class="w-full p-2.5 rounded-xl bg-black/50 border border-vj-blue/40 text-white">
                 </div>
                 <div>
                     <label class="block text-gray-400 font-bold mb-1 text-[10px]">Promoción o Descripción</label>
-                    <input type="text" id="adm-desc" placeholder="Ej. 2x1 en ordenes de pastor" class="w-full p-2.5 rounded-xl bg-black/50 border border-white/10 text-white">
+                    <input type="text" id="adm-desc" placeholder="Ej. 2x1 en ordenes de pastor" class="w-full p-2.5 rounded-xl bg-black/50 border border-vj-blue/40 text-white">
                 </div>
 
                 <div>
                     <label class="block text-gray-400 font-bold mb-1 text-[10px]">Subir Imagen del Banner (Celular o PC)</label>
-                    <input type="file" id="adm-file-img" accept="image/*" class="w-full p-2 rounded-xl bg-black/50 border border-white/10 text-white text-[11px] file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-vj-orange file:text-white hover:file:bg-orange-600">
-                    <p class="text-[10px] text-vj-orange mt-1 font-semibold">📐 Medida exacta requerida: 600 x 200 píxeles (Horizontal)</p>
+                    <input type="file" id="adm-file-img" accept="image/*" class="w-full p-2 rounded-xl bg-black/50 border border-vj-blue/40 text-white text-[11px] file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-vj-green file:text-gray-900 hover:file:opacity-90">
+                    <p class="text-[10px] text-vj-green mt-1 font-semibold">📐 Medida exacta requerida: 600 x 200 píxeles (Horizontal)</p>
                 </div>
 
                 <div>
                     <label class="block text-gray-400 font-bold mb-1 text-[10px]">Enlace de Contacto (WhatsApp del Negocio)</label>
-                    <input type="text" id="adm-link" placeholder="Ej. https://wa.me/526670000000" class="w-full p-2.5 rounded-xl bg-black/50 border border-white/10 text-white">
+                    <input type="text" id="adm-link" placeholder="Ej. https://wa.me/526670000000" class="w-full p-2.5 rounded-xl bg-black/50 border border-vj-blue/40 text-white">
                 </div>
                 <div>
                     <label class="block text-gray-400 font-bold mb-1 text-[10px]">Enlace de Ubicación (Google Maps)</label>
-                    <input type="text" id="adm-map" placeholder="Ej. https://maps.google.com/?q=..." class="w-full p-2.5 rounded-xl bg-black/50 border border-white/10 text-white">
+                    <input type="text" id="adm-map" placeholder="Ej. https://maps.google.com/?q=..." class="w-full p-2.5 rounded-xl bg-black/50 border border-vj-blue/40 text-white">
                 </div>
 
-                <button onclick="actualizarPanelAdmin()" class="w-full py-3 rounded-xl bg-vj-orange text-white font-heading font-bold text-xs shadow-lg">Guardar y Publicar en Franja</button>
+                <button onclick="actualizarPanelAdmin()" class="w-full py-3 rounded-xl bg-vj-green text-gray-900 font-heading font-extrabold text-xs shadow-[0_0_15px_rgba(0,240,118,0.4)]">Guardar y Publicar en Franja</button>
             </div>
         </div>
     </div>
 
     <!-- BOTÓN FLOTANTE WHATSAPP -->
-    <a href="https://wa.me/526670000000?text=Hola,%20contacto%20desde%20Villa%20Juárez%20Conecta" target="_blank" class="fixed bottom-36 right-6 z-40 bg-[#25D366] text-white w-12 h-12 rounded-full shadow-2xl flex items-center justify-center border-2 border-white/20 hover:scale-110 transition-all" aria-label="WhatsApp">
+    <a href="https://wa.me/526670000000?text=Hola,%20contacto%20desde%20Villa%20Juárez%20Conecta" target="_blank" class="fixed bottom-36 right-6 z-40 bg-vj-green text-gray-900 w-12 h-12 rounded-full shadow-[0_0_20px_rgba(0,240,118,0.6)] flex items-center justify-center border-2 border-white/20 hover:scale-110 transition-all" aria-label="WhatsApp">
         <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24">
             <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
         </svg>
     </a>
 
     <!-- ALERTA TOAST -->
-    <div id="toast" class="fixed bottom-40 left-1/2 -translate-x-1/2 vj-card px-4 py-2.5 rounded-2xl text-xs text-white border border-vj-orange/40 shadow-2xl transition-all duration-300 opacity-0 pointer-events-none z-50 flex items-center gap-2">
+    <div id="toast" class="fixed bottom-40 left-1/2 -translate-x-1/2 vj-card px-4 py-2.5 rounded-2xl text-xs text-white border border-vj-green/40 shadow-2xl transition-all duration-300 opacity-0 pointer-events-none z-50 flex items-center gap-2">
         <span>✨</span> <span id="toast-msg">Mensaje</span>
     </div>
 
