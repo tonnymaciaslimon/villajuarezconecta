@@ -57,7 +57,7 @@
 </head>
 <body class="font-sans bg-vj-bg text-gray-100 antialiased max-w-md mx-auto min-h-screen relative pb-44">
 
-    <!-- Header Principal con Logo Interactivo (Home) -->
+    <!-- Header Principal con Logotipo Dinámico -->
     <header class="sticky top-0 z-40 bg-vj-bg/95 backdrop-blur-md px-4 py-3 flex items-center justify-between border-b border-white/10">
         <div class="flex items-center gap-3">
             <!-- Botón Menú Hamburguesa -->
@@ -65,9 +65,9 @@
                 ☰
             </button>
 
-            <!-- LOGO OFICIAL (Clickeable para ir al Inicio) -->
+            <!-- LOGO DE LA PÁGINA (Clickeable para ir al Inicio) -->
             <a href="#" onclick="cambiarSeccion('inicio'); return false;" class="flex items-center gap-2 group" title="Ir al Inicio">
-                <img src="836069.png" alt="Villa Juárez Conecta" class="h-10 w-auto object-contain drop-shadow group-hover:scale-105 transition-transform" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/tonnymacias/villa-juarez-conecta/main/836069.png';">
+                <img id="app-logo-header" src="836069.png" alt="Villa Juárez Conecta" class="h-10 w-auto object-contain drop-shadow group-hover:scale-105 transition-transform" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/tonnymacias/villa-juarez-conecta/main/836069.png';">
             </a>
         </div>
 
@@ -83,7 +83,7 @@
         <div>
             <div class="flex justify-between items-center border-b border-white/10 pb-4 mb-4">
                 <div class="flex items-center gap-2">
-                    <img src="836069.png" alt="Logo" class="h-8 w-auto object-contain">
+                    <img id="app-logo-menu" src="836069.png" alt="Logo" class="h-8 w-auto object-contain">
                     <span class="font-heading font-bold text-sm text-white">Menú Principal</span>
                 </div>
                 <button onclick="toggleMenu()" class="text-gray-400 hover:text-white text-lg p-1">✕</button>
@@ -246,7 +246,7 @@
         </div>
     </div>
 
-    <!-- ================= MODAL LOGIN & PANEL ADMINISTRADOR ================= -->
+    <!-- ================= MODAL LOGIN & PANEL ADMINISTRADOR (CON CARGA DE LOGOTIPO) ================= -->
     <div id="modal-admin" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
         <div class="vj-card w-full max-w-md p-5 rounded-3xl space-y-4 max-h-[90vh] overflow-y-auto border-vj-blue/50">
             <div class="flex justify-between items-center border-b border-white/10 pb-3">
@@ -256,19 +256,19 @@
 
             <!-- LOGIN ADMIN -->
             <div id="admin-login-form" class="space-y-3 text-xs">
-                <p class="text-gray-300">Ingresa la clave de administrador para gestionar la franja publicitaria:</p>
+                <p class="text-gray-300">Ingresa la clave de administrador:</p>
                 <input type="password" id="admin-pass" placeholder="Contraseña (por defecto: admin123)" class="w-full p-3 rounded-xl bg-black/50 border border-white/10 text-white focus:border-vj-blue">
                 <button onclick="loginAdmin()" class="w-full py-3 rounded-xl bg-vj-blue text-white font-heading font-bold text-xs shadow-lg">Iniciar Sesión</button>
             </div>
 
-            <!-- PANEL DE CONTROL -->
+            <!-- PANEL DE CONTROL Y CONFIGURACIÓN -->
             <div id="admin-panel-form" class="space-y-3 text-xs hidden">
                 <div class="bg-vj-green/20 border border-vj-green/40 p-2.5 rounded-xl text-vj-green font-bold text-[11px] text-center">
                     ✓ Administrador Conectado
                 </div>
                 
                 <div class="bg-black/30 border border-white/10 p-3 rounded-xl space-y-2.5">
-                    <h4 class="font-heading font-bold text-xs text-vj-blue uppercase">⚙️ Ajustes de Cuenta Admin</h4>
+                    <h4 class="font-heading font-bold text-xs text-vj-blue uppercase">⚙️ Ajustes de Cuenta y Logotipo</h4>
                     <div>
                         <label class="block text-gray-400 font-bold mb-1 text-[10px]">Nombre del Administrador</label>
                         <input type="text" id="adm-perfil-nombre" value="Admin" class="w-full p-2 rounded-lg bg-black/50 border border-white/10 text-white">
@@ -277,9 +277,14 @@
                         <label class="block text-gray-400 font-bold mb-1 text-[10px]">Nueva Contraseña de Acceso</label>
                         <input type="password" id="adm-nueva-pass" placeholder="Escribe nueva contraseña (opcional)" class="w-full p-2 rounded-lg bg-black/50 border border-white/10 text-white">
                     </div>
+                    <!-- Subir Logotipo Oficial de la Página -->
+                    <div>
+                        <label class="block text-gray-400 font-bold mb-1 text-[10px]">Subir Logotipo Oficial de la Página</label>
+                        <input type="file" id="adm-file-logo" accept="image/*" class="w-full p-1.5 rounded-lg bg-black/50 border border-white/10 text-white text-[11px] file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:text-[10px] file:font-semibold file:bg-vj-blue file:text-white">
+                    </div>
                 </div>
 
-                <h4 class="font-heading font-bold text-xs text-white uppercase tracking-wider pt-1">📢 Gestionar Franja Deslizante</h4>
+                <h4 class="font-heading font-bold text-xs text-white uppercase tracking-wider pt-1">📢 Gestionar Franja Deslizante (Banner)</h4>
                 
                 <div>
                     <label class="block text-gray-400 font-bold mb-1 text-[10px]">Nombre del Negocio Patrocinador</label>
@@ -305,7 +310,7 @@
                     <input type="text" id="adm-map" placeholder="Ej. https://maps.google.com/?q=..." class="w-full p-2.5 rounded-xl bg-black/50 border border-white/10 text-white">
                 </div>
 
-                <button onclick="actualizarBannerPublicidad()" class="w-full py-3 rounded-xl bg-vj-orange text-white font-heading font-bold text-xs shadow-lg">Guardar y Publicar en Franja</button>
+                <button onclick="actualizarPanelAdmin()" class="w-full py-3 rounded-xl bg-vj-orange text-white font-heading font-bold text-xs shadow-lg">Guardar y Aplicar Cambios</button>
             </div>
         </div>
     </div>
@@ -386,7 +391,7 @@
             }
         }
 
-        function actualizarBannerPublicidad() {
+        function actualizarPanelAdmin() {
             const nombre = document.getElementById('adm-nombre').value;
             const desc = document.getElementById('adm-desc').value;
             const link = document.getElementById('adm-link').value;
@@ -403,6 +408,17 @@
                 mostrarAlerta('¡Contraseña de administrador actualizada!');
             }
 
+            // Actualizar LOGOTIPO de la página si se subió uno nuevo
+            const logoInput = document.getElementById('adm-file-logo');
+            if (logoInput.files && logoInput.files[0]) {
+                const readerLogo = new FileReader();
+                readerLogo.onload = function(e) {
+                    document.getElementById('app-logo-header').src = e.target.result;
+                    document.getElementById('app-logo-menu').src = e.target.result;
+                }
+                readerLogo.readAsDataURL(logoInput.files[0]);
+            }
+
             if(nombre.trim() !== "") {
                 document.getElementById('ad-nombre').innerText = nombre;
             }
@@ -413,15 +429,16 @@
                 document.getElementById('ad-link').href = link;
             }
 
+            // Actualizar Banner de Publicidad inferior
             const fileInput = document.getElementById('adm-file-img');
             const imgElement = document.getElementById('ad-img-src');
 
             if (fileInput.files && fileInput.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
+                const readerImg = new FileReader();
+                readerImg.onload = function(e) {
                     imgElement.src = e.target.result;
                 }
-                reader.readAsDataURL(fileInput.files[0]);
+                readerImg.readAsDataURL(fileInput.files[0]);
             }
 
             const mapBtn = document.getElementById('ad-link-map');
@@ -433,7 +450,7 @@
             }
 
             cerrarModalAdmin();
-            mostrarAlerta('¡Franja publicitaria actualizada correctamente!');
+            mostrarAlerta('¡Configuración y logotipo actualizados con éxito!');
         }
 
         function mostrarAlerta(mensaje) {
