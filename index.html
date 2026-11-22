@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Villa Juárez Conecta | Comunidad y Negocios</title>
+
+    <!-- Configuración PWA / App Instalable -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#00BFFF">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="VJ Conecta">
+    <link rel="apple-touch-icon" href="836069.png">
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -13,11 +23,11 @@
                 extend: {
                     colors: {
                         vj: {
-                            bg: "#000000",         /* Negro puro de fondo */
-                            card: "#060E18",       /* Tarjetas negro con sutil reflejo azul capri */
-                            capri: "#00BFFF",      /* Azul Capri brillante y llamativo */
-                            glow: "#33CCFF",       /* Azul Capri claro para efectos hover */
-                            darkblue: "#0080FF",   /* Azul profundo de contraste */
+                            bg: "#000000",
+                            card: "#060E18",
+                            capri: "#00BFFF",
+                            glow: "#33CCFF",
+                            darkblue: "#0080FF",
                         }
                     },
                     fontFamily: {
@@ -39,7 +49,6 @@
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* Animación de marquesina horizontal deslizante */
         @keyframes marquee-full {
             0% { transform: translateX(100%); }
             100% { transform: translateX(-100%); }
@@ -53,7 +62,6 @@
             animation-play-state: paused;
         }
 
-        /* Contorno brillante en Azul Capri y Negro */
         .neon-border {
             border: 2px solid transparent;
             background: linear-gradient(#000000, #000000) padding-box, 
@@ -67,13 +75,15 @@
     <!-- Header Superior Estilo App -->
     <header class="sticky top-0 z-40 bg-black/95 backdrop-blur-md px-4 py-3 flex items-center justify-between border-b border-vj-capri/30 shadow-[0_4px_20px_rgba(0,191,255,0.15)]">
         <div class="flex items-center gap-2.5">
-            <!-- LOGO OFICIAL -->
             <a href="#" onclick="cambiarSeccion('inicio'); return false;" class="flex items-center group py-0.5" title="Ir al Inicio">
                 <img id="app-logo-header" src="836069.png" alt="Villa Juárez Conecta" class="h-9 w-auto max-w-[170px] object-contain drop-shadow group-hover:scale-105 transition-transform" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/tonnymacias/villa-juarez-conecta/main/836069.png';">
             </a>
         </div>
 
         <div class="flex items-center gap-2">
+            <button id="btn-instalar-app" onclick="instalarPWA()" class="hidden bg-vj-capri/20 border border-vj-capri text-vj-capri px-2.5 py-1.5 rounded-xl font-heading font-extrabold text-[10px] hover:bg-vj-capri hover:text-gray-950 transition-all">
+                📲 Instalar
+            </button>
             <button onclick="abrirModalAdmin()" class="w-9 h-9 rounded-full bg-vj-card border border-vj-capri/40 text-vj-capri flex items-center justify-center text-sm shadow hover:bg-vj-capri hover:text-gray-950 transition-all font-bold" title="Panel Administrador">
                 🔐
             </button>
@@ -86,7 +96,7 @@
     <!-- CONTENIDO PRINCIPAL SEGÚN SECCIÓN -->
     <main class="px-4 mt-4 space-y-4">
 
-        <!-- ================= SECCIÓN INICIO ================= -->
+        <!-- SECCIÓN INICIO -->
         <div id="sec-inicio" class="space-y-4">
             <section class="vj-card p-5 rounded-3xl relative overflow-hidden border-vj-capri/50">
                 <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-vj-capri/20 rounded-full blur-3xl"></div>
@@ -96,32 +106,36 @@
                 <button onclick="abrirModalNegocio()" class="w-full py-2.5 rounded-xl bg-vj-capri text-gray-950 font-heading font-black text-xs shadow-[0_0_20px_rgba(0,191,255,0.6)] hover:bg-vj-glow transition-all">Solicitar Publicidad</button>
             </section>
 
-            <div class="space-y-4">
-                <div class="flex justify-between items-center">
+            <!-- GALERÍA DE VILLA JUÁREZ: ANTIGUAS Y ACTUALES -->
+            <div class="space-y-3">
+                <div class="flex flex-wrap justify-between items-center gap-2">
                     <h3 class="font-heading font-bold text-sm text-white flex items-center gap-2">
-                        <span class="w-2 h-2 rounded-full bg-vj-capri animate-ping"></span> Lo que pasa en Villa Juárez
+                        <span class="w-2 h-2 rounded-full bg-vj-capri animate-ping"></span> Galería de Villa Juárez
                     </h3>
-                    <span class="text-[10px] text-vj-capri font-bold cursor-pointer hover:underline" onclick="mostrarAlerta('Sube tus fotos mandándolas por WhatsApp')">📸 Compartir foto</span>
+                    <button onclick="abrirAdminDirectoGaleria()" class="text-[10px] bg-vj-capri/20 border border-vj-capri/50 text-vj-capri px-2.5 py-1 rounded-xl font-extrabold hover:bg-vj-capri hover:text-gray-950 transition-all">
+                        📸 Subir foto
+                    </button>
                 </div>
 
-                <article class="vj-card rounded-3xl overflow-hidden p-4 space-y-3 border-vj-capri/30">
-                    <div class="flex items-center gap-2.5">
-                        <div class="w-8 h-8 rounded-full bg-vj-capri text-gray-950 flex items-center justify-center font-black text-xs shadow-[0_0_12px_#00BFFF]">VJ</div>
-                        <div>
-                            <h4 class="font-heading font-bold text-xs text-white">Comunidad Villa Juárez</h4>
-                            <span class="text-[9px] text-gray-400">Hace 1 hora • Plaza Principal</span>
-                        </div>
-                    </div>
-                    <p class="text-xs text-gray-200">Hermosa tarde disfrutando en el corazón de nuestra comunidad. ¡Saludos a todos los vecinos!</p>
-                    <div class="bg-black h-44 rounded-2xl border border-vj-capri/30 flex flex-col items-center justify-center text-gray-400 shadow-inner">
-                        <span class="text-3xl mb-1">🌅</span>
-                        <span class="text-[11px] font-medium text-vj-capri">Foto del atardecer en Villa Juárez</span>
-                    </div>
-                </article>
+                <!-- Filtros de Galería -->
+                <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
+                    <button onclick="filtrarGaleria('todas', this)" id="filtro-todas" class="px-3 py-1 rounded-full text-[10px] font-extrabold bg-vj-capri text-gray-950 shadow-[0_0_10px_rgba(0,191,255,0.4)] transition-all">
+                        Todas
+                    </button>
+                    <button onclick="filtrarGaleria('antigua', this)" id="filtro-antigua" class="px-3 py-1 rounded-full text-[10px] font-bold bg-vj-card border border-vj-capri/40 text-gray-300 hover:text-white transition-all">
+                        🕰️ Antiguas
+                    </button>
+                    <button onclick="filtrarGaleria('actual', this)" id="filtro-actual" class="px-3 py-1 rounded-full text-[10px] font-bold bg-vj-card border border-vj-capri/40 text-gray-300 hover:text-white transition-all">
+                        📷 Actuales
+                    </button>
+                </div>
+
+                <!-- Contenedor Dinámico de Fotos -->
+                <div id="galeria-lista" class="space-y-4"></div>
             </div>
         </div>
 
-        <!-- ================= SECCIÓN DIRECTORIO ================= -->
+        <!-- SECCIÓN DIRECTORIO -->
         <div id="sec-directorio" class="space-y-4 hidden">
             <div class="flex items-center justify-between">
                 <div>
@@ -131,13 +145,11 @@
                 <span class="bg-vj-card border border-vj-capri/40 px-3 py-1 rounded-full text-[10px] text-vj-capri font-bold shadow-[0_0_10px_rgba(0,191,255,0.2)]">1 negocio</span>
             </div>
 
-            <!-- Buscador simulado -->
             <div class="relative">
                 <input type="text" placeholder="Buscar negocio o servicio..." class="w-full py-3 pl-10 pr-4 rounded-2xl bg-vj-card border border-vj-capri/40 text-xs text-white focus:border-vj-capri outline-none shadow-[0_0_15px_rgba(0,191,255,0.2)]">
                 <span class="absolute left-3.5 top-3.5 text-vj-capri text-xs">🔍</span>
             </div>
 
-            <!-- Tarjeta de Negocio Ejemplo -->
             <div class="vj-card p-4 rounded-3xl space-y-3 border-vj-capri/50 shadow-[0_0_20px_rgba(0,191,255,0.25)]">
                 <div class="flex items-center gap-3">
                     <div class="w-12 h-12 rounded-2xl bg-vj-capri/20 border border-vj-capri/60 flex items-center justify-center text-xl shadow-[0_0_10px_#00BFFF]">
@@ -156,7 +168,7 @@
             </div>
         </div>
 
-        <!-- ================= SECCIÓN MAPA ================= -->
+        <!-- SECCIÓN MAPA -->
         <div id="sec-mapa" class="space-y-4 hidden">
             <h2 class="font-heading font-bold text-sm text-white flex items-center gap-2">🗺️ Mapa y Ubicaciones</h2>
             <div class="vj-card p-6 rounded-3xl text-center space-y-3 border-vj-capri/40">
@@ -167,7 +179,7 @@
             </div>
         </div>
 
-        <!-- ================= SECCIÓN FAVORITOS ================= -->
+        <!-- SECCIÓN FAVORITOS -->
         <div id="sec-favoritos" class="space-y-4 hidden">
             <h2 class="font-heading font-bold text-sm text-white flex items-center gap-2">❤️ Mis Favoritos</h2>
             <div class="vj-card p-6 rounded-3xl text-center space-y-3 border-vj-capri/40">
@@ -179,9 +191,8 @@
 
     </main>
 
-    <!-- ================= MENÚ DE NAVEGACIÓN INFERIOR ESTILO APP ================= -->
+    <!-- MENÚ DE NAVEGACIÓN INFERIOR -->
     <nav class="fixed bottom-14 left-0 right-0 max-w-md mx-auto z-40 bg-black/95 backdrop-blur-lg border-t border-vj-capri/30 px-4 py-2 flex items-center justify-around shadow-[0_-4px_25px_rgba(0,191,255,0.25)]">
-        
         <button onclick="cambiarSeccionNav('inicio', this)" id="nav-btn-inicio" class="flex flex-col items-center gap-1 text-vj-capri transition-all group">
             <span class="text-lg group-hover:scale-110 transition-transform">🏠</span>
             <span class="text-[10px] font-bold">Inicio</span>
@@ -201,14 +212,12 @@
             <span class="text-lg group-hover:scale-110 transition-transform">❤️</span>
             <span class="text-[10px] font-medium">Favoritos</span>
         </button>
-
     </nav>
 
-    <!-- ================= FRANJA PUBLICITARIA INFERIOR EN MOVIMIENTO ================= -->
+    <!-- FRANJA PUBLICITARIA INFERIOR EN MOVIMIENTO -->
     <div id="banner-publicidad" class="fixed bottom-0 left-0 right-0 max-w-md mx-auto z-30 neon-border shadow-2xl overflow-hidden bg-black">
         <div class="overflow-hidden whitespace-nowrap relative w-full py-1.5 px-3">
             <div class="animate-marquee-container items-center gap-8">
-                
                 <div class="inline-flex items-center gap-3">
                     <div class="flex items-center gap-2 bg-vj-card px-2.5 py-1 rounded-xl border border-vj-capri/50 shadow-[0_0_10px_rgba(0,191,255,0.3)]">
                         <div class="w-12 h-8 rounded-lg overflow-hidden flex-shrink-0 bg-black">
@@ -228,7 +237,6 @@
                     </div>
                 </div>
 
-                <!-- Duplicado para loop continuo -->
                 <div class="inline-flex items-center gap-3">
                     <div class="flex items-center gap-2 bg-vj-card px-2.5 py-1 rounded-xl border border-vj-capri/50 shadow-[0_0_10px_rgba(0,191,255,0.3)]">
                         <div class="w-12 h-8 rounded-lg overflow-hidden flex-shrink-0 bg-black">
@@ -247,7 +255,6 @@
                         <a id="ad-link-dup" href="https://wa.me/526674520598" target="_blank" class="bg-vj-capri text-gray-950 px-2.5 py-1 rounded-lg font-heading font-black text-[10px] shadow-[0_0_10px_rgba(0,191,255,0.5)] hover:bg-vj-glow transition-all">💬 WhatsApp</a>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -267,7 +274,7 @@
         </div>
     </div>
 
-    <!-- ================= MODAL LOGIN & PANEL ADMINISTRADOR CON 3 SECCIONES ================= -->
+    <!-- MODAL LOGIN & PANEL ADMINISTRADOR -->
     <div id="modal-admin" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
         <div class="vj-card w-full max-w-md p-5 rounded-3xl space-y-4 max-h-[90vh] overflow-y-auto border-vj-capri/60 shadow-[0_0_30px_rgba(0,191,255,0.4)]">
             <div class="flex justify-between items-center border-b border-vj-capri/30 pb-3">
@@ -275,14 +282,12 @@
                 <button onclick="cerrarModalAdmin()" class="text-gray-400 hover:text-white text-lg">✕</button>
             </div>
 
-            <!-- LOGIN ADMIN -->
             <div id="admin-login-form" class="space-y-3 text-xs">
                 <p class="text-gray-300">Ingresa la clave de administrador:</p>
                 <input type="password" id="admin-pass" placeholder="Contraseña (por defecto: admin123)" class="w-full p-3 rounded-xl bg-black border border-vj-capri/50 text-white focus:border-vj-capri outline-none">
                 <button onclick="loginAdmin()" class="w-full py-3 rounded-xl bg-vj-capri text-gray-950 font-heading font-black text-xs shadow-[0_0_15px_rgba(0,191,255,0.5)] hover:bg-vj-glow transition-all">Iniciar Sesión</button>
             </div>
 
-            <!-- PANEL DE CONTROL CON TRES SECCIONES SEPARADAS -->
             <div id="admin-panel-form" class="space-y-4 text-xs hidden">
                 <div class="bg-vj-capri/20 border border-vj-capri/50 p-2.5 rounded-xl text-vj-capri font-bold text-[11px] text-center shadow-[0_0_10px_rgba(0,191,255,0.3)]">
                     ✓ Administrador Conectado
@@ -318,7 +323,7 @@
                     <button onclick="guardarSeccionSeguridad()" class="w-full py-2.5 rounded-xl bg-vj-capri text-gray-950 font-heading font-black text-xs shadow-[0_0_10px_rgba(0,191,255,0.4)] hover:bg-vj-glow transition-all">Actualizar Credenciales</button>
                 </div>
 
-                <!-- SECCIÓN 3: FRANJA PUBLICITARIA (BANNER) -->
+                <!-- SECCIÓN 3: FRANJA PUBLICITARIA -->
                 <div class="bg-black/60 border border-vj-capri/40 p-3.5 rounded-2xl space-y-3 shadow-inner">
                     <div class="flex items-center gap-2 border-b border-vj-capri/30 pb-2">
                         <span class="text-vj-capri text-base">📢</span>
@@ -347,6 +352,33 @@
                     <button onclick="guardarSeccionAnuncio()" class="w-full py-2.5 rounded-xl bg-vj-capri text-gray-950 font-heading font-black text-xs shadow-[0_0_10px_rgba(0,191,255,0.4)] hover:bg-vj-glow transition-all">Guardar y Publicar Anuncio</button>
                 </div>
 
+                <!-- SECCIÓN 4: GALERÍA DE VILLA JUÁREZ (ANTIGUAS Y ACTUALES) -->
+                <div id="admin-sec-galeria" class="bg-black/60 border border-vj-capri/40 p-3.5 rounded-2xl space-y-3 shadow-inner">
+                    <div class="flex items-center gap-2 border-b border-vj-capri/30 pb-2">
+                        <span class="text-vj-capri text-base">📸</span>
+                        <h4 class="font-heading font-bold text-xs text-white uppercase tracking-wider">Sección 4: Galería (Antiguas / Actuales)</h4>
+                    </div>
+                    <div>
+                        <label class="block text-gray-400 font-bold mb-1 text-[10px]">Época de la Fotografía</label>
+                        <select id="gal-epoca" class="w-full p-2.5 rounded-xl bg-black border border-vj-capri/40 text-white focus:border-vj-capri outline-none">
+                            <option value="antigua">🕰️ Foto Antigua</option>
+                            <option value="actual">📷 Foto Actual</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-gray-400 font-bold mb-1 text-[10px]">Título o Lugar</label>
+                        <input type="text" id="gal-titulo" placeholder="Ej. Plaza Principal o Calle Morelos" class="w-full p-2.5 rounded-xl bg-black border border-vj-capri/40 text-white focus:border-vj-capri outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-gray-400 font-bold mb-1 text-[10px]">Texto de Información de la Foto</label>
+                        <textarea id="gal-texto" rows="3" placeholder="Escribe la historia, año o detalle de esta foto..." class="w-full p-2.5 rounded-xl bg-black border border-vj-capri/40 text-white focus:border-vj-capri outline-none resize-none"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-gray-400 font-bold mb-1 text-[10px]">Seleccionar Fotografía</label>
+                        <input type="file" id="gal-file-img" accept="image/*" class="w-full p-2 rounded-xl bg-black border border-vj-capri/40 text-white text-[11px] file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-vj-capri file:text-gray-950">
+                    </div>
+                    <button onclick="guardarFotoGaleria()" class="w-full py-2.5 rounded-xl bg-vj-capri text-gray-950 font-heading font-black text-xs shadow-[0_0_10px_rgba(0,191,255,0.4)] hover:bg-vj-glow transition-all">Agregar a la Galería</button>
+                </div>
             </div>
         </div>
     </div>
@@ -359,6 +391,198 @@
     <!-- SCRIPTS -->
     <script>
         let passwordAdminActual = "admin123";
+        let deferredPrompt = null;
+        let filtroActualGaleria = "todas";
+
+        const fotosIniciales = [
+            {
+                id: 1,
+                epoca: "actual",
+                titulo: "Atardecer en Villa Juárez",
+                texto: "Hermosa tarde disfrutando en el corazón de nuestra comunidad. ¡Saludos a todos los vecinos!",
+                imagen: ""
+            },
+            {
+                id: 2,
+                epoca: "antigua",
+                titulo: "Recuerdos de Villa Juárez",
+                texto: "Espacio listo para agregar fotografías históricas de nuestra sindicatura y contar su historia.",
+                imagen: ""
+            }
+        ];
+
+        function obtenerFotosGaleria() {
+            try {
+                const guardadas = localStorage.getItem("vj_galeria_fotos");
+                if (guardadas) {
+                    const parsed = JSON.parse(guardadas);
+                    if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+                }
+            } catch (e) {}
+            return fotosIniciales;
+        }
+
+        function guardarFotosStorage(lista) {
+            try {
+                localStorage.setItem("vj_galeria_fotos", JSON.stringify(lista));
+            } catch (e) {
+                mostrarAlerta("La imagen es muy pesada para guardarse en memoria local, pero se mostrará mientras esté abierta.");
+            }
+        }
+
+        function renderizarGaleria() {
+            const contenedor = document.getElementById("galeria-lista");
+            if (!contenedor) return;
+
+            const fotos = obtenerFotosGaleria();
+            const filtradas = filtroActualGaleria === "todas"
+                ? fotos
+                : fotos.filter(f => f.epoca === filtroActualGaleria);
+
+            if (filtradas.length === 0) {
+                contenedor.innerHTML = `
+                    <div class="vj-card rounded-3xl p-6 text-center space-y-2 border-vj-capri/30">
+                        <p class="text-xs text-gray-300 font-medium">No hay fotografías en esta categoría todavía.</p>
+                        <button onclick="abrirAdminDirectoGaleria()" class="text-[11px] text-vj-capri font-bold underline">Subir una foto ahora</button>
+                    </div>
+                `;
+                return;
+            }
+
+            contenedor.innerHTML = filtradas.map(foto => {
+                const esAntigua = foto.epoca === "antigua";
+                const badgeClass = esAntigua
+                    ? "bg-amber-400/20 text-amber-300 border-amber-400/40"
+                    : "bg-vj-capri/20 text-vj-capri border-vj-capri/40";
+                const badgeTexto = esAntigua ? "🕰️ Antigua" : "📷 Actual";
+
+                const mediaHtml = foto.imagen
+                    ? `<img src="${foto.imagen}" alt="${escaparHtml(foto.titulo)}" class="w-full h-52 object-cover rounded-2xl border border-vj-capri/30">`
+                    : `<div class="bg-black h-44 rounded-2xl border border-vj-capri/30 flex flex-col items-center justify-center text-gray-400 shadow-inner px-4 text-center">
+                        <span class="text-3xl mb-1">${esAntigua ? "🏛️" : "🌅"}</span>
+                        <span class="text-[11px] font-medium text-vj-capri">${escaparHtml(foto.titulo)}</span>
+                       </div>`;
+
+                return `
+                    <article class="vj-card rounded-3xl overflow-hidden p-4 space-y-3 border-vj-capri/30">
+                        <div class="flex items-center justify-between gap-2">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-8 h-8 rounded-full bg-vj-capri text-gray-950 flex items-center justify-center font-black text-xs shadow-[0_0_12px_#00BFFF]">VJ</div>
+                                <div>
+                                    <h4 class="font-heading font-bold text-xs text-white">${escaparHtml(foto.titulo)}</h4>
+                                    <span class="text-[9px] text-gray-400">Villa Juárez, Sinaloa</span>
+                                </div>
+                            </div>
+                            <span class="text-[9px] font-extrabold px-2.5 py-0.5 rounded-full border ${badgeClass}">${badgeTexto}</span>
+                        </div>
+                        <p class="text-xs text-gray-200 leading-relaxed">${escaparHtml(foto.texto)}</p>
+                        ${mediaHtml}
+                    </article>
+                `;
+            }).join("");
+        }
+
+        function escaparHtml(texto) {
+            return String(texto || "")
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;");
+        }
+
+        function filtrarGaleria(epoca, btn) {
+            filtroActualGaleria = epoca;
+            ["todas", "antigua", "actual"].forEach(key => {
+                const el = document.getElementById("filtro-" + key);
+                if (!el) return;
+                if (key === epoca) {
+                    el.className = "px-3 py-1 rounded-full text-[10px] font-extrabold bg-vj-capri text-gray-950 shadow-[0_0_10px_rgba(0,191,255,0.4)] transition-all";
+                } else {
+                    el.className = "px-3 py-1 rounded-full text-[10px] font-bold bg-vj-card border border-vj-capri/40 text-gray-300 hover:text-white transition-all";
+                }
+            });
+            renderizarGaleria();
+        }
+
+        function abrirAdminDirectoGaleria() {
+            abrirModalAdmin();
+            setTimeout(() => {
+                const sec = document.getElementById("admin-sec-galeria");
+                if (sec && !document.getElementById("admin-panel-form").classList.contains("hidden")) {
+                    sec.scrollIntoView({ behavior: "smooth", block: "center" });
+                }
+            }, 100);
+        }
+
+        function guardarFotoGaleria() {
+            const epoca = document.getElementById("gal-epoca").value;
+            const tituloInput = document.getElementById("gal-titulo").value.trim();
+            const texto = document.getElementById("gal-texto").value.trim();
+            const fileInput = document.getElementById("gal-file-img");
+
+            if (!texto && (!fileInput.files || !fileInput.files[0])) {
+                mostrarAlerta("Selecciona una foto o escribe la información de la foto");
+                return;
+            }
+
+            const tituloFinal = tituloInput || (epoca === "antigua" ? "Recuerdo de Villa Juárez" : "Postal de Villa Juárez");
+            const textoFinal = texto || "Fotografía compartida en Villa Juárez Conecta.";
+
+            const agregarRegistro = (dataUrl) => {
+                const lista = obtenerFotosGaleria();
+                lista.unshift({
+                    id: Date.now(),
+                    epoca: epoca,
+                    titulo: tituloFinal,
+                    texto: textoFinal,
+                    imagen: dataUrl || ""
+                });
+                guardarFotosStorage(lista);
+                renderizarGaleria();
+
+                document.getElementById("gal-titulo").value = "";
+                document.getElementById("gal-texto").value = "";
+                fileInput.value = "";
+                cerrarModalAdmin();
+                mostrarAlerta("¡Foto agregada a la galería de Villa Juárez!");
+            };
+
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    agregarRegistro(e.target.result);
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                agregarRegistro("");
+            }
+        }
+
+        // Detectar posibilidad de instalar PWA
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            const btnInstalar = document.getElementById('btn-instalar-app');
+            if (btnInstalar) btnInstalar.classList.remove('hidden');
+        });
+
+        async function instalarPWA() {
+            if (!deferredPrompt) {
+                mostrarAlerta('Usa el menú del navegador y elige "Agregar a pantalla principal"');
+                return;
+            }
+            deferredPrompt.prompt();
+            await deferredPrompt.userChoice;
+            deferredPrompt = null;
+            document.getElementById('btn-instalar-app').classList.add('hidden');
+        }
+
+        // Registrar Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js').catch(() => {});
+            });
+        }
 
         function cambiarSeccionNav(secId, btnElement) {
             document.getElementById('sec-inicio').classList.add('hidden');
@@ -494,6 +718,20 @@
                 readerImg.readAsDataURL(fileInput.files[0]);
             }
 
+            const mapBtn = document.getElementById('ad-link-map');
+            const mapBtnDup = document.getElementById('ad-link-map-dup');
+            if(mapUrl.trim() !== "") {
+                mapBtn.href = mapUrl;
+                mapBtn.classList.remove('hidden');
+                if(mapBtnDup) {
+                    mapBtnDup.href = mapUrl;
+                    mapBtnDup.classList.remove('hidden');
+                }
+            } else {
+                mapBtn.classList.add('hidden');
+                if(mapBtnDup) mapBtnDup.classList.add('hidden');
+            }
+
             cerrarModalAdmin();
             mostrarAlerta('¡Franja publicitaria actualizada correctamente!');
         }
@@ -509,6 +747,8 @@
                 toast.classList.add('opacity-0', 'pointer-events-none');
             }, 3500);
         }
+
+        renderizarGaleria();
     </script>
 
 </body>
