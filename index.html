@@ -7,7 +7,7 @@
 
     <!-- Configuración PWA / App Instalable -->
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#00BFFF">
+    <meta name="theme-color" content="#32CD32">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -24,10 +24,10 @@
                     colors: {
                         vj: {
                             bg: "#000000",
-                            card: "#060E18",
-                            capri: "#00BFFF",
-                            glow: "#33CCFF",
-                            darkblue: "#0080FF",
+                            card: "#09120B",       /* Tarjeta negra con matiz sutil de verde oscuro */
+                            limon: "#32CD32",      /* Verde Limón brillante y serio */
+                            glow: "#7FFF00",       /* Verde Neón para efectos al interactuar */
+                            darkgreen: "#1E8449",  /* Verde profundo para contrastes */
                         }
                     },
                     fontFamily: {
@@ -41,10 +41,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
     <style>
         .vj-card {
-            background: linear-gradient(135deg, rgba(6, 14, 24, 0.95) 0%, rgba(2, 5, 10, 0.9) 100%);
+            background: linear-gradient(135deg, rgba(9, 18, 11, 0.95) 0%, rgba(2, 8, 3, 0.92) 100%);
             backdrop-filter: blur(16px);
-            border: 1px solid rgba(0, 191, 255, 0.35);
-            box-shadow: 0 10px 30px -10px rgba(0, 191, 255, 0.3);
+            border: 1px solid rgba(50, 205, 50, 0.35);
+            box-shadow: 0 10px 30px -10px rgba(50, 205, 50, 0.25);
         }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -65,8 +65,8 @@
         .neon-border {
             border: 2px solid transparent;
             background: linear-gradient(#000000, #000000) padding-box, 
-                        linear-gradient(90deg, #00BFFF, #33CCFF, #0080FF) border-box;
-            box-shadow: 0 0 25px rgba(0, 191, 255, 0.5);
+                        linear-gradient(90deg, #32CD32, #7FFF00, #1E8449) border-box;
+            box-shadow: 0 0 25px rgba(50, 205, 50, 0.4);
         }
 
         /* Animación interactiva de iconos del menú */
@@ -78,8 +78,8 @@
         }
         .nav-item.is-active .nav-icon-wrap {
             transform: translateY(-3px) scale(1.06);
-            background-color: rgba(0, 191, 255, 0.16);
-            box-shadow: 0 0 14px rgba(0, 191, 255, 0.45);
+            background-color: rgba(50, 205, 50, 0.16);
+            box-shadow: 0 0 14px rgba(50, 205, 50, 0.45);
         }
         .nav-item .nav-indicator {
             width: 0px;
@@ -95,7 +95,7 @@
 <body class="font-sans bg-vj-bg text-gray-100 antialiased max-w-md mx-auto min-h-screen relative pb-48">
 
     <!-- Header Superior Estilo App -->
-    <header class="sticky top-0 z-40 bg-black/95 backdrop-blur-md px-4 py-3 flex items-center justify-between border-b border-vj-capri/30 shadow-[0_4px_20px_rgba(0,191,255,0.15)]">
+    <header class="sticky top-0 z-40 bg-black/95 backdrop-blur-md px-4 py-3 flex items-center justify-between border-b border-vj-limon/30 shadow-[0_4px_20px_rgba(50,205,50,0.15)]">
         <div class="flex items-center gap-2.5">
             <a href="#" onclick="cambiarSeccion('inicio'); return false;" class="flex items-center group py-0.5" title="Ir al Inicio">
                 <img id="app-logo-header" src="836069.png" alt="Villa Juárez Conecta" class="h-9 w-auto max-w-[170px] object-contain drop-shadow group-hover:scale-105 transition-transform" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/tonnymacias/villa-juarez-conecta/main/836069.png';">
@@ -103,13 +103,13 @@
         </div>
 
         <div class="flex items-center gap-2">
-            <button id="btn-instalar-app" onclick="instalarPWA()" class="hidden bg-vj-capri/20 border border-vj-capri text-vj-capri px-2.5 py-1.5 rounded-xl font-heading font-extrabold text-[10px] hover:bg-vj-capri hover:text-gray-950 transition-all">
+            <button id="btn-instalar-app" onclick="instalarPWA()" class="hidden bg-vj-limon/20 border border-vj-limon text-vj-limon px-2.5 py-1.5 rounded-xl font-heading font-extrabold text-[10px] hover:bg-vj-limon hover:text-gray-950 transition-all">
                 📲 Instalar
             </button>
-            <button onclick="abrirModalAdmin()" class="w-9 h-9 rounded-full bg-vj-card border border-vj-capri/40 text-vj-capri flex items-center justify-center text-sm shadow hover:bg-vj-capri hover:text-gray-950 transition-all font-bold" title="Panel Administrador">
+            <button onclick="abrirModalAdmin()" class="w-9 h-9 rounded-full bg-vj-card border border-vj-limon/40 text-vj-limon flex items-center justify-center text-sm shadow hover:bg-vj-limon hover:text-gray-950 transition-all font-bold" title="Panel Administrador">
                 🔐
             </button>
-            <button onclick="abrirModalNegocio()" class="bg-vj-capri text-gray-950 px-3.5 py-1.5 rounded-xl font-heading font-black text-[10px] shadow-[0_0_15px_rgba(0,191,255,0.5)] hover:bg-vj-glow transition-all flex items-center gap-1">
+            <button onclick="abrirModalNegocio()" class="bg-vj-limon text-gray-950 px-3.5 py-1.5 rounded-xl font-heading font-black text-[10px] shadow-[0_0_15px_rgba(50,205,50,0.5)] hover:bg-vj-glow transition-all flex items-center gap-1">
                 <span>➕</span> Negocio
             </button>
         </div>
@@ -120,32 +120,32 @@
 
         <!-- SECCIÓN INICIO -->
         <div id="sec-inicio" class="space-y-4">
-            <section class="vj-card p-5 rounded-3xl relative overflow-hidden border-vj-capri/50">
-                <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-vj-capri/20 rounded-full blur-3xl"></div>
-                <span class="bg-vj-capri/20 text-vj-capri text-[9px] font-extrabold px-2.5 py-1 rounded-full uppercase border border-vj-capri/40">Servicio de Publicidad</span>
+            <section class="vj-card p-5 rounded-3xl relative overflow-hidden border-vj-limon/50">
+                <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-vj-limon/20 rounded-full blur-3xl"></div>
+                <span class="bg-vj-limon/20 text-vj-limon text-[9px] font-extrabold px-2.5 py-1 rounded-full uppercase border border-vj-limon/40">Servicio de Publicidad</span>
                 <h2 class="font-heading font-black text-lg text-white mt-2 mb-1">Anúnciate en Villa Juárez</h2>
                 <p class="text-xs text-gray-300 mb-3">Publica tu franja publicitaria en movimiento continuo en la parte inferior.</p>
-                <button onclick="abrirModalNegocio()" class="w-full py-2.5 rounded-xl bg-vj-capri text-gray-950 font-heading font-black text-xs shadow-[0_0_20px_rgba(0,191,255,0.6)] hover:bg-vj-glow transition-all">Solicitar Publicidad</button>
+                <button onclick="abrirModalNegocio()" class="w-full py-2.5 rounded-xl bg-vj-limon text-gray-950 font-heading font-black text-xs shadow-[0_0_20px_rgba(50,205,50,0.6)] hover:bg-vj-glow transition-all">Solicitar Publicidad</button>
             </section>
 
             <!-- GALERÍA DE VILLA JUÁREZ: ANTIGUAS Y ACTUALES (SUBIDA EXCLUSIVA ADMIN) -->
             <div class="space-y-3">
                 <div class="flex items-center justify-between gap-2">
                     <h3 class="font-heading font-bold text-sm text-white flex items-center gap-2">
-                        <span class="w-2 h-2 rounded-full bg-vj-capri animate-ping"></span> Galería de Villa Juárez
+                        <span class="w-2 h-2 rounded-full bg-vj-limon animate-ping"></span> Galería de Villa Juárez
                     </h3>
                     <span class="text-[9px] text-gray-400 font-semibold">Antiguas y actuales</span>
                 </div>
 
                 <!-- Filtros de Galería -->
                 <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
-                    <button onclick="filtrarGaleria('todas', this)" id="filtro-todas" class="px-3 py-1 rounded-full text-[10px] font-extrabold bg-vj-capri text-gray-950 shadow-[0_0_10px_rgba(0,191,255,0.4)] transition-all">
+                    <button onclick="filtrarGaleria('todas', this)" id="filtro-todas" class="px-3 py-1 rounded-full text-[10px] font-extrabold bg-vj-limon text-gray-950 shadow-[0_0_10px_rgba(50,205,50,0.4)] transition-all">
                         Todas
                     </button>
-                    <button onclick="filtrarGaleria('antigua', this)" id="filtro-antigua" class="px-3 py-1 rounded-full text-[10px] font-bold bg-vj-card border border-vj-capri/40 text-gray-300 hover:text-white transition-all">
+                    <button onclick="filtrarGaleria('antigua', this)" id="filtro-antigua" class="px-3 py-1 rounded-full text-[10px] font-bold bg-vj-card border border-vj-limon/40 text-gray-300 hover:text-white transition-all">
                         🕰️ Antiguas
                     </button>
-                    <button onclick="filtrarGaleria('actual', this)" id="filtro-actual" class="px-3 py-1 rounded-full text-[10px] font-bold bg-vj-card border border-vj-capri/40 text-gray-300 hover:text-white transition-all">
+                    <button onclick="filtrarGaleria('actual', this)" id="filtro-actual" class="px-3 py-1 rounded-full text-[10px] font-bold bg-vj-card border border-vj-limon/40 text-gray-300 hover:text-white transition-all">
                         📷 Actuales
                     </button>
                 </div>
@@ -159,29 +159,29 @@
         <div id="sec-directorio" class="space-y-4 hidden">
             <div class="flex items-center justify-between">
                 <div>
-                    <span class="text-[10px] text-vj-capri font-extrabold uppercase tracking-widest">Directorio</span>
+                    <span class="text-[10px] text-vj-limon font-extrabold uppercase tracking-widest">Directorio</span>
                     <h2 class="font-heading font-black text-lg text-white">Negocios y Servicios</h2>
                 </div>
-                <span class="bg-vj-card border border-vj-capri/40 px-3 py-1 rounded-full text-[10px] text-vj-capri font-bold shadow-[0_0_10px_rgba(0,191,255,0.2)]">1 negocio</span>
+                <span class="bg-vj-card border border-vj-limon/40 px-3 py-1 rounded-full text-[10px] text-vj-limon font-bold shadow-[0_0_10px_rgba(50,205,50,0.2)]">1 negocio</span>
             </div>
 
             <div class="relative">
-                <input type="text" placeholder="Buscar negocio o servicio..." class="w-full py-3 pl-10 pr-4 rounded-2xl bg-vj-card border border-vj-capri/40 text-xs text-white focus:border-vj-capri outline-none shadow-[0_0_15px_rgba(0,191,255,0.2)]">
-                <span class="absolute left-3.5 top-3.5 text-vj-capri text-xs">🔍</span>
+                <input type="text" placeholder="Buscar negocio o servicio..." class="w-full py-3 pl-10 pr-4 rounded-2xl bg-vj-card border border-vj-limon/40 text-xs text-white focus:border-vj-limon outline-none shadow-[0_0_15px_rgba(50,205,50,0.2)]">
+                <span class="absolute left-3.5 top-3.5 text-vj-limon text-xs">🔍</span>
             </div>
 
-            <div class="vj-card p-4 rounded-3xl space-y-3 border-vj-capri/50 shadow-[0_0_20px_rgba(0,191,255,0.25)]">
+            <div class="vj-card p-4 rounded-3xl space-y-3 border-vj-limon/50 shadow-[0_0_20px_rgba(50,205,50,0.25)]">
                 <div class="flex items-center gap-3">
-                    <div class="w-12 h-12 rounded-2xl bg-vj-capri/20 border border-vj-capri/60 flex items-center justify-center text-xl shadow-[0_0_10px_#00BFFF]">
+                    <div class="w-12 h-12 rounded-2xl bg-vj-limon/20 border border-vj-limon/60 flex items-center justify-center text-xl shadow-[0_0_10px_#32CD32]">
                         🚗
                     </div>
                     <div>
-                        <span class="text-[9px] text-vj-capri font-extrabold uppercase tracking-wider">Uber y Transporte Privado</span>
+                        <span class="text-[9px] text-vj-limon font-extrabold uppercase tracking-wider">Uber y Transporte Privado</span>
                         <h3 class="font-heading font-bold text-sm text-white">Uber Macías</h3>
                     </div>
                 </div>
                 <p class="text-xs text-gray-300">Viajes locales, foráneos y al aeropuerto.</p>
-                <div class="text-[11px] text-gray-400 space-y-1 pt-1 border-t border-vj-capri/20">
+                <div class="text-[11px] text-gray-400 space-y-1 pt-1 border-t border-vj-limon/20">
                     <p>🕒 Servicio de transporte 24/7</p>
                     <p>📍 Villa Juárez, Sinaloa</p>
                 </div>
@@ -192,14 +192,14 @@
         <div id="sec-mapa" class="space-y-4 hidden">
             <div class="flex items-center justify-between">
                 <div>
-                    <span class="text-[10px] text-vj-capri font-extrabold uppercase tracking-widest">Ubicación</span>
+                    <span class="text-[10px] text-vj-limon font-extrabold uppercase tracking-widest">Ubicación</span>
                     <h2 class="font-heading font-black text-lg text-white">Villa Juárez, Navolato</h2>
                 </div>
-                <span class="bg-vj-capri/15 border border-vj-capri/40 px-2.5 py-1 rounded-full text-[10px] text-vj-capri font-bold">Sinaloa</span>
+                <span class="bg-vj-limon/15 border border-vj-limon/40 px-2.5 py-1 rounded-full text-[10px] text-vj-limon font-bold">Sinaloa</span>
             </div>
 
-            <div class="vj-card p-3 rounded-3xl space-y-3 border-vj-capri/50">
-                <div class="w-full h-72 rounded-2xl overflow-hidden border border-vj-capri/40 bg-black relative">
+            <div class="vj-card p-3 rounded-3xl space-y-3 border-vj-limon/50">
+                <div class="w-full h-72 rounded-2xl overflow-hidden border border-vj-limon/40 bg-black relative">
                     <iframe
                         title="Mapa de Villa Juárez, Navolato, Sinaloa"
                         src="https://www.openstreetmap.org/export/embed.html?bbox=-107.6300%2C24.6300%2C-107.5650%2C24.6750&amp;layer=mapnik&amp;marker=24.6525%2C-107.5975"
@@ -213,7 +213,7 @@
                     <p class="text-xs text-gray-300">
                         Sindicatura de Lic. Benito Juárez (Villa Juárez), municipio de Navolato, Sinaloa.
                     </p>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Villa+Juarez+Navolato+Sinaloa" target="_blank" class="w-full py-2.5 rounded-xl bg-vj-capri text-gray-950 font-heading font-black text-xs shadow-[0_0_15px_rgba(0,191,255,0.5)] hover:bg-vj-glow transition-all flex items-center justify-center gap-1.5">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Villa+Juarez+Navolato+Sinaloa" target="_blank" class="w-full py-2.5 rounded-xl bg-vj-limon text-gray-950 font-heading font-black text-xs shadow-[0_0_15px_rgba(50,205,50,0.5)] hover:bg-vj-glow transition-all flex items-center justify-center gap-1.5">
                         <span>📍</span> Abrir Villa Juárez en Google Maps
                     </a>
                 </div>
@@ -223,8 +223,8 @@
         <!-- SECCIÓN FAVORITOS -->
         <div id="sec-favoritos" class="space-y-4 hidden">
             <h2 class="font-heading font-bold text-sm text-white flex items-center gap-2">❤️ Mis Favoritos</h2>
-            <div class="vj-card p-6 rounded-3xl text-center space-y-3 border-vj-capri/40">
-                <div class="w-16 h-16 bg-vj-capri/20 rounded-full flex items-center justify-center mx-auto text-2xl border border-vj-capri/50 shadow-[0_0_15px_#00BFFF]">⭐</div>
+            <div class="vj-card p-6 rounded-3xl text-center space-y-3 border-vj-limon/40">
+                <div class="w-16 h-16 bg-vj-limon/20 rounded-full flex items-center justify-center mx-auto text-2xl border border-vj-limon/50 shadow-[0_0_15px_#32CD32]">⭐</div>
                 <h3 class="font-heading font-bold text-sm text-white">Sin elementos guardados</h3>
                 <p class="text-xs text-gray-300">Explora el directorio y marca tus negocios preferidos para tener acceso rápido a ellos.</p>
             </div>
@@ -233,9 +233,9 @@
     </main>
 
     <!-- MENÚ DE NAVEGACIÓN INFERIOR CON ICONOS INTERACTIVOS -->
-    <nav class="fixed bottom-14 left-0 right-0 max-w-md mx-auto z-40 bg-black/95 backdrop-blur-xl border-t border-vj-capri/35 px-3 py-1.5 flex items-center justify-around shadow-[0_-6px_25px_rgba(0,191,255,0.25)]">
+    <nav class="fixed bottom-14 left-0 right-0 max-w-md mx-auto z-40 bg-black/95 backdrop-blur-xl border-t border-vj-limon/35 px-3 py-1.5 flex items-center justify-around shadow-[0_-6px_25px_rgba(50,205,50,0.25)]">
         
-        <button onclick="cambiarSeccionNav('inicio', this)" id="nav-btn-inicio" class="nav-item is-active flex flex-col items-center gap-0.5 py-1 px-2 text-vj-capri transition-colors focus:outline-none">
+        <button onclick="cambiarSeccionNav('inicio', this)" id="nav-btn-inicio" class="nav-item is-active flex flex-col items-center gap-0.5 py-1 px-2 text-vj-limon transition-colors focus:outline-none">
             <span class="nav-icon-wrap w-9 h-7 rounded-xl flex items-center justify-center">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M3 10.5L12 3l9 7.5"></path>
@@ -243,7 +243,7 @@
                 </svg>
             </span>
             <span class="nav-label text-[10px] font-bold tracking-tight">Inicio</span>
-            <span class="nav-indicator h-0.5 rounded-full bg-vj-capri mt-0.5 shadow-[0_0_8px_#00BFFF]"></span>
+            <span class="nav-indicator h-0.5 rounded-full bg-vj-limon mt-0.5 shadow-[0_0_8px_#32CD32]"></span>
         </button>
 
         <button onclick="cambiarSeccionNav('directorio', this)" id="nav-btn-directorio" class="nav-item flex flex-col items-center gap-0.5 py-1 px-2 text-gray-400 hover:text-vj-glow transition-colors focus:outline-none">
@@ -256,7 +256,7 @@
                 </svg>
             </span>
             <span class="nav-label text-[10px] font-medium tracking-tight">Directorio</span>
-            <span class="nav-indicator h-0.5 rounded-full bg-vj-capri mt-0.5 shadow-[0_0_8px_#00BFFF]"></span>
+            <span class="nav-indicator h-0.5 rounded-full bg-vj-limon mt-0.5 shadow-[0_0_8px_#32CD32]"></span>
         </button>
 
         <button onclick="cambiarSeccionNav('mapa', this)" id="nav-btn-mapa" class="nav-item flex flex-col items-center gap-0.5 py-1 px-2 text-gray-400 hover:text-vj-glow transition-colors focus:outline-none">
@@ -268,7 +268,7 @@
                 </svg>
             </span>
             <span class="nav-label text-[10px] font-medium tracking-tight">Mapa</span>
-            <span class="nav-indicator h-0.5 rounded-full bg-vj-capri mt-0.5 shadow-[0_0_8px_#00BFFF]"></span>
+            <span class="nav-indicator h-0.5 rounded-full bg-vj-limon mt-0.5 shadow-[0_0_8px_#32CD32]"></span>
         </button>
 
         <button onclick="cambiarSeccionNav('favoritos', this)" id="nav-btn-favoritos" class="nav-item flex flex-col items-center gap-0.5 py-1 px-2 text-gray-400 hover:text-vj-glow transition-colors focus:outline-none">
@@ -278,7 +278,7 @@
                 </svg>
             </span>
             <span class="nav-label text-[10px] font-medium tracking-tight">Favoritos</span>
-            <span class="nav-indicator h-0.5 rounded-full bg-vj-capri mt-0.5 shadow-[0_0_8px_#00BFFF]"></span>
+            <span class="nav-indicator h-0.5 rounded-full bg-vj-limon mt-0.5 shadow-[0_0_8px_#32CD32]"></span>
         </button>
 
     </nav>
@@ -288,40 +288,40 @@
         <div class="overflow-hidden whitespace-nowrap relative w-full py-1.5 px-3">
             <div class="animate-marquee-container items-center gap-8">
                 <div class="inline-flex items-center gap-3">
-                    <div class="flex items-center gap-2 bg-vj-card px-2.5 py-1 rounded-xl border border-vj-capri/50 shadow-[0_0_10px_rgba(0,191,255,0.3)]">
+                    <div class="flex items-center gap-2 bg-vj-card px-2.5 py-1 rounded-xl border border-vj-limon/50 shadow-[0_0_10px_rgba(50,205,50,0.3)]">
                         <div class="w-12 h-8 rounded-lg overflow-hidden flex-shrink-0 bg-black">
                             <img id="ad-img-src" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&h=200&fit=crop" alt="Banner" class="w-full h-full object-cover">
                         </div>
                         <div>
                             <div class="flex items-center gap-1.5">
                                 <span class="font-heading font-black text-[11px] text-white" id="ad-nombre">T&J DISEÑO Y PUBLICIDAD</span>
-                                <span class="bg-vj-capri text-gray-950 text-[7px] font-black px-1 rounded uppercase shadow-[0_0_8px_#00BFFF]">Patrocinador</span>
+                                <span class="bg-vj-limon text-gray-950 text-[7px] font-black px-1 rounded uppercase shadow-[0_0_8px_#32CD32]">Patrocinador</span>
                             </div>
                             <p class="text-[10px] text-gray-300 font-medium" id="ad-desc">¡Servicio profesional de diseño y publicidad en Villa Juárez!</p>
                         </div>
                     </div>
                     <div class="flex items-center gap-1.5">
-                        <a id="ad-link-map" href="https://maps.google.com" target="_blank" class="bg-vj-capri/20 border border-vj-capri/60 text-vj-capri px-2 py-1 rounded-lg text-[10px] font-bold hover:bg-vj-capri hover:text-gray-950 transition-all shadow-[0_0_8px_rgba(0,191,255,0.2)]">📍 Mapa</a>
-                        <a id="ad-link" href="https://wa.me/526674520598" target="_blank" class="bg-vj-capri text-gray-950 px-2.5 py-1 rounded-lg font-heading font-black text-[10px] shadow-[0_0_10px_rgba(0,191,255,0.5)] hover:bg-vj-glow transition-all">💬 WhatsApp</a>
+                        <a id="ad-link-map" href="https://maps.google.com" target="_blank" class="bg-vj-limon/20 border border-vj-limon/60 text-vj-limon px-2 py-1 rounded-lg text-[10px] font-bold hover:bg-vj-limon hover:text-gray-950 transition-all shadow-[0_0_8px_rgba(50,205,50,0.2)]">📍 Mapa</a>
+                        <a id="ad-link" href="https://wa.me/526674520598" target="_blank" class="bg-vj-limon text-gray-950 px-2.5 py-1 rounded-lg font-heading font-black text-[10px] shadow-[0_0_10px_rgba(50,205,50,0.5)] hover:bg-vj-glow transition-all">💬 WhatsApp</a>
                     </div>
                 </div>
 
                 <div class="inline-flex items-center gap-3">
-                    <div class="flex items-center gap-2 bg-vj-card px-2.5 py-1 rounded-xl border border-vj-capri/50 shadow-[0_0_10px_rgba(0,191,255,0.3)]">
+                    <div class="flex items-center gap-2 bg-vj-card px-2.5 py-1 rounded-xl border border-vj-limon/50 shadow-[0_0_10px_rgba(50,205,50,0.3)]">
                         <div class="w-12 h-8 rounded-lg overflow-hidden flex-shrink-0 bg-black">
                             <img id="ad-img-src-dup" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&h=200&fit=crop" alt="Banner" class="w-full h-full object-cover">
                         </div>
                         <div>
                             <div class="flex items-center gap-1.5">
                                 <span class="font-heading font-black text-[11px] text-white" id="ad-nombre-dup">T&J DISEÑO Y PUBLICIDAD</span>
-                                <span class="bg-vj-capri text-gray-950 text-[7px] font-black px-1 rounded uppercase shadow-[0_0_8px_#00BFFF]">Patrocinador</span>
+                                <span class="bg-vj-limon text-gray-950 text-[7px] font-black px-1 rounded uppercase shadow-[0_0_8px_#32CD32]">Patrocinador</span>
                             </div>
                             <p class="text-[10px] text-gray-300 font-medium" id="ad-desc-dup">¡Servicio profesional de diseño y publicidad en Villa Juárez!</p>
                         </div>
                     </div>
                     <div class="flex items-center gap-1.5">
-                        <a id="ad-link-map-dup" href="https://maps.google.com" target="_blank" class="bg-vj-capri/20 border border-vj-capri/60 text-vj-capri px-2 py-1 rounded-lg text-[10px] font-bold hover:bg-vj-capri hover:text-gray-950 transition-all shadow-[0_0_8px_rgba(0,191,255,0.2)]">📍 Mapa</a>
-                        <a id="ad-link-dup" href="https://wa.me/526674520598" target="_blank" class="bg-vj-capri text-gray-950 px-2.5 py-1 rounded-lg font-heading font-black text-[10px] shadow-[0_0_10px_rgba(0,191,255,0.5)] hover:bg-vj-glow transition-all">💬 WhatsApp</a>
+                        <a id="ad-link-map-dup" href="https://maps.google.com" target="_blank" class="bg-vj-limon/20 border border-vj-limon/60 text-vj-limon px-2 py-1 rounded-lg text-[10px] font-bold hover:bg-vj-limon hover:text-gray-950 transition-all shadow-[0_0_8px_rgba(50,205,50,0.2)]">📍 Mapa</a>
+                        <a id="ad-link-dup" href="https://wa.me/526674520598" target="_blank" class="bg-vj-limon text-gray-950 px-2.5 py-1 rounded-lg font-heading font-black text-[10px] shadow-[0_0_10px_rgba(50,205,50,0.5)] hover:bg-vj-glow transition-all">💬 WhatsApp</a>
                     </div>
                 </div>
             </div>
@@ -330,130 +330,130 @@
 
     <!-- MODAL REGISTRO NEGOCIO CLIENTES -->
     <div id="modal-negocio" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
-        <div class="vj-card w-full max-w-md p-5 rounded-3xl space-y-4 max-h-[90vh] overflow-y-auto border-vj-capri/60 shadow-[0_0_30px_rgba(0,191,255,0.4)]">
-            <div class="flex justify-between items-center border-b border-vj-capri/30 pb-3">
+        <div class="vj-card w-full max-w-md p-5 rounded-3xl space-y-4 max-h-[90vh] overflow-y-auto border-vj-limon/60 shadow-[0_0_30px_rgba(50,205,50,0.4)]">
+            <div class="flex justify-between items-center border-b border-vj-limon/30 pb-3">
                 <h3 class="font-heading font-bold text-sm text-white">🏪 Registrar tu Negocio</h3>
                 <button onclick="cerrarModalNegocio()" class="text-gray-400 hover:text-white text-lg">✕</button>
             </div>
             <div class="space-y-3 text-xs">
-                <input type="text" id="reg-nombre" placeholder="Nombre del Negocio" class="w-full p-2.5 rounded-xl bg-black border border-vj-capri/40 text-white focus:border-vj-capri outline-none">
-                <input type="text" id="reg-tel" placeholder="Teléfono" class="w-full p-2.5 rounded-xl bg-black border border-vj-capri/40 text-white focus:border-vj-capri outline-none">
-                <button onclick="guardarNegocio()" class="w-full py-3 rounded-xl bg-vj-capri text-gray-950 font-heading font-black text-xs shadow-[0_0_15px_rgba(0,191,255,0.5)] hover:bg-vj-glow transition-all">Solicitar Registro</button>
+                <input type="text" id="reg-nombre" placeholder="Nombre del Negocio" class="w-full p-2.5 rounded-xl bg-black border border-vj-limon/40 text-white focus:border-vj-limon outline-none">
+                <input type="text" id="reg-tel" placeholder="Teléfono" class="w-full p-2.5 rounded-xl bg-black border border-vj-limon/40 text-white focus:border-vj-limon outline-none">
+                <button onclick="guardarNegocio()" class="w-full py-3 rounded-xl bg-vj-limon text-gray-950 font-heading font-black text-xs shadow-[0_0_15px_rgba(50,205,50,0.5)] hover:bg-vj-glow transition-all">Solicitar Registro</button>
             </div>
         </div>
     </div>
 
     <!-- MODAL LOGIN & PANEL ADMINISTRADOR -->
     <div id="modal-admin" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
-        <div class="vj-card w-full max-w-md p-5 rounded-3xl space-y-4 max-h-[90vh] overflow-y-auto border-vj-capri/60 shadow-[0_0_30px_rgba(0,191,255,0.4)]">
-            <div class="flex justify-between items-center border-b border-vj-capri/30 pb-3">
+        <div class="vj-card w-full max-w-md p-5 rounded-3xl space-y-4 max-h-[90vh] overflow-y-auto border-vj-limon/60 shadow-[0_0_30px_rgba(50,205,50,0.4)]">
+            <div class="flex justify-between items-center border-b border-vj-limon/30 pb-3">
                 <h3 class="font-heading font-bold text-sm text-white flex items-center gap-2">🔐 Panel Administrador</h3>
                 <button onclick="cerrarModalAdmin()" class="text-gray-400 hover:text-white text-lg">✕</button>
             </div>
 
             <div id="admin-login-form" class="space-y-3 text-xs">
                 <p class="text-gray-300">Ingresa la clave de administrador:</p>
-                <input type="password" id="admin-pass" placeholder="Contraseña (por defecto: admin123)" class="w-full p-3 rounded-xl bg-black border border-vj-capri/50 text-white focus:border-vj-capri outline-none">
-                <button onclick="loginAdmin()" class="w-full py-3 rounded-xl bg-vj-capri text-gray-950 font-heading font-black text-xs shadow-[0_0_15px_rgba(0,191,255,0.5)] hover:bg-vj-glow transition-all">Iniciar Sesión</button>
+                <input type="password" id="admin-pass" placeholder="Contraseña (por defecto: admin123)" class="w-full p-3 rounded-xl bg-black border border-vj-limon/50 text-white focus:border-vj-limon outline-none">
+                <button onclick="loginAdmin()" class="w-full py-3 rounded-xl bg-vj-limon text-gray-950 font-heading font-black text-xs shadow-[0_0_15px_rgba(50,205,50,0.5)] hover:bg-vj-glow transition-all">Iniciar Sesión</button>
             </div>
 
             <div id="admin-panel-form" class="space-y-4 text-xs hidden">
-                <div class="bg-vj-capri/20 border border-vj-capri/50 p-2.5 rounded-xl text-vj-capri font-bold text-[11px] text-center shadow-[0_0_10px_rgba(0,191,255,0.3)]">
+                <div class="bg-vj-limon/20 border border-vj-limon/50 p-2.5 rounded-xl text-vj-limon font-bold text-[11px] text-center shadow-[0_0_10px_rgba(50,205,50,0.3)]">
                     ✓ Administrador Conectado (<span id="admin-display-name">Admin</span>)
                 </div>
                 
                 <!-- SECCIÓN 1: LOGOTIPO -->
-                <div class="bg-black/60 border border-vj-capri/40 p-3.5 rounded-2xl space-y-3 shadow-inner">
-                    <div class="flex items-center gap-2 border-b border-vj-capri/30 pb-2">
-                        <span class="text-vj-capri text-base">🖼️</span>
+                <div class="bg-black/60 border border-vj-limon/40 p-3.5 rounded-2xl space-y-3 shadow-inner">
+                    <div class="flex items-center gap-2 border-b border-vj-limon/30 pb-2">
+                        <span class="text-vj-limon text-base">🖼️</span>
                         <h4 class="font-heading font-bold text-xs text-white uppercase tracking-wider">Sección 1: Logotipo de la Página</h4>
                     </div>
                     <div>
                         <label class="block text-gray-400 font-bold mb-1 text-[10px]">Subir Logotipo Oficial (Header)</label>
-                        <input type="file" id="adm-file-logo" accept="image/*" class="w-full p-1.5 rounded-lg bg-black border border-vj-capri/40 text-white text-[11px] file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:text-[10px] file:font-semibold file:bg-vj-capri file:text-gray-950">
+                        <input type="file" id="adm-file-logo" accept="image/*" class="w-full p-1.5 rounded-lg bg-black border border-vj-limon/40 text-white text-[11px] file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:text-[10px] file:font-semibold file:bg-vj-limon file:text-gray-950">
                     </div>
-                    <button onclick="guardarSeccionLogo()" class="w-full py-2.5 rounded-xl bg-vj-capri text-gray-950 font-heading font-black text-xs shadow-[0_0_10px_rgba(0,191,255,0.4)] hover:bg-vj-glow transition-all">Guardar Logotipo</button>
+                    <button onclick="guardarSeccionLogo()" class="w-full py-2.5 rounded-xl bg-vj-limon text-gray-950 font-heading font-black text-xs shadow-[0_0_10px_rgba(50,205,50,0.4)] hover:bg-vj-glow transition-all">Guardar Logotipo</button>
                 </div>
 
                 <!-- SECCIÓN 2: SEGURIDAD -->
-                <div class="bg-black/60 border border-vj-capri/40 p-3.5 rounded-2xl space-y-3 shadow-inner">
-                    <div class="flex items-center gap-2 border-b border-vj-capri/30 pb-2">
-                        <span class="text-vj-capri text-base">🔑</span>
+                <div class="bg-black/60 border border-vj-limon/40 p-3.5 rounded-2xl space-y-3 shadow-inner">
+                    <div class="flex items-center gap-2 border-b border-vj-limon/30 pb-2">
+                        <span class="text-vj-limon text-base">🔑</span>
                         <h4 class="font-heading font-bold text-xs text-white uppercase tracking-wider">Sección 2: Seguridad y Contraseña</h4>
                     </div>
                     <div>
                         <label class="block text-gray-400 font-bold mb-1 text-[10px]">Nombre del Administrador</label>
-                        <input type="text" id="adm-perfil-nombre" value="Admin" class="w-full p-2 rounded-lg bg-black border border-vj-capri/40 text-white focus:border-vj-capri outline-none">
+                        <input type="text" id="adm-perfil-nombre" value="Admin" class="w-full p-2 rounded-lg bg-black border border-vj-limon/40 text-white focus:border-vj-limon outline-none">
                     </div>
                     <div>
                         <label class="block text-gray-400 font-bold mb-1 text-[10px]">Nueva Contraseña de Acceso</label>
-                        <input type="password" id="adm-nueva-pass" placeholder="Escribe nueva contraseña (opcional)" class="w-full p-2 rounded-lg bg-black border border-vj-capri/40 text-white focus:border-vj-capri outline-none">
+                        <input type="password" id="adm-nueva-pass" placeholder="Escribe nueva contraseña (opcional)" class="w-full p-2 rounded-lg bg-black border border-vj-limon/40 text-white focus:border-vj-limon outline-none">
                     </div>
-                    <button onclick="guardarSeccionSeguridad()" class="w-full py-2.5 rounded-xl bg-vj-capri text-gray-950 font-heading font-black text-xs shadow-[0_0_10px_rgba(0,191,255,0.4)] hover:bg-vj-glow transition-all">Actualizar Credenciales</button>
+                    <button onclick="guardarSeccionSeguridad()" class="w-full py-2.5 rounded-xl bg-vj-limon text-gray-950 font-heading font-black text-xs shadow-[0_0_10px_rgba(50,205,50,0.4)] hover:bg-vj-glow transition-all">Actualizar Credenciales</button>
                 </div>
 
                 <!-- SECCIÓN 3: FRANJA PUBLICITARIA -->
-                <div class="bg-black/60 border border-vj-capri/40 p-3.5 rounded-2xl space-y-3 shadow-inner">
-                    <div class="flex items-center gap-2 border-b border-vj-capri/30 pb-2">
-                        <span class="text-vj-capri text-base">📢</span>
+                <div class="bg-black/60 border border-vj-limon/40 p-3.5 rounded-2xl space-y-3 shadow-inner">
+                    <div class="flex items-center gap-2 border-b border-vj-limon/30 pb-2">
+                        <span class="text-vj-limon text-base">📢</span>
                         <h4 class="font-heading font-bold text-xs text-white uppercase tracking-wider">Sección 3: Franja Publicitaria (Banner)</h4>
                     </div>
                     <div>
                         <label class="block text-gray-400 font-bold mb-1 text-[10px]">Nombre del Negocio Patrocinador</label>
-                        <input type="text" id="adm-nombre" placeholder="Ej. Tacos El Paisa" class="w-full p-2.5 rounded-xl bg-black border border-vj-capri/40 text-white focus:border-vj-capri outline-none">
+                        <input type="text" id="adm-nombre" placeholder="Ej. Tacos El Paisa" class="w-full p-2.5 rounded-xl bg-black border border-vj-limon/40 text-white focus:border-vj-limon outline-none">
                     </div>
                     <div>
                         <label class="block text-gray-400 font-bold mb-1 text-[10px]">Promoción o Descripción del Anuncio</label>
-                        <input type="text" id="adm-desc" placeholder="Ej. 2x1 en ordenes de pastor" class="w-full p-2.5 rounded-xl bg-black border border-vj-capri/40 text-white focus:border-vj-capri outline-none">
+                        <input type="text" id="adm-desc" placeholder="Ej. 2x1 en ordenes de pastor" class="w-full p-2.5 rounded-xl bg-black border border-vj-limon/40 text-white focus:border-vj-limon outline-none">
                     </div>
                     <div>
                         <label class="block text-gray-400 font-bold mb-1 text-[10px]">Subir Imagen del Anuncio (Banner)</label>
-                        <input type="file" id="adm-file-img" accept="image/*" class="w-full p-2 rounded-xl bg-black border border-vj-capri/40 text-white text-[11px] file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-vj-capri file:text-gray-950">
+                        <input type="file" id="adm-file-img" accept="image/*" class="w-full p-2 rounded-xl bg-black border border-vj-limon/40 text-white text-[11px] file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-vj-limon file:text-gray-950">
                     </div>
                     <div>
                         <label class="block text-gray-400 font-bold mb-1 text-[10px]">Enlace de Contacto (WhatsApp)</label>
-                        <input type="text" id="adm-link" placeholder="Ej. https://wa.me/526670000000" class="w-full p-2.5 rounded-xl bg-black border border-vj-capri/40 text-white focus:border-vj-capri outline-none">
+                        <input type="text" id="adm-link" placeholder="Ej. https://wa.me/526670000000" class="w-full p-2.5 rounded-xl bg-black border border-vj-limon/40 text-white focus:border-vj-limon outline-none">
                     </div>
                     <div>
                         <label class="block text-gray-400 font-bold mb-1 text-[10px]">Enlace de Ubicación (Google Maps)</label>
-                        <input type="text" id="adm-map" placeholder="Ej. https://maps.google.com/?q=..." class="w-full p-2.5 rounded-xl bg-black border border-vj-capri/40 text-white focus:border-vj-capri outline-none">
+                        <input type="text" id="adm-map" placeholder="Ej. https://maps.google.com/?q=..." class="w-full p-2.5 rounded-xl bg-black border border-vj-limon/40 text-white focus:border-vj-limon outline-none">
                     </div>
-                    <button onclick="guardarSeccionAnuncio()" class="w-full py-2.5 rounded-xl bg-vj-capri text-gray-950 font-heading font-black text-xs shadow-[0_0_10px_rgba(0,191,255,0.4)] hover:bg-vj-glow transition-all">Guardar y Publicar Anuncio</button>
+                    <button onclick="guardarSeccionAnuncio()" class="w-full py-2.5 rounded-xl bg-vj-limon text-gray-950 font-heading font-black text-xs shadow-[0_0_10px_rgba(50,205,50,0.4)] hover:bg-vj-glow transition-all">Guardar y Publicar Anuncio</button>
                 </div>
 
                 <!-- SECCIÓN 4: GALERÍA DE VILLA JUÁREZ (EXCLUSIVA ADMIN) -->
-                <div id="admin-sec-galeria" class="bg-black/60 border border-vj-capri/40 p-3.5 rounded-2xl space-y-3 shadow-inner">
-                    <div class="flex items-center gap-2 border-b border-vj-capri/30 pb-2">
-                        <span class="text-vj-capri text-base">📸</span>
+                <div id="admin-sec-galeria" class="bg-black/60 border border-vj-limon/40 p-3.5 rounded-2xl space-y-3 shadow-inner">
+                    <div class="flex items-center gap-2 border-b border-vj-limon/30 pb-2">
+                        <span class="text-vj-limon text-base">📸</span>
                         <h4 class="font-heading font-bold text-xs text-white uppercase tracking-wider">Sección 4: Galería (Solo Admin)</h4>
                     </div>
                     <div>
                         <label class="block text-gray-400 font-bold mb-1 text-[10px]">Época de la Fotografía</label>
-                        <select id="gal-epoca" class="w-full p-2.5 rounded-xl bg-black border border-vj-capri/40 text-white focus:border-vj-capri outline-none">
+                        <select id="gal-epoca" class="w-full p-2.5 rounded-xl bg-black border border-vj-limon/40 text-white focus:border-vj-limon outline-none">
                             <option value="antigua">🕰️ Foto Antigua</option>
                             <option value="actual">📷 Foto Actual</option>
                         </select>
                     </div>
                     <div>
                         <label class="block text-gray-400 font-bold mb-1 text-[10px]">Título o Lugar</label>
-                        <input type="text" id="gal-titulo" placeholder="Ej. Plaza Principal o Calle Morelos" class="w-full p-2.5 rounded-xl bg-black border border-vj-capri/40 text-white focus:border-vj-capri outline-none">
+                        <input type="text" id="gal-titulo" placeholder="Ej. Plaza Principal o Calle Morelos" class="w-full p-2.5 rounded-xl bg-black border border-vj-limon/40 text-white focus:border-vj-limon outline-none">
                     </div>
                     <div>
                         <label class="block text-gray-400 font-bold mb-1 text-[10px]">Texto de Información de la Foto</label>
-                        <textarea id="gal-texto" rows="3" placeholder="Escribe la historia, año o detalle de esta foto..." class="w-full p-2.5 rounded-xl bg-black border border-vj-capri/40 text-white focus:border-vj-capri outline-none resize-none"></textarea>
+                        <textarea id="gal-texto" rows="3" placeholder="Escribe la historia, año o detalle de esta foto..." class="w-full p-2.5 rounded-xl bg-black border border-vj-limon/40 text-white focus:border-vj-limon outline-none resize-none"></textarea>
                     </div>
                     <div>
                         <label class="block text-gray-400 font-bold mb-1 text-[10px]">Seleccionar Fotografía</label>
-                        <input type="file" id="gal-file-img" accept="image/*" class="w-full p-2 rounded-xl bg-black border border-vj-capri/40 text-white text-[11px] file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-vj-capri file:text-gray-950">
+                        <input type="file" id="gal-file-img" accept="image/*" class="w-full p-2 rounded-xl bg-black border border-vj-limon/40 text-white text-[11px] file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-vj-limon file:text-gray-950">
                     </div>
-                    <button onclick="guardarFotoGaleria()" class="w-full py-2.5 rounded-xl bg-vj-capri text-gray-950 font-heading font-black text-xs shadow-[0_0_10px_rgba(0,191,255,0.4)] hover:bg-vj-glow transition-all">Agregar a la Galería</button>
+                    <button onclick="guardarFotoGaleria()" class="w-full py-2.5 rounded-xl bg-vj-limon text-gray-950 font-heading font-black text-xs shadow-[0_0_10px_rgba(50,205,50,0.4)] hover:bg-vj-glow transition-all">Agregar a la Galería</button>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- ALERTA TOAST -->
-    <div id="toast" class="fixed bottom-40 left-1/2 -translate-x-1/2 vj-card px-4 py-2.5 rounded-2xl text-xs text-white border border-vj-capri/50 shadow-[0_0_20px_rgba(0,191,255,0.5)] transition-all duration-300 opacity-0 pointer-events-none z-50 flex items-center gap-2">
+    <div id="toast" class="fixed bottom-40 left-1/2 -translate-x-1/2 vj-card px-4 py-2.5 rounded-2xl text-xs text-white border border-vj-limon/50 shadow-[0_0_20px_rgba(50,205,50,0.5)] transition-all duration-300 opacity-0 pointer-events-none z-50 flex items-center gap-2">
         <span>✨</span> <span id="toast-msg">Mensaje</span>
     </div>
 
@@ -511,7 +511,7 @@
 
             if (filtradas.length === 0) {
                 contenedor.innerHTML = `
-                    <div class="vj-card rounded-3xl p-6 text-center space-y-2 border-vj-capri/30">
+                    <div class="vj-card rounded-3xl p-6 text-center space-y-2 border-vj-limon/30">
                         <p class="text-xs text-gray-300 font-medium">No hay fotografías en esta categoría todavía.</p>
                     </div>
                 `;
@@ -522,21 +522,21 @@
                 const esAntigua = foto.epoca === "antigua";
                 const badgeClass = esAntigua
                     ? "bg-amber-400/20 text-amber-300 border-amber-400/40"
-                    : "bg-vj-capri/20 text-vj-capri border-vj-capri/40";
+                    : "bg-vj-limon/20 text-vj-limon border-vj-limon/40";
                 const badgeTexto = esAntigua ? "🕰️ Antigua" : "📷 Actual";
 
                 const mediaHtml = foto.imagen
-                    ? `<img src="${foto.imagen}" alt="${escaparHtml(foto.titulo)}" class="w-full h-52 object-cover rounded-2xl border border-vj-capri/30">`
-                    : `<div class="bg-black h-44 rounded-2xl border border-vj-capri/30 flex flex-col items-center justify-center text-gray-400 shadow-inner px-4 text-center">
+                    ? `<img src="${foto.imagen}" alt="${escaparHtml(foto.titulo)}" class="w-full h-52 object-cover rounded-2xl border border-vj-limon/30">`
+                    : `<div class="bg-black h-44 rounded-2xl border border-vj-limon/30 flex flex-col items-center justify-center text-gray-400 shadow-inner px-4 text-center">
                         <span class="text-3xl mb-1">${esAntigua ? "🏛️" : "🌅"}</span>
-                        <span class="text-[11px] font-medium text-vj-capri">${escaparHtml(foto.titulo)}</span>
+                        <span class="text-[11px] font-medium text-vj-limon">${escaparHtml(foto.titulo)}</span>
                        </div>`;
 
                 return `
-                    <article class="vj-card rounded-3xl overflow-hidden p-4 space-y-3 border-vj-capri/30">
+                    <article class="vj-card rounded-3xl overflow-hidden p-4 space-y-3 border-vj-limon/30">
                         <div class="flex items-center justify-between gap-2">
                             <div class="flex items-center gap-2.5">
-                                <div class="w-8 h-8 rounded-full bg-vj-capri text-gray-950 flex items-center justify-center font-black text-xs shadow-[0_0_12px_#00BFFF]">VJ</div>
+                                <div class="w-8 h-8 rounded-full bg-vj-limon text-gray-950 flex items-center justify-center font-black text-xs shadow-[0_0_12px_#32CD32]">VJ</div>
                                 <div>
                                     <h4 class="font-heading font-bold text-xs text-white">${escaparHtml(foto.titulo)}</h4>
                                     <span class="text-[9px] text-gray-400">Villa Juárez, Sinaloa</span>
@@ -565,9 +565,9 @@
                 const el = document.getElementById("filtro-" + key);
                 if (!el) return;
                 if (key === epoca) {
-                    el.className = "px-3 py-1 rounded-full text-[10px] font-extrabold bg-vj-capri text-gray-950 shadow-[0_0_10px_rgba(0,191,255,0.4)] transition-all";
+                    el.className = "px-3 py-1 rounded-full text-[10px] font-extrabold bg-vj-limon text-gray-950 shadow-[0_0_10px_rgba(50,205,50,0.4)] transition-all";
                 } else {
-                    el.className = "px-3 py-1 rounded-full text-[10px] font-bold bg-vj-card border border-vj-capri/40 text-gray-300 hover:text-white transition-all";
+                    el.className = "px-3 py-1 rounded-full text-[10px] font-bold bg-vj-card border border-vj-limon/40 text-gray-300 hover:text-white transition-all";
                 }
             });
             renderizarGaleria();
@@ -656,7 +656,7 @@
 
             const botones = document.querySelectorAll('nav button.nav-item');
             botones.forEach(btn => {
-                btn.classList.remove('is-active', 'text-vj-capri');
+                btn.classList.remove('is-active', 'text-vj-limon');
                 btn.classList.add('text-gray-400');
                 const label = btn.querySelector('.nav-label');
                 if (label) {
@@ -667,7 +667,7 @@
 
             if (btnElement) {
                 btnElement.classList.remove('text-gray-400');
-                btnElement.classList.add('is-active', 'text-vj-capri');
+                btnElement.classList.add('is-active', 'text-vj-limon');
                 const activeLabel = btnElement.querySelector('.nav-label');
                 if (activeLabel) {
                     activeLabel.classList.remove('font-medium');
