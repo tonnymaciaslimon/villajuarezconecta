@@ -68,6 +68,28 @@
                         linear-gradient(90deg, #00BFFF, #33CCFF, #0080FF) border-box;
             box-shadow: 0 0 25px rgba(0, 191, 255, 0.5);
         }
+
+        /* Animación interactiva de iconos del menú */
+        .nav-item .nav-icon-wrap {
+            transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.25s ease, box-shadow 0.25s ease;
+        }
+        .nav-item:active .nav-icon-wrap {
+            transform: scale(0.88);
+        }
+        .nav-item.is-active .nav-icon-wrap {
+            transform: translateY(-3px) scale(1.06);
+            background-color: rgba(0, 191, 255, 0.16);
+            box-shadow: 0 0 14px rgba(0, 191, 255, 0.45);
+        }
+        .nav-item .nav-indicator {
+            width: 0px;
+            transition: width 0.25s ease, opacity 0.25s ease;
+            opacity: 0;
+        }
+        .nav-item.is-active .nav-indicator {
+            width: 18px;
+            opacity: 1;
+        }
     </style>
 </head>
 <body class="font-sans bg-vj-bg text-gray-100 antialiased max-w-md mx-auto min-h-screen relative pb-48">
@@ -191,27 +213,55 @@
 
     </main>
 
-    <!-- MENÚ DE NAVEGACIÓN INFERIOR -->
-    <nav class="fixed bottom-14 left-0 right-0 max-w-md mx-auto z-40 bg-black/95 backdrop-blur-lg border-t border-vj-capri/30 px-4 py-2 flex items-center justify-around shadow-[0_-4px_25px_rgba(0,191,255,0.25)]">
-        <button onclick="cambiarSeccionNav('inicio', this)" id="nav-btn-inicio" class="flex flex-col items-center gap-1 text-vj-capri transition-all group">
-            <span class="text-lg group-hover:scale-110 transition-transform">🏠</span>
-            <span class="text-[10px] font-bold">Inicio</span>
+    <!-- MENÚ DE NAVEGACIÓN INFERIOR CON ICONOS INTERACTIVOS -->
+    <nav class="fixed bottom-14 left-0 right-0 max-w-md mx-auto z-40 bg-black/95 backdrop-blur-xl border-t border-vj-capri/35 px-3 py-1.5 flex items-center justify-around shadow-[0_-6px_25px_rgba(0,191,255,0.25)]">
+        
+        <button onclick="cambiarSeccionNav('inicio', this)" id="nav-btn-inicio" class="nav-item is-active flex flex-col items-center gap-0.5 py-1 px-2 text-vj-capri transition-colors focus:outline-none">
+            <span class="nav-icon-wrap w-9 h-7 rounded-xl flex items-center justify-center">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 10.5L12 3l9 7.5"></path>
+                    <path d="M5 9.5V19a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1V9.5"></path>
+                </svg>
+            </span>
+            <span class="nav-label text-[10px] font-bold tracking-tight">Inicio</span>
+            <span class="nav-indicator h-0.5 rounded-full bg-vj-capri mt-0.5 shadow-[0_0_8px_#00BFFF]"></span>
         </button>
 
-        <button onclick="cambiarSeccionNav('directorio', this)" id="nav-btn-directorio" class="flex flex-col items-center gap-1 text-gray-400 hover:text-white transition-all group">
-            <span class="text-lg group-hover:scale-110 transition-transform">🏪</span>
-            <span class="text-[10px] font-medium">Directorio</span>
+        <button onclick="cambiarSeccionNav('directorio', this)" id="nav-btn-directorio" class="nav-item flex flex-col items-center gap-0.5 py-1 px-2 text-gray-400 hover:text-vj-glow transition-colors focus:outline-none">
+            <span class="nav-icon-wrap w-9 h-7 rounded-xl flex items-center justify-center">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9l1.5-5h15L21 9"></path>
+                    <path d="M3 9a2.5 2.5 0 005 0 2.5 2.5 0 005 0 2.5 2.5 0 005 0 2.5 2.5 0 003-2.45"></path>
+                    <path d="M4 11v9h16v-9"></path>
+                    <path d="M10 20v-5h4v5"></path>
+                </svg>
+            </span>
+            <span class="nav-label text-[10px] font-medium tracking-tight">Directorio</span>
+            <span class="nav-indicator h-0.5 rounded-full bg-vj-capri mt-0.5 shadow-[0_0_8px_#00BFFF]"></span>
         </button>
 
-        <button onclick="cambiarSeccionNav('mapa', this)" id="nav-btn-mapa" class="flex flex-col items-center gap-1 text-gray-400 hover:text-white transition-all group">
-            <span class="text-lg group-hover:scale-110 transition-transform">🗺️</span>
-            <span class="text-[10px] font-medium">Mapa</span>
+        <button onclick="cambiarSeccionNav('mapa', this)" id="nav-btn-mapa" class="nav-item flex flex-col items-center gap-0.5 py-1 px-2 text-gray-400 hover:text-vj-glow transition-colors focus:outline-none">
+            <span class="nav-icon-wrap w-9 h-7 rounded-xl flex items-center justify-center">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
+                    <line x1="8" y1="2" x2="8" y2="18"></line>
+                    <line x1="16" y1="6" x2="16" y2="22"></line>
+                </svg>
+            </span>
+            <span class="nav-label text-[10px] font-medium tracking-tight">Mapa</span>
+            <span class="nav-indicator h-0.5 rounded-full bg-vj-capri mt-0.5 shadow-[0_0_8px_#00BFFF]"></span>
         </button>
 
-        <button onclick="cambiarSeccionNav('favoritos', this)" id="nav-btn-favoritos" class="flex flex-col items-center gap-1 text-gray-400 hover:text-white transition-all group">
-            <span class="text-lg group-hover:scale-110 transition-transform">❤️</span>
-            <span class="text-[10px] font-medium">Favoritos</span>
+        <button onclick="cambiarSeccionNav('favoritos', this)" id="nav-btn-favoritos" class="nav-item flex flex-col items-center gap-0.5 py-1 px-2 text-gray-400 hover:text-vj-glow transition-colors focus:outline-none">
+            <span class="nav-icon-wrap w-9 h-7 rounded-xl flex items-center justify-center">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                </svg>
+            </span>
+            <span class="nav-label text-[10px] font-medium tracking-tight">Favoritos</span>
+            <span class="nav-indicator h-0.5 rounded-full bg-vj-capri mt-0.5 shadow-[0_0_8px_#00BFFF]"></span>
         </button>
+
     </nav>
 
     <!-- FRANJA PUBLICITARIA INFERIOR EN MOVIMIENTO -->
@@ -558,7 +608,6 @@
             }
         }
 
-        // Detectar posibilidad de instalar PWA
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
@@ -577,7 +626,6 @@
             document.getElementById('btn-instalar-app').classList.add('hidden');
         }
 
-        // Registrar Service Worker
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('./sw.js').catch(() => {});
@@ -592,23 +640,25 @@
 
             document.getElementById('sec-' + secId).classList.remove('hidden');
 
-            const botones = document.querySelectorAll('nav button');
+            const botones = document.querySelectorAll('nav button.nav-item');
             botones.forEach(btn => {
-                btn.classList.remove('text-vj-capri');
+                btn.classList.remove('is-active', 'text-vj-capri');
                 btn.classList.add('text-gray-400');
-                const spanText = btn.querySelector('span:last-child');
-                if(spanText) {
-                    spanText.classList.remove('font-bold');
-                    spanText.classList.add('font-medium');
+                const label = btn.querySelector('.nav-label');
+                if (label) {
+                    label.classList.remove('font-bold');
+                    label.classList.add('font-medium');
                 }
             });
 
-            btnElement.classList.remove('text-gray-400');
-            btnElement.classList.add('text-vj-capri');
-            const activeText = btnElement.querySelector('span:last-child');
-            if(activeText) {
-                activeText.classList.remove('font-medium');
-                activeText.classList.add('font-bold');
+            if (btnElement) {
+                btnElement.classList.remove('text-gray-400');
+                btnElement.classList.add('is-active', 'text-vj-capri');
+                const activeLabel = btnElement.querySelector('.nav-label');
+                if (activeLabel) {
+                    activeLabel.classList.remove('font-medium');
+                    activeLabel.classList.add('font-bold');
+                }
             }
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
